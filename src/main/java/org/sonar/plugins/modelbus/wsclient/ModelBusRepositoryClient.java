@@ -8,9 +8,9 @@ import java.net.URL;
 import javax.xml.ws.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.sonar.plugins.modelbus.wsclient.messages.AuthenticateResponse;
-import org.sonar.plugins.modelbus.wsclient.messages.Repository;
-import org.sonar.plugins.modelbus.wsclient.messages.RepositoryServiceService;
+import org.sonar.plugins.modelbus.wsclient.repository.AuthenticateResponse;
+import org.sonar.plugins.modelbus.wsclient.repository.Repository;
+import org.sonar.plugins.modelbus.wsclient.repository.RepositoryServiceService;
 
 public class ModelBusRepositoryClient {
 	Logger logger = LoggerFactory.getLogger(getClass());
@@ -34,6 +34,7 @@ public class ModelBusRepositoryClient {
 		    	  Repository client = service.getPort(Repository.class);
 		    	  String result = client.authenticate("modelbus", "modelbus");
 		    	  logger.info("My first log: " + result); 
+		    	  System.out.println(result);
 		      } catch (Exception e) {
 		         System.out.println("Exception: " + e.getMessage());
 		      }
