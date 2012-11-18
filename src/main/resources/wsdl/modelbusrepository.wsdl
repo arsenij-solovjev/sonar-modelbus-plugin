@@ -1,0 +1,2071 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="RepositoryServiceService" targetNamespace="http://www.modelbus.org/Repository/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.modelbus.org/Repository/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema targetNamespace="http://www.w3.org/2005/05/xmlmime" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:attribute name="contentType" type="xs:string"/>
+</xs:schema>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.modelbus.org/Repository/" xmlns:ns0="http://jaxb.dev.java.net/array" xmlns:ns1="http://www.w3.org/2005/05/xmlmime" xmlns:tns="http://www.modelbus.org/Repository/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:import namespace="http://www.w3.org/2005/05/xmlmime"/>
+<xs:import namespace="http://jaxb.dev.java.net/array"/>
+<xs:element name="ConstraintViolationException" type="tns:RepositoryException"/>
+<xs:element name="InvalidRevisionException" type="tns:RepositoryException"/>
+<xs:element name="InvalidServiceDescriptionException" type="tns:RepositoryException"/>
+<xs:element name="InvalidValueException" type="tns:RepositoryException"/>
+<xs:element name="LockedException" type="tns:RepositoryException"/>
+<xs:element name="NonExistingResourceException" type="tns:RepositoryException"/>
+<xs:element name="RepositoryAuthentificationException" type="tns:RepositoryException"/>
+<xs:element name="RepositoryRuntimeException" type="tns:RepositoryException"/>
+<xs:element name="UnresolvedReferencesException" type="tns:RepositoryException"/>
+<xs:element name="authenticate">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="session" type="tns:Session"/>
+<xs:element name="username" type="xs:string"/>
+<xs:element name="password" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="authenticateResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="successful" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="checkInFile">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="session" type="tns:Session"/>
+<xs:element name="fileUri" type="xs:anyURI"/>
+<xs:element name="fileContent" ns1:expectedContentTypes="application/octet-stream" type="xs:base64Binary"/>
+<xs:element name="logMessage" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="checkInFileResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="session" type="tns:Session"/>
+<xs:element name="checksum" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="checkInModel">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="session" type="tns:Session"/>
+<xs:element name="modelUri" type="xs:anyURI"/>
+<xs:element name="model" ns1:expectedContentTypes="application/octet-stream" type="xs:base64Binary"/>
+<xs:element name="enableDependencies" type="xs:boolean"/>
+<xs:element name="logMessage" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="checkInModelResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="session" type="tns:Session"/>
+<xs:element name="checksum" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="checkOutFile">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="session" type="tns:Session"/>
+<xs:element name="fileUri" type="xs:anyURI"/>
+<xs:element name="revision" type="xs:long"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="checkOutFileResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="session" type="tns:Session"/>
+<xs:element name="fileContent" ns1:expectedContentTypes="application/octet-stream" type="xs:base64Binary"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="checkOutModel">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="session" type="tns:Session"/>
+<xs:element minOccurs="0" name="modelUri" type="xs:anyURI"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="checkOutModelResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="session" type="tns:Session"/>
+<xs:element minOccurs="0" name="model" ns1:expectedContentTypes="application/octet-stream" type="xs:base64Binary"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="checkPath">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="session" type="tns:Session"/>
+<xs:element name="uri" type="xs:anyURI"/>
+<xs:element name="revision" type="xs:long"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="checkPathResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="session" type="tns:Session"/>
+<xs:element name="nodeKind" type="tns:RepositoryNodeKind"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="commit">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="session" type="tns:Session"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="createFileMap" nillable="true" type="tns:PathFileContentMapEntry"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="checkInFileMap" nillable="true" type="tns:PathFileContentMapEntry"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="folderPaths" nillable="true" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="deletionPaths" nillable="true" type="xs:string"/>
+<xs:element name="logMessage" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="commitChangeModel">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="session" type="tns:Session"/>
+<xs:element name="messageID" type="xs:string"/>
+<xs:element name="modelUri" type="xs:anyURI"/>
+<xs:element name="changeModelContent" ns1:expectedContentTypes="application/octet-stream" type="xs:base64Binary"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="commitChangeModelResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="session" type="tns:Session"/>
+<xs:element name="successful" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="commitResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="session" type="tns:Session"/>
+<xs:element name="checksum" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="control">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="session" type="tns:Session"/>
+<xs:element name="fragmentUri" type="xs:anyURI"/>
+<xs:element name="fragmentFileLocation" type="xs:anyURI"/>
+<xs:element name="logMessage" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="controlResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="successful" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="copy">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="session" type="tns:Session"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="srcPaths" nillable="true" type="xs:anyURI"/>
+<xs:element name="destPath" type="xs:anyURI"/>
+<xs:element minOccurs="0" name="isMove" type="xs:boolean"/>
+<xs:element minOccurs="0" name="failWhenDstExists" type="xs:boolean"/>
+<xs:element minOccurs="0" name="logMessage" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="copyResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="successful" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="createDir">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="session" type="tns:Session"/>
+<xs:element name="dirUri" type="xs:anyURI"/>
+<xs:element name="logMessage" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="createDirResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="session" type="tns:Session"/>
+<xs:element name="checksum" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="createFile">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="session" type="tns:Session"/>
+<xs:element name="fileUri" type="xs:anyURI"/>
+<xs:element name="initialFileContent" ns1:expectedContentTypes="application/octet-stream" type="xs:base64Binary"/>
+<xs:element name="logMessage" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="createFileResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="session" type="tns:Session"/>
+<xs:element name="checksum" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="createModel">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="session" type="tns:Session"/>
+<xs:element name="modelUri" type="xs:anyURI"/>
+<xs:element name="metamodelUri" type="xs:string"/>
+<xs:element name="logMessage" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="createModelResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="session" type="tns:Session"/>
+<xs:element name="model" ns1:expectedContentTypes="application/octet-stream" type="xs:base64Binary"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="createModelwithContent">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="session" type="tns:Session"/>
+<xs:element name="initialModelContent" ns1:expectedContentTypes="application/octet-stream" type="xs:base64Binary"/>
+<xs:element name="modelUri" type="xs:anyURI"/>
+<xs:element name="enableDependencies" type="xs:boolean"/>
+<xs:element name="logMessage" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="createModelwithContentResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="session" type="tns:Session"/>
+<xs:element name="checksum" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="delete">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="session" type="tns:Session"/>
+<xs:element name="uri" type="xs:anyURI"/>
+<xs:element name="logMessage" type="xs:string"/>
+<xs:element name="revision" type="xs:long"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="deleteResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="session" type="tns:Session"/>
+<xs:element name="result" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="exists">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="session" type="tns:Session"/>
+<xs:element name="uri" type="xs:anyURI"/>
+<xs:element name="revision" type="xs:long"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="existsResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="session" type="tns:Session"/>
+<xs:element name="exists" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="getDir">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="session" type="tns:Session"/>
+<xs:element name="uri" type="xs:anyURI"/>
+<xs:element name="revision" type="xs:long"/>
+<xs:element name="includeCommitMessages" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="getDirResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="session" type="tns:Session"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="entries" nillable="true" type="tns:RepositoryDirEntry"/>
+<xs:element name="entry" type="tns:RepositoryDirEntry"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="getIncomingReferences">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="session" type="tns:Session"/>
+<xs:element name="uri" type="xs:anyURI"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="getIncomingReferencesResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="incomingReferencesInfos" nillable="true" type="tns:IncomingReferencesInfo"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="getLocks">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="session" type="tns:Session"/>
+<xs:element name="urlPrefix" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="getLocksResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="lockInfos" nillable="true" type="tns:LockInfo"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="getLogEntries">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="session" type="tns:Session"/>
+<xs:element maxOccurs="unbounded" name="targetPaths" type="xs:anyURI"/>
+<xs:element name="startRevision" type="xs:long"/>
+<xs:element name="endRevision" type="xs:long"/>
+<xs:element name="changedPath" type="xs:boolean"/>
+<xs:element name="strictNode" type="xs:boolean"/>
+<xs:element minOccurs="0" name="limit" type="xs:long"/>
+<xs:element minOccurs="0" name="includeMergedRevisions" type="xs:boolean"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="revisionProperties" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="getLogEntriesResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="logEntries" nillable="true" type="tns:RepositoryLogEntry"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="getStatus" type="tns:GetStatus"/>
+<xs:element name="getStatusResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="serviceStatus" nillable="true" type="tns:ServiceStatus"/>
+<xs:element name="startupDate" type="xs:dateTime"/>
+<xs:element name="location" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="info">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="session" type="tns:Session"/>
+<xs:element name="uri" type="xs:anyURI"/>
+<xs:element name="revision" type="xs:long"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="infoResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="info" type="tns:RepositoryDirEntry"/>
+<xs:element minOccurs="0" name="session" type="tns:Session"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="lock">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="session" type="tns:Session"/>
+<xs:element name="uri" type="xs:anyURI"/>
+<xs:element name="timeout" type="xs:dateTime"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="lockResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="successful" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="publishService">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="session" type="tns:Session"/>
+<xs:element name="properties" type="tns:ServiceProperties"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="publishServiceResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="successful" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="uncontrol">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="session" type="tns:Session"/>
+<xs:element name="fragmentFileLocation" type="xs:string"/>
+<xs:element name="logMessage" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="uncontrolResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="successful" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="unlock">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="session" type="tns:Session"/>
+<xs:element name="uri" type="xs:anyURI"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="unlockResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="successful" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="unpublishService">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="session" type="tns:Session"/>
+<xs:element name="properties" type="tns:ServiceProperties"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="unpublishServiceResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="successful" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="Session">
+<xs:sequence>
+<xs:element name="id" type="xs:string"/>
+<xs:element minOccurs="0" name="context" type="tns:Session"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="properties" nillable="true" type="tns:Property"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Property">
+<xs:sequence>
+<xs:element name="key" type="xs:string"/>
+<xs:element minOccurs="0" name="value" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="properties" nillable="true" type="tns:Property"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="RepositoryException">
+<xs:sequence>
+<xs:element name="code" type="xs:int"/>
+<xs:element name="message" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ServiceProperties">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="entries" nillable="true" type="tns:MapEntry"/>
+<xs:element name="serviceInterface" type="xs:string"/>
+<xs:element name="serviceName" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="MapEntry">
+<xs:sequence>
+<xs:element name="key" type="xs:string"/>
+<xs:element name="value" type="xs:anySimpleType"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="IncomingReferencesInfo">
+<xs:sequence>
+<xs:element name="referencingObjectUri" type="xs:string"/>
+<xs:element name="objectTypeUri" type="xs:string"/>
+<xs:element name="objectName" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="PathFileContentMapEntry">
+<xs:sequence>
+<xs:element name="path" type="xs:string"/>
+<xs:element name="fileContent" type="xs:base64Binary"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="RepositoryDirEntry">
+<xs:sequence/>
+<xs:attribute name="name" type="xs:string"/>
+<xs:attribute name="kind" type="tns:RepositoryNodeKind"/>
+<xs:attribute name="size" type="xs:long"/>
+<xs:attribute name="properties" type="xs:boolean"/>
+<xs:attribute name="revision" type="xs:long"/>
+<xs:attribute name="creationDate" type="xs:dateTime"/>
+<xs:attribute name="lastAuthor" type="xs:string"/>
+<xs:attribute name="commitMessage" type="xs:string"/>
+<xs:attribute name="uri" type="xs:anyURI"/>
+</xs:complexType>
+<xs:complexType name="LockInfo">
+<xs:sequence>
+<xs:element name="url" type="xs:string"/>
+<xs:element name="userName" type="xs:string"/>
+<xs:element name="time" type="xs:dateTime"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ServiceStatus">
+<xs:sequence/>
+<xs:attribute name="name" type="xs:string"/>
+<xs:attribute name="location" type="xs:string"/>
+<xs:attribute name="startupDate" type="xs:dateTime"/>
+<xs:attribute name="interface" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="RepositoryLogEntry">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="changedPaths" nillable="true" type="tns:RepositoryLogPath"/>
+</xs:sequence>
+<xs:attribute name="revision" type="xs:long" use="required"/>
+<xs:attribute name="date" type="xs:dateTime" use="required"/>
+<xs:attribute name="author" type="xs:string" use="required"/>
+<xs:attribute name="message" type="xs:string"/>
+<xs:attribute name="hasChildren" type="xs:boolean"/>
+</xs:complexType>
+<xs:complexType name="RepositoryLogPath">
+<xs:sequence/>
+<xs:attribute name="path" type="xs:string"/>
+<xs:attribute name="action" type="tns:RepositoryNodeChangeType"/>
+<xs:attribute name="copiedFromPath" type="xs:string"/>
+<xs:attribute name="copiedFromRevision" type="xs:long"/>
+</xs:complexType>
+<xs:complexType name="GetStatus">
+<xs:sequence>
+<xs:element name="session" type="tns:Session"/>
+<xs:element name="includeServices" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="hexBinary">
+<xs:simpleContent>
+<xs:extension base="xs:string">
+<xs:attribute ref="ns1:contentType"/>
+</xs:extension>
+</xs:simpleContent>
+</xs:complexType>
+<xs:complexType name="base64Binary">
+<xs:simpleContent>
+<xs:extension base="xs:base64Binary">
+<xs:attribute ref="ns1:contentType"/>
+</xs:extension>
+</xs:simpleContent>
+</xs:complexType>
+<xs:simpleType name="RepositoryNodeKind">
+<xs:restriction base="xs:string">
+<xs:enumeration value="NONE"/>
+<xs:enumeration value="FILE"/>
+<xs:enumeration value="DIR"/>
+<xs:enumeration value="MODEL"/>
+<xs:enumeration value="UNKNOWN"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="RepositoryNodeChangeType">
+<xs:restriction base="xs:string">
+<xs:enumeration value="ADDED"/>
+<xs:enumeration value="DELETED"/>
+<xs:enumeration value="REPLACED"/>
+<xs:enumeration value="MODIFIED"/>
+<xs:enumeration value="NONE"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:complexType final="#all" name="IncomingReferencesInfoArray">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="item" nillable="true" type="tns:IncomingReferencesInfo"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType final="#all" name="PathFileContentMapEntryArray">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="item" nillable="true" type="tns:PathFileContentMapEntry"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType final="#all" name="LockInfoArray">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="item" nillable="true" type="tns:LockInfo"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType final="#all" name="ServiceStatusArray">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="item" nillable="true" type="tns:ServiceStatus"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType final="#all" name="RepositoryLogEntryArray">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="item" nillable="true" type="tns:RepositoryLogEntry"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType final="#all" name="RepositoryDirEntryArray">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="item" nillable="true" type="tns:RepositoryDirEntry"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="RepositoryAuthentifcationException" nillable="true" type="tns:RepositoryException"/>
+<xs:element name="session" nillable="true" type="tns:Session"/>
+<xs:element name="dirUri" nillable="true" type="xs:string"/>
+<xs:element name="logMessage" nillable="true" type="xs:string"/>
+<xs:element name="checksum" nillable="true" type="xs:string"/>
+<xs:element name="uri" nillable="true" type="xs:string"/>
+<xs:element name="timeout" nillable="true" type="xs:anySimpleType"/>
+<xs:element name="successful" nillable="true" type="xs:boolean"/>
+<xs:element name="properties" nillable="true" type="tns:ServiceProperties"/>
+<xs:element name="fileUri" nillable="true" type="xs:string"/>
+<xs:element name="fileContent" nillable="true" type="xs:base64Binary"/>
+<xs:element name="modelUri" nillable="true" type="xs:string"/>
+<xs:element name="metamodelUri" nillable="true" type="xs:string"/>
+<xs:element name="model" nillable="true" type="xs:base64Binary"/>
+<xs:element name="enableDependencies" nillable="true" type="xs:boolean"/>
+<xs:element name="revision" nillable="true" type="xs:long"/>
+<xs:element name="fragmentUri" nillable="true" type="xs:string"/>
+<xs:element name="fragmentFileLocation" nillable="true" type="xs:string"/>
+<xs:element name="initialModelContent" nillable="true" type="xs:base64Binary"/>
+<xs:element name="incomingReferencesInfos" nillable="true" type="tns:IncomingReferencesInfoArray"/>
+<xs:element name="result" nillable="true" type="xs:string"/>
+<xs:element name="messageID" nillable="true" type="xs:string"/>
+<xs:element name="changeModelContent" nillable="true" type="xs:base64Binary"/>
+<xs:element name="username" nillable="true" type="xs:string"/>
+<xs:element name="password" nillable="true" type="xs:string"/>
+<xs:element name="sessionID" nillable="true" type="xs:string"/>
+<xs:element name="srcPaths" nillable="true" type="ns0:stringArray"/>
+<xs:element name="destPath" nillable="true" type="xs:string"/>
+<xs:element name="isMove" nillable="true" type="xs:boolean"/>
+<xs:element name="failWhenDstExists" nillable="true" type="xs:boolean"/>
+<xs:element name="createFileMap" nillable="true" type="tns:PathFileContentMapEntryArray"/>
+<xs:element name="checkInFileMap" nillable="true" type="tns:PathFileContentMapEntryArray"/>
+<xs:element name="folderPaths" nillable="true" type="ns0:stringArray"/>
+<xs:element name="deletionPaths" nillable="true" type="ns0:stringArray"/>
+<xs:element name="urlPrefix" nillable="true" type="xs:string"/>
+<xs:element name="lockInfos" nillable="true" type="tns:LockInfoArray"/>
+<xs:element name="includeServices" nillable="true" type="xs:boolean"/>
+<xs:element name="serviceStatus" nillable="true" type="tns:ServiceStatusArray"/>
+<xs:element name="startupDate" nillable="true" type="xs:anySimpleType"/>
+<xs:element name="location" nillable="true" type="xs:string"/>
+<xs:element name="SecureLocation" nillable="true" type="xs:string"/>
+<xs:element name="nodeKind" nillable="true" type="tns:RepositoryNodeKind"/>
+<xs:element name="targetPaths" nillable="true" type="ns0:stringArray"/>
+<xs:element name="startRevision" nillable="true" type="xs:long"/>
+<xs:element name="endRevision" nillable="true" type="xs:long"/>
+<xs:element name="changedPath" nillable="true" type="xs:boolean"/>
+<xs:element name="strictNode" nillable="true" type="xs:boolean"/>
+<xs:element name="limit" nillable="true" type="xs:long"/>
+<xs:element name="includeMergedRevisions" nillable="true" type="xs:boolean"/>
+<xs:element name="revisionProperties" nillable="true" type="ns0:stringArray"/>
+<xs:element name="logEntries" nillable="true" type="tns:RepositoryLogEntryArray"/>
+<xs:element name="initialFileContent" nillable="true" type="xs:base64Binary"/>
+<xs:element name="includeCommitMessages" nillable="true" type="xs:boolean"/>
+<xs:element name="entries" nillable="true" type="tns:RepositoryDirEntryArray"/>
+<xs:element name="entry" nillable="true" type="tns:RepositoryDirEntry"/>
+</xs:schema>
+<xs:schema targetNamespace="http://jaxb.dev.java.net/array" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:complexType final="#all" name="stringArray">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="item" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="publishServiceResponse">
+    <wsdl:part element="tns:successful" name="successful">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="checkOutFile">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:fileUri" name="fileUri">
+    </wsdl:part>
+    <wsdl:part element="tns:revision" name="revision">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="InvalidValueException">
+    <wsdl:part element="tns:InvalidValueException" name="InvalidValueException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="LockedException">
+    <wsdl:part element="tns:LockedException" name="LockedException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="checkInModel">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:modelUri" name="modelUri">
+    </wsdl:part>
+    <wsdl:part element="tns:model" name="model">
+    </wsdl:part>
+    <wsdl:part element="tns:enableDependencies" name="enableDependencies">
+    </wsdl:part>
+    <wsdl:part element="tns:logMessage" name="logMessage">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createModel">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:modelUri" name="modelUri">
+    </wsdl:part>
+    <wsdl:part element="tns:metamodelUri" name="metamodelUri">
+    </wsdl:part>
+    <wsdl:part element="tns:logMessage" name="logMessage">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getIncomingReferences">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:uri" name="uri">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDir">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:uri" name="uri">
+    </wsdl:part>
+    <wsdl:part element="tns:revision" name="revision">
+    </wsdl:part>
+    <wsdl:part element="tns:includeCommitMessages" name="includeCommitMessages">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLogEntries">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:targetPaths" name="targetPaths">
+    </wsdl:part>
+    <wsdl:part element="tns:startRevision" name="startRevision">
+    </wsdl:part>
+    <wsdl:part element="tns:endRevision" name="endRevision">
+    </wsdl:part>
+    <wsdl:part element="tns:changedPath" name="changedPath">
+    </wsdl:part>
+    <wsdl:part element="tns:strictNode" name="strictNode">
+    </wsdl:part>
+    <wsdl:part element="tns:limit" name="limit">
+    </wsdl:part>
+    <wsdl:part element="tns:includeMergedRevisions" name="includeMergedRevisions">
+    </wsdl:part>
+    <wsdl:part element="tns:revisionProperties" name="revisionProperties">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="checkOutModelResponse">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:model" name="model">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="unlock">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:uri" name="uri">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getStatus">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:includeServices" name="includeServices">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="control">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:fragmentUri" name="fragmentUri">
+    </wsdl:part>
+    <wsdl:part element="tns:fragmentFileLocation" name="fragmentFileLocation">
+    </wsdl:part>
+    <wsdl:part element="tns:logMessage" name="logMessage">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createModelResponse">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:model" name="model">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createDirResponse">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:checksum" name="checksum">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="copy">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:srcPaths" name="srcPaths">
+    </wsdl:part>
+    <wsdl:part element="tns:destPath" name="destPath">
+    </wsdl:part>
+    <wsdl:part element="tns:isMove" name="isMove">
+    </wsdl:part>
+    <wsdl:part element="tns:failWhenDstExists" name="failWhenDstExists">
+    </wsdl:part>
+    <wsdl:part element="tns:logMessage" name="logMessage">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="checkOutModelWithRevisionResponse">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:model" name="model">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="NonExistingResourceException">
+    <wsdl:part element="tns:NonExistingResourceException" name="NonExistingResourceException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getIncomingReferencesResponse">
+    <wsdl:part element="tns:incomingReferencesInfos" name="incomingReferencesInfos">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="commitChangeModelResponse">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:successful" name="successful">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="commitChangeModel">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:messageID" name="messageID">
+    </wsdl:part>
+    <wsdl:part element="tns:modelUri" name="modelUri">
+    </wsdl:part>
+    <wsdl:part element="tns:changeModelContent" name="changeModelContent">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="unlockResponse">
+    <wsdl:part element="tns:successful" name="successful">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="copyResponse">
+    <wsdl:part element="tns:successful" name="successful">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="commit">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:createFileMap" name="createFileMap">
+    </wsdl:part>
+    <wsdl:part element="tns:checkInFileMap" name="checkInFileMap">
+    </wsdl:part>
+    <wsdl:part element="tns:folderPaths" name="folderPaths">
+    </wsdl:part>
+    <wsdl:part element="tns:deletionPaths" name="deletionPaths">
+    </wsdl:part>
+    <wsdl:part element="tns:logMessage" name="logMessage">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="controlResponse">
+    <wsdl:part element="tns:successful" name="successful">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLocksResponse">
+    <wsdl:part element="tns:lockInfos" name="lockInfos">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="InvalidServiceDescriptionException">
+    <wsdl:part element="tns:InvalidServiceDescriptionException" name="InvalidServiceDescriptionException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="info">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:uri" name="uri">
+    </wsdl:part>
+    <wsdl:part element="tns:revision" name="revision">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createFile">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:fileUri" name="fileUri">
+    </wsdl:part>
+    <wsdl:part element="tns:initialFileContent" name="initialFileContent">
+    </wsdl:part>
+    <wsdl:part element="tns:logMessage" name="logMessage">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="existsResponse">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:exists" name="exists">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createFileResponse">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:checksum" name="checksum">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="lockResponse">
+    <wsdl:part element="tns:successful" name="successful">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="uncontrol">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:fragmentFileLocation" name="fragmentFileLocation">
+    </wsdl:part>
+    <wsdl:part element="tns:logMessage" name="logMessage">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLogEntriesResponse">
+    <wsdl:part element="tns:logEntries" name="logEntries">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="authenticateResponse">
+    <wsdl:part element="tns:sessionID" name="sessionID">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="exists">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:uri" name="uri">
+    </wsdl:part>
+    <wsdl:part element="tns:revision" name="revision">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="checkOutModel">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:modelUri" name="modelUri">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="InvalidRevisionException">
+    <wsdl:part element="tns:InvalidRevisionException" name="InvalidRevisionException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="checkPath">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:uri" name="uri">
+    </wsdl:part>
+    <wsdl:part element="tns:revision" name="revision">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="unpublishServiceResponse">
+    <wsdl:part element="tns:successful" name="successful">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteResponse">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:result" name="result">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="commitResponse">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:checksum" name="checksum">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="lock">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:uri" name="uri">
+    </wsdl:part>
+    <wsdl:part element="tns:timeout" name="timeout">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="RepositoryAuthentificationException">
+    <wsdl:part element="tns:RepositoryAuthentifcationException" name="RepositoryAuthentificationException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="publishService">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:properties" name="properties">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="checkInModelResponse">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:checksum" name="checksum">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getStatusResponse">
+    <wsdl:part element="tns:serviceStatus" name="serviceStatus">
+    </wsdl:part>
+    <wsdl:part element="tns:startupDate" name="startupDate">
+    </wsdl:part>
+    <wsdl:part element="tns:location" name="location">
+    </wsdl:part>
+    <wsdl:part element="tns:SecureLocation" name="SecureLocation">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="checkInFile">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:fileUri" name="fileUri">
+    </wsdl:part>
+    <wsdl:part element="tns:fileContent" name="fileContent">
+    </wsdl:part>
+    <wsdl:part element="tns:logMessage" name="logMessage">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDirResponse">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:entries" name="entries">
+    </wsdl:part>
+    <wsdl:part element="tns:entry" name="entry">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="infoResponse">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:info" name="info">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ConstraintViolationException">
+    <wsdl:part element="tns:ConstraintViolationException" name="ConstraintViolationException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="checkPathResponse">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:nodeKind" name="nodeKind">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="unpublishService">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:properties" name="properties">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delete">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:uri" name="uri">
+    </wsdl:part>
+    <wsdl:part element="tns:logMessage" name="logMessage">
+    </wsdl:part>
+    <wsdl:part element="tns:revision" name="revision">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createModelwithContent">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:initialModelContent" name="initialModelContent">
+    </wsdl:part>
+    <wsdl:part element="tns:modelUri" name="modelUri">
+    </wsdl:part>
+    <wsdl:part element="tns:enableDependencies" name="enableDependencies">
+    </wsdl:part>
+    <wsdl:part element="tns:logMessage" name="logMessage">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UnresolvedReferencesException">
+    <wsdl:part element="tns:UnresolvedReferencesException" name="UnresolvedReferencesException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="checkOutFileResponse">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:fileContent" name="fileContent">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="authenticate">
+    <wsdl:part element="tns:username" name="username">
+    </wsdl:part>
+    <wsdl:part element="tns:password" name="password">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="checkOutModelWithRevision">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:modelUri" name="modelUri">
+    </wsdl:part>
+    <wsdl:part element="tns:revision" name="revision">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="checkInFileResponse">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:checksum" name="checksum">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="RepositoryRuntimeException">
+    <wsdl:part element="tns:RepositoryRuntimeException" name="RepositoryRuntimeException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="uncontrolResponse">
+    <wsdl:part element="tns:successful" name="successful">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLocks">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:urlPrefix" name="urlPrefix">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createDir">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:dirUri" name="dirUri">
+    </wsdl:part>
+    <wsdl:part element="tns:logMessage" name="logMessage">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createModelwithContentResponse">
+    <wsdl:part element="tns:session" name="session">
+    </wsdl:part>
+    <wsdl:part element="tns:checksum" name="checksum">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="Repository">
+    <wsdl:operation name="createDir" parameterOrder="session dirUri logMessage checksum">
+      <wsdl:input message="tns:createDir" name="createDir">
+    </wsdl:input>
+      <wsdl:output message="tns:createDirResponse" name="createDirResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:RepositoryRuntimeException" name="RepositoryRuntimeException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryAuthentificationException" name="RepositoryAuthentificationException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="lock">
+      <wsdl:input message="tns:lock" name="lock">
+    </wsdl:input>
+      <wsdl:output message="tns:lockResponse" name="lockResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:RepositoryRuntimeException" name="RepositoryRuntimeException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryAuthentificationException" name="RepositoryAuthentificationException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:LockedException" name="LockedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:NonExistingResourceException" name="NonExistingResourceException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InvalidValueException" name="InvalidValueException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="publishService">
+      <wsdl:input message="tns:publishService" name="publishService">
+    </wsdl:input>
+      <wsdl:output message="tns:publishServiceResponse" name="publishServiceResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:RepositoryRuntimeException" name="RepositoryRuntimeException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryAuthentificationException" name="RepositoryAuthentificationException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InvalidServiceDescriptionException" name="InvalidServiceDescriptionException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="checkInFile" parameterOrder="session fileUri fileContent logMessage checksum">
+      <wsdl:input message="tns:checkInFile" name="checkInFile">
+    </wsdl:input>
+      <wsdl:output message="tns:checkInFileResponse" name="checkInFileResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:RepositoryRuntimeException" name="RepositoryRuntimeException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryAuthentificationException" name="RepositoryAuthentificationException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:LockedException" name="LockedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InvalidValueException" name="InvalidValueException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createModel" parameterOrder="session modelUri metamodelUri logMessage model">
+      <wsdl:input message="tns:createModel" name="createModel">
+    </wsdl:input>
+      <wsdl:output message="tns:createModelResponse" name="createModelResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UnresolvedReferencesException" name="UnresolvedReferencesException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryRuntimeException" name="RepositoryRuntimeException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryAuthentificationException" name="RepositoryAuthentificationException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:ConstraintViolationException" name="ConstraintViolationException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InvalidValueException" name="InvalidValueException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="checkInModel" parameterOrder="session modelUri model enableDependencies logMessage checksum">
+      <wsdl:input message="tns:checkInModel" name="checkInModel">
+    </wsdl:input>
+      <wsdl:output message="tns:checkInModelResponse" name="checkInModelResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UnresolvedReferencesException" name="UnresolvedReferencesException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryRuntimeException" name="RepositoryRuntimeException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryAuthentificationException" name="RepositoryAuthentificationException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:LockedException" name="LockedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:ConstraintViolationException" name="ConstraintViolationException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InvalidValueException" name="InvalidValueException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="checkOutModel" parameterOrder="session modelUri model">
+      <wsdl:input message="tns:checkOutModel" name="checkOutModel">
+    </wsdl:input>
+      <wsdl:output message="tns:checkOutModelResponse" name="checkOutModelResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UnresolvedReferencesException" name="UnresolvedReferencesException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryRuntimeException" name="RepositoryRuntimeException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryAuthentificationException" name="RepositoryAuthentificationException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:NonExistingResourceException" name="NonExistingResourceException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="checkOutModelWithRevision" parameterOrder="session modelUri model revision">
+      <wsdl:input message="tns:checkOutModelWithRevision" name="checkOutModelWithRevision">
+    </wsdl:input>
+      <wsdl:output message="tns:checkOutModelWithRevisionResponse" name="checkOutModelWithRevisionResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UnresolvedReferencesException" name="UnresolvedReferencesException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryRuntimeException" name="RepositoryRuntimeException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryAuthentificationException" name="RepositoryAuthentificationException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:NonExistingResourceException" name="NonExistingResourceException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="unpublishService">
+      <wsdl:input message="tns:unpublishService" name="unpublishService">
+    </wsdl:input>
+      <wsdl:output message="tns:unpublishServiceResponse" name="unpublishServiceResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:RepositoryRuntimeException" name="RepositoryRuntimeException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryAuthentificationException" name="RepositoryAuthentificationException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InvalidServiceDescriptionException" name="InvalidServiceDescriptionException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="control">
+      <wsdl:input message="tns:control" name="control">
+    </wsdl:input>
+      <wsdl:output message="tns:controlResponse" name="controlResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:RepositoryRuntimeException" name="RepositoryRuntimeException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryAuthentificationException" name="RepositoryAuthentificationException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:LockedException" name="LockedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:NonExistingResourceException" name="NonExistingResourceException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createModelwithContent" parameterOrder="session initialModelContent modelUri enableDependencies logMessage checksum">
+      <wsdl:input message="tns:createModelwithContent" name="createModelwithContent">
+    </wsdl:input>
+      <wsdl:output message="tns:createModelwithContentResponse" name="createModelwithContentResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UnresolvedReferencesException" name="UnresolvedReferencesException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryRuntimeException" name="RepositoryRuntimeException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryAuthentificationException" name="RepositoryAuthentificationException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:ConstraintViolationException" name="ConstraintViolationException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InvalidValueException" name="InvalidValueException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="checkOutFile" parameterOrder="session fileUri revision fileContent">
+      <wsdl:input message="tns:checkOutFile" name="checkOutFile">
+    </wsdl:input>
+      <wsdl:output message="tns:checkOutFileResponse" name="checkOutFileResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:RepositoryRuntimeException" name="RepositoryRuntimeException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryAuthentificationException" name="RepositoryAuthentificationException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:NonExistingResourceException" name="NonExistingResourceException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getIncomingReferences">
+      <wsdl:input message="tns:getIncomingReferences" name="getIncomingReferences">
+    </wsdl:input>
+      <wsdl:output message="tns:getIncomingReferencesResponse" name="getIncomingReferencesResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:RepositoryRuntimeException" name="RepositoryRuntimeException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryAuthentificationException" name="RepositoryAuthentificationException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:NonExistingResourceException" name="NonExistingResourceException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="delete" parameterOrder="session uri logMessage revision result">
+      <wsdl:input message="tns:delete" name="delete">
+    </wsdl:input>
+      <wsdl:output message="tns:deleteResponse" name="deleteResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:RepositoryRuntimeException" name="RepositoryRuntimeException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryAuthentificationException" name="RepositoryAuthentificationException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:LockedException" name="LockedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:NonExistingResourceException" name="NonExistingResourceException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="commitChangeModel" parameterOrder="session messageID modelUri changeModelContent successful">
+      <wsdl:input message="tns:commitChangeModel" name="commitChangeModel">
+    </wsdl:input>
+      <wsdl:output message="tns:commitChangeModelResponse" name="commitChangeModelResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:RepositoryRuntimeException" name="RepositoryRuntimeException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryAuthentificationException" name="RepositoryAuthentificationException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InvalidValueException" name="InvalidValueException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="authenticate">
+      <wsdl:input message="tns:authenticate" name="authenticate">
+    </wsdl:input>
+      <wsdl:output message="tns:authenticateResponse" name="authenticateResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:RepositoryRuntimeException" name="RepositoryRuntimeException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InvalidValueException" name="InvalidValueException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="uncontrol">
+      <wsdl:input message="tns:uncontrol" name="uncontrol">
+    </wsdl:input>
+      <wsdl:output message="tns:uncontrolResponse" name="uncontrolResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:RepositoryRuntimeException" name="RepositoryRuntimeException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryAuthentificationException" name="RepositoryAuthentificationException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:LockedException" name="LockedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:NonExistingResourceException" name="NonExistingResourceException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="unlock">
+      <wsdl:input message="tns:unlock" name="unlock">
+    </wsdl:input>
+      <wsdl:output message="tns:unlockResponse" name="unlockResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:RepositoryRuntimeException" name="RepositoryRuntimeException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryAuthentificationException" name="RepositoryAuthentificationException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:LockedException" name="LockedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:NonExistingResourceException" name="NonExistingResourceException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exists" parameterOrder="session uri revision exists">
+      <wsdl:input message="tns:exists" name="exists">
+    </wsdl:input>
+      <wsdl:output message="tns:existsResponse" name="existsResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:RepositoryRuntimeException" name="RepositoryRuntimeException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryAuthentificationException" name="RepositoryAuthentificationException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:NonExistingResourceException" name="NonExistingResourceException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="copy">
+      <wsdl:input message="tns:copy" name="copy">
+    </wsdl:input>
+      <wsdl:output message="tns:copyResponse" name="copyResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:RepositoryRuntimeException" name="RepositoryRuntimeException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryAuthentificationException" name="RepositoryAuthentificationException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:NonExistingResourceException" name="NonExistingResourceException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="commit" parameterOrder="session createFileMap checkInFileMap folderPaths deletionPaths logMessage checksum">
+      <wsdl:input message="tns:commit" name="commit">
+    </wsdl:input>
+      <wsdl:output message="tns:commitResponse" name="commitResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:RepositoryRuntimeException" name="RepositoryRuntimeException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryAuthentificationException" name="RepositoryAuthentificationException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:LockedException" name="LockedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InvalidValueException" name="InvalidValueException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="info" parameterOrder="session uri revision info">
+      <wsdl:input message="tns:info" name="info">
+    </wsdl:input>
+      <wsdl:output message="tns:infoResponse" name="infoResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InvalidRevisionException" name="InvalidRevisionException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryRuntimeException" name="RepositoryRuntimeException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryAuthentificationException" name="RepositoryAuthentificationException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:NonExistingResourceException" name="NonExistingResourceException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getLocks">
+      <wsdl:input message="tns:getLocks" name="getLocks">
+    </wsdl:input>
+      <wsdl:output message="tns:getLocksResponse" name="getLocksResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:RepositoryRuntimeException" name="RepositoryRuntimeException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryAuthentificationException" name="RepositoryAuthentificationException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:LockedException" name="LockedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:NonExistingResourceException" name="NonExistingResourceException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getStatus" parameterOrder="session includeServices serviceStatus startupDate location SecureLocation">
+      <wsdl:input message="tns:getStatus" name="getStatus">
+    </wsdl:input>
+      <wsdl:output message="tns:getStatusResponse" name="getStatusResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:RepositoryRuntimeException" name="RepositoryRuntimeException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryAuthentificationException" name="RepositoryAuthentificationException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="checkPath" parameterOrder="session uri revision nodeKind">
+      <wsdl:input message="tns:checkPath" name="checkPath">
+    </wsdl:input>
+      <wsdl:output message="tns:checkPathResponse" name="checkPathResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:RepositoryRuntimeException" name="RepositoryRuntimeException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryAuthentificationException" name="RepositoryAuthentificationException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:NonExistingResourceException" name="NonExistingResourceException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getLogEntries">
+      <wsdl:input message="tns:getLogEntries" name="getLogEntries">
+    </wsdl:input>
+      <wsdl:output message="tns:getLogEntriesResponse" name="getLogEntriesResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:RepositoryRuntimeException" name="RepositoryRuntimeException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryAuthentificationException" name="RepositoryAuthentificationException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createFile" parameterOrder="session fileUri initialFileContent logMessage checksum">
+      <wsdl:input message="tns:createFile" name="createFile">
+    </wsdl:input>
+      <wsdl:output message="tns:createFileResponse" name="createFileResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:RepositoryRuntimeException" name="RepositoryRuntimeException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryAuthentificationException" name="RepositoryAuthentificationException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InvalidValueException" name="InvalidValueException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDir" parameterOrder="session uri revision includeCommitMessages entries entry">
+      <wsdl:input message="tns:getDir" name="getDir">
+    </wsdl:input>
+      <wsdl:output message="tns:getDirResponse" name="getDirResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InvalidRevisionException" name="InvalidRevisionException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryRuntimeException" name="RepositoryRuntimeException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryAuthentificationException" name="RepositoryAuthentificationException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:NonExistingResourceException" name="NonExistingResourceException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RepositoryServiceServiceSoapBinding" type="tns:Repository">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="createDir">
+      <soap:operation soapAction="http://www.modelbus.org/Repository/createDir" style="document"/>
+      <wsdl:input name="createDir">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createDirResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RepositoryRuntimeException">
+        <soap:fault name="RepositoryRuntimeException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryAuthentificationException">
+        <soap:fault name="RepositoryAuthentificationException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="lock">
+      <soap:operation soapAction="http://www.modelbus.org/Repository/lock" style="document"/>
+      <wsdl:input name="lock">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="lockResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RepositoryRuntimeException">
+        <soap:fault name="RepositoryRuntimeException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryAuthentificationException">
+        <soap:fault name="RepositoryAuthentificationException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="LockedException">
+        <soap:fault name="LockedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="NonExistingResourceException">
+        <soap:fault name="NonExistingResourceException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidValueException">
+        <soap:fault name="InvalidValueException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="publishService">
+      <soap:operation soapAction="http://www.modelbus.org/Repository/publishService" style="document"/>
+      <wsdl:input name="publishService">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="publishServiceResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RepositoryRuntimeException">
+        <soap:fault name="RepositoryRuntimeException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryAuthentificationException">
+        <soap:fault name="RepositoryAuthentificationException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidServiceDescriptionException">
+        <soap:fault name="InvalidServiceDescriptionException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="checkInFile">
+      <soap:operation soapAction="http://www.modelbus.org/Repository/checkInFile" style="document"/>
+      <wsdl:input name="checkInFile">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="checkInFileResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RepositoryRuntimeException">
+        <soap:fault name="RepositoryRuntimeException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryAuthentificationException">
+        <soap:fault name="RepositoryAuthentificationException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="LockedException">
+        <soap:fault name="LockedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidValueException">
+        <soap:fault name="InvalidValueException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createModel">
+      <soap:operation soapAction="http://www.modelbus.org/Repository/createModel" style="document"/>
+      <wsdl:input name="createModel">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createModelResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UnresolvedReferencesException">
+        <soap:fault name="UnresolvedReferencesException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryRuntimeException">
+        <soap:fault name="RepositoryRuntimeException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryAuthentificationException">
+        <soap:fault name="RepositoryAuthentificationException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="ConstraintViolationException">
+        <soap:fault name="ConstraintViolationException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidValueException">
+        <soap:fault name="InvalidValueException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="checkInModel">
+      <soap:operation soapAction="http://www.modelbus.org/Repository/checkInModel" style="document"/>
+      <wsdl:input name="checkInModel">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="checkInModelResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UnresolvedReferencesException">
+        <soap:fault name="UnresolvedReferencesException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryRuntimeException">
+        <soap:fault name="RepositoryRuntimeException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryAuthentificationException">
+        <soap:fault name="RepositoryAuthentificationException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="LockedException">
+        <soap:fault name="LockedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="ConstraintViolationException">
+        <soap:fault name="ConstraintViolationException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidValueException">
+        <soap:fault name="InvalidValueException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="checkOutModel">
+      <soap:operation soapAction="http://www.modelbus.org/Repository/checkOutModel" style="document"/>
+      <wsdl:input name="checkOutModel">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="checkOutModelResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UnresolvedReferencesException">
+        <soap:fault name="UnresolvedReferencesException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryRuntimeException">
+        <soap:fault name="RepositoryRuntimeException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryAuthentificationException">
+        <soap:fault name="RepositoryAuthentificationException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="NonExistingResourceException">
+        <soap:fault name="NonExistingResourceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="checkOutModelWithRevision">
+      <soap:operation soapAction="http://www.modelbus.org/Repository/checkOutModelWithRevision" style="document"/>
+      <wsdl:input name="checkOutModelWithRevision">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="checkOutModelWithRevisionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UnresolvedReferencesException">
+        <soap:fault name="UnresolvedReferencesException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryRuntimeException">
+        <soap:fault name="RepositoryRuntimeException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryAuthentificationException">
+        <soap:fault name="RepositoryAuthentificationException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="NonExistingResourceException">
+        <soap:fault name="NonExistingResourceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="unpublishService">
+      <soap:operation soapAction="http://www.modelbus.org/Repository/unpublishService" style="document"/>
+      <wsdl:input name="unpublishService">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="unpublishServiceResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RepositoryRuntimeException">
+        <soap:fault name="RepositoryRuntimeException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryAuthentificationException">
+        <soap:fault name="RepositoryAuthentificationException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidServiceDescriptionException">
+        <soap:fault name="InvalidServiceDescriptionException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="control">
+      <soap:operation soapAction="http://www.modelbus.org/Repository/control" style="document"/>
+      <wsdl:input name="control">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="controlResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RepositoryRuntimeException">
+        <soap:fault name="RepositoryRuntimeException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryAuthentificationException">
+        <soap:fault name="RepositoryAuthentificationException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="LockedException">
+        <soap:fault name="LockedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="NonExistingResourceException">
+        <soap:fault name="NonExistingResourceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="checkOutFile">
+      <soap:operation soapAction="http://www.modelbus.org/Repository/checkOutFile" style="document"/>
+      <wsdl:input name="checkOutFile">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="checkOutFileResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RepositoryRuntimeException">
+        <soap:fault name="RepositoryRuntimeException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryAuthentificationException">
+        <soap:fault name="RepositoryAuthentificationException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="NonExistingResourceException">
+        <soap:fault name="NonExistingResourceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createModelwithContent">
+      <soap:operation soapAction="http://www.modelbus.org/Repository/createModelwithContent" style="document"/>
+      <wsdl:input name="createModelwithContent">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createModelwithContentResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UnresolvedReferencesException">
+        <soap:fault name="UnresolvedReferencesException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryRuntimeException">
+        <soap:fault name="RepositoryRuntimeException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryAuthentificationException">
+        <soap:fault name="RepositoryAuthentificationException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="ConstraintViolationException">
+        <soap:fault name="ConstraintViolationException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidValueException">
+        <soap:fault name="InvalidValueException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getIncomingReferences">
+      <soap:operation soapAction="http://www.modelbus.org/Repository/getIncomingReferences" style="document"/>
+      <wsdl:input name="getIncomingReferences">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getIncomingReferencesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RepositoryRuntimeException">
+        <soap:fault name="RepositoryRuntimeException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryAuthentificationException">
+        <soap:fault name="RepositoryAuthentificationException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="NonExistingResourceException">
+        <soap:fault name="NonExistingResourceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <soap:operation soapAction="http://www.modelbus.org/Repository/delete" style="document"/>
+      <wsdl:input name="delete">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RepositoryRuntimeException">
+        <soap:fault name="RepositoryRuntimeException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryAuthentificationException">
+        <soap:fault name="RepositoryAuthentificationException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="LockedException">
+        <soap:fault name="LockedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="NonExistingResourceException">
+        <soap:fault name="NonExistingResourceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="commitChangeModel">
+      <soap:operation soapAction="http://www.modelbus.org/Repository/commitChangeModel" style="document"/>
+      <wsdl:input name="commitChangeModel">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="commitChangeModelResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RepositoryRuntimeException">
+        <soap:fault name="RepositoryRuntimeException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryAuthentificationException">
+        <soap:fault name="RepositoryAuthentificationException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidValueException">
+        <soap:fault name="InvalidValueException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="authenticate">
+      <soap:operation soapAction="http://www.modelbus.org/Repository/authenticate" style="document"/>
+      <wsdl:input name="authenticate">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="authenticateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RepositoryRuntimeException">
+        <soap:fault name="RepositoryRuntimeException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidValueException">
+        <soap:fault name="InvalidValueException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="uncontrol">
+      <soap:operation soapAction="http://www.modelbus.org/Repository/uncontrol" style="document"/>
+      <wsdl:input name="uncontrol">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="uncontrolResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RepositoryRuntimeException">
+        <soap:fault name="RepositoryRuntimeException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryAuthentificationException">
+        <soap:fault name="RepositoryAuthentificationException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="LockedException">
+        <soap:fault name="LockedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="NonExistingResourceException">
+        <soap:fault name="NonExistingResourceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exists">
+      <soap:operation soapAction="http://www.modelbus.org/Repository/exists" style="document"/>
+      <wsdl:input name="exists">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="existsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RepositoryRuntimeException">
+        <soap:fault name="RepositoryRuntimeException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryAuthentificationException">
+        <soap:fault name="RepositoryAuthentificationException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="NonExistingResourceException">
+        <soap:fault name="NonExistingResourceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="unlock">
+      <soap:operation soapAction="http://www.modelbus.org/Repository/unlock" style="document"/>
+      <wsdl:input name="unlock">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="unlockResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RepositoryRuntimeException">
+        <soap:fault name="RepositoryRuntimeException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryAuthentificationException">
+        <soap:fault name="RepositoryAuthentificationException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="LockedException">
+        <soap:fault name="LockedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="NonExistingResourceException">
+        <soap:fault name="NonExistingResourceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="copy">
+      <soap:operation soapAction="http://www.modelbus.org/Repository/copy" style="document"/>
+      <wsdl:input name="copy">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="copyResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RepositoryRuntimeException">
+        <soap:fault name="RepositoryRuntimeException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryAuthentificationException">
+        <soap:fault name="RepositoryAuthentificationException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="NonExistingResourceException">
+        <soap:fault name="NonExistingResourceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="commit">
+      <soap:operation soapAction="http://www.modelbus.org/Repository/commit" style="document"/>
+      <wsdl:input name="commit">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="commitResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RepositoryRuntimeException">
+        <soap:fault name="RepositoryRuntimeException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryAuthentificationException">
+        <soap:fault name="RepositoryAuthentificationException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="LockedException">
+        <soap:fault name="LockedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidValueException">
+        <soap:fault name="InvalidValueException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="info">
+      <soap:operation soapAction="http://www.modelbus.org/Repository/info" style="document"/>
+      <wsdl:input name="info">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="infoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InvalidRevisionException">
+        <soap:fault name="InvalidRevisionException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryRuntimeException">
+        <soap:fault name="RepositoryRuntimeException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryAuthentificationException">
+        <soap:fault name="RepositoryAuthentificationException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="NonExistingResourceException">
+        <soap:fault name="NonExistingResourceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getLocks">
+      <soap:operation soapAction="http://www.modelbus.org/Repository/getLocks" style="document"/>
+      <wsdl:input name="getLocks">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getLocksResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RepositoryRuntimeException">
+        <soap:fault name="RepositoryRuntimeException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryAuthentificationException">
+        <soap:fault name="RepositoryAuthentificationException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="LockedException">
+        <soap:fault name="LockedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="NonExistingResourceException">
+        <soap:fault name="NonExistingResourceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="checkPath">
+      <soap:operation soapAction="http://www.modelbus.org/Repository/checkPath" style="document"/>
+      <wsdl:input name="checkPath">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="checkPathResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RepositoryRuntimeException">
+        <soap:fault name="RepositoryRuntimeException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryAuthentificationException">
+        <soap:fault name="RepositoryAuthentificationException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="NonExistingResourceException">
+        <soap:fault name="NonExistingResourceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getStatus">
+      <soap:operation soapAction="http://www.modelbus.org/Repository/getStatus" style="document"/>
+      <wsdl:input name="getStatus">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getStatusResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RepositoryRuntimeException">
+        <soap:fault name="RepositoryRuntimeException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryAuthentificationException">
+        <soap:fault name="RepositoryAuthentificationException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getLogEntries">
+      <soap:operation soapAction="http://www.modelbus.org/Repository/getLogEntries" style="document"/>
+      <wsdl:input name="getLogEntries">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getLogEntriesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RepositoryRuntimeException">
+        <soap:fault name="RepositoryRuntimeException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryAuthentificationException">
+        <soap:fault name="RepositoryAuthentificationException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createFile">
+      <soap:operation soapAction="http://www.modelbus.org/Repository/createFile" style="document"/>
+      <wsdl:input name="createFile">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createFileResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RepositoryRuntimeException">
+        <soap:fault name="RepositoryRuntimeException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryAuthentificationException">
+        <soap:fault name="RepositoryAuthentificationException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidValueException">
+        <soap:fault name="InvalidValueException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDir">
+      <soap:operation soapAction="http://www.modelbus.org/Repository/getDir" style="document"/>
+      <wsdl:input name="getDir">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getDirResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InvalidRevisionException">
+        <soap:fault name="InvalidRevisionException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryRuntimeException">
+        <soap:fault name="RepositoryRuntimeException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryAuthentificationException">
+        <soap:fault name="RepositoryAuthentificationException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="NonExistingResourceException">
+        <soap:fault name="NonExistingResourceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RepositoryServiceService">
+    <wsdl:port binding="tns:RepositoryServiceServiceSoapBinding" name="RepositoryPort">
+      <soap:address location="http://0.0.0.0:8080/modelbusrepository"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
