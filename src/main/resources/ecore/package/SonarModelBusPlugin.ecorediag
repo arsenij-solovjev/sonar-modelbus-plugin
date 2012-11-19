@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_Ajz4IDHoEeKxV6SQAlDbkg" type="EcoreTools" name="SonarModelBusPlugin" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_DuRpADHoEeKxV6SQAlDbkg" type="1002">
+    <children xmi:type="notation:Node" xmi:id="_DuRpBDHoEeKxV6SQAlDbkg" type="4006"/>
+    <children xmi:type="notation:Node" xmi:id="_DuXvoDHoEeKxV6SQAlDbkg" type="5003">
+      <children xmi:type="notation:Node" xmi:id="_AWsMsDHpEeKxV6SQAlDbkg" type="2003">
+        <children xmi:type="notation:Node" xmi:id="_AWsMszHpEeKxV6SQAlDbkg" type="4002"/>
+        <children xmi:type="notation:Node" xmi:id="_AWyTUDHpEeKxV6SQAlDbkg" type="5004">
+          <styles xmi:type="notation:DrawerStyle" xmi:id="_AWyTUTHpEeKxV6SQAlDbkg"/>
+          <styles xmi:type="notation:SortingStyle" xmi:id="_AWyTUjHpEeKxV6SQAlDbkg"/>
+          <styles xmi:type="notation:FilteringStyle" xmi:id="_AWyTUzHpEeKxV6SQAlDbkg"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_AWyTVDHpEeKxV6SQAlDbkg" type="5005">
+          <styles xmi:type="notation:DrawerStyle" xmi:id="_AWyTVTHpEeKxV6SQAlDbkg"/>
+          <styles xmi:type="notation:SortingStyle" xmi:id="_AWyTVjHpEeKxV6SQAlDbkg"/>
+          <styles xmi:type="notation:FilteringStyle" xmi:id="_AWyTVzHpEeKxV6SQAlDbkg"/>
+        </children>
+        <styles xmi:type="notation:ShapeStyle" xmi:id="_AWsMsTHpEeKxV6SQAlDbkg" fontColor="4210752" fontName="Segoe UI" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
+        <element xmi:type="ecore:EClass" href="SonarModelBusPlugin.ecore#//Sonar/SonarPlugin"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_AWsMsjHpEeKxV6SQAlDbkg" x="32" y="36"/>
+      </children>
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_DuXvoTHoEeKxV6SQAlDbkg"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_DuXvojHoEeKxV6SQAlDbkg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_DuXvozHoEeKxV6SQAlDbkg"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_DuRpATHoEeKxV6SQAlDbkg" fontColor="4210752" fontName="Segoe UI" fontHeight="10" fillColor="13150135" lineColor="4210752"/>
+    <styles xmi:type="notation:MultiDiagramLinkStyle" xmi:id="_DuRpAjHoEeKxV6SQAlDbkg"/>
+    <element xmi:type="ecore:EPackage" href="SonarModelBusPlugin.ecore#//Sonar"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DuRpAzHoEeKxV6SQAlDbkg" x="144" y="60" width="171" height="159"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_HpStEDHoEeKxV6SQAlDbkg" type="1002">
+    <children xmi:type="notation:Node" xmi:id="_HpYzsDHoEeKxV6SQAlDbkg" type="4006"/>
+    <children xmi:type="notation:Node" xmi:id="_HpYzsTHoEeKxV6SQAlDbkg" type="5003">
+      <children xmi:type="notation:Node" xmi:id="_RgY4kDHpEeKxV6SQAlDbkg" type="2003">
+        <children xmi:type="notation:Node" xmi:id="_RgY4kzHpEeKxV6SQAlDbkg" type="4002"/>
+        <children xmi:type="notation:Node" xmi:id="_RgY4lDHpEeKxV6SQAlDbkg" type="5004">
+          <styles xmi:type="notation:DrawerStyle" xmi:id="_RgY4lTHpEeKxV6SQAlDbkg"/>
+          <styles xmi:type="notation:SortingStyle" xmi:id="_RgY4ljHpEeKxV6SQAlDbkg"/>
+          <styles xmi:type="notation:FilteringStyle" xmi:id="_RgY4lzHpEeKxV6SQAlDbkg"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_RgY4mDHpEeKxV6SQAlDbkg" type="5005">
+          <styles xmi:type="notation:DrawerStyle" xmi:id="_RgY4mTHpEeKxV6SQAlDbkg"/>
+          <styles xmi:type="notation:SortingStyle" xmi:id="_RgY4mjHpEeKxV6SQAlDbkg"/>
+          <styles xmi:type="notation:FilteringStyle" xmi:id="_RgY4mzHpEeKxV6SQAlDbkg"/>
+        </children>
+        <styles xmi:type="notation:ShapeStyle" xmi:id="_RgY4kTHpEeKxV6SQAlDbkg" fontColor="4210752" fontName="Segoe UI" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
+        <element xmi:type="ecore:EClass" href="SonarModelBusPlugin.ecore#//Metrino/MetrinoWebService"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_RgY4kjHpEeKxV6SQAlDbkg" x="67" y="15"/>
+      </children>
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_HpYzsjHoEeKxV6SQAlDbkg"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_HpYzszHoEeKxV6SQAlDbkg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_HpYztDHoEeKxV6SQAlDbkg"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_HpStETHoEeKxV6SQAlDbkg" fontColor="4210752" fontName="Segoe UI" fontHeight="10" fillColor="13150135" lineColor="4210752"/>
+    <styles xmi:type="notation:MultiDiagramLinkStyle" xmi:id="_HpStEjHoEeKxV6SQAlDbkg"/>
+    <element xmi:type="ecore:EPackage" href="SonarModelBusPlugin.ecore#//Metrino"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_HpStEzHoEeKxV6SQAlDbkg" x="-12" y="516" width="279"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_NZslcDHoEeKxV6SQAlDbkg" type="1002">
+    <children xmi:type="notation:Node" xmi:id="_NZysEDHoEeKxV6SQAlDbkg" type="4006"/>
+    <children xmi:type="notation:Node" xmi:id="_NZysETHoEeKxV6SQAlDbkg" type="5003">
+      <children xmi:type="notation:Node" xmi:id="_TBSDkDHpEeKxV6SQAlDbkg" type="2003">
+        <children xmi:type="notation:Node" xmi:id="_TBSDkzHpEeKxV6SQAlDbkg" type="4002"/>
+        <children xmi:type="notation:Node" xmi:id="_TBSDlDHpEeKxV6SQAlDbkg" type="5004">
+          <styles xmi:type="notation:DrawerStyle" xmi:id="_TBSDlTHpEeKxV6SQAlDbkg"/>
+          <styles xmi:type="notation:SortingStyle" xmi:id="_TBSDljHpEeKxV6SQAlDbkg"/>
+          <styles xmi:type="notation:FilteringStyle" xmi:id="_TBSDlzHpEeKxV6SQAlDbkg"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_TBSDmDHpEeKxV6SQAlDbkg" type="5005">
+          <styles xmi:type="notation:DrawerStyle" xmi:id="_TBSDmTHpEeKxV6SQAlDbkg"/>
+          <styles xmi:type="notation:SortingStyle" xmi:id="_TBSDmjHpEeKxV6SQAlDbkg"/>
+          <styles xmi:type="notation:FilteringStyle" xmi:id="_TBSDmzHpEeKxV6SQAlDbkg"/>
+        </children>
+        <styles xmi:type="notation:ShapeStyle" xmi:id="_TBSDkTHpEeKxV6SQAlDbkg" fontColor="4210752" fontName="Segoe UI" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
+        <element xmi:type="ecore:EClass" href="SonarModelBusPlugin.ecore#//ModelBus/ModelBusWebService"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_TBSDkjHpEeKxV6SQAlDbkg" x="79" y="15"/>
+      </children>
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_NZysEjHoEeKxV6SQAlDbkg"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_NZysEzHoEeKxV6SQAlDbkg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_NZysFDHoEeKxV6SQAlDbkg"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_NZslcTHoEeKxV6SQAlDbkg" fontColor="4210752" fontName="Segoe UI" fontHeight="10" fillColor="13150135" lineColor="4210752"/>
+    <styles xmi:type="notation:MultiDiagramLinkStyle" xmi:id="_NZslcjHoEeKxV6SQAlDbkg"/>
+    <element xmi:type="ecore:EPackage" href="SonarModelBusPlugin.ecore#//ModelBus"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_NZslczHoEeKxV6SQAlDbkg" x="288" y="516" width="291"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_FXmh0DHpEeKxV6SQAlDbkg" type="1002">
+    <children xmi:type="notation:Node" xmi:id="_FXmh1DHpEeKxV6SQAlDbkg" type="4006"/>
+    <children xmi:type="notation:Node" xmi:id="_FXmh1THpEeKxV6SQAlDbkg" type="5003">
+      <children xmi:type="notation:Node" xmi:id="_H7cXkDHpEeKxV6SQAlDbkg" type="2003">
+        <children xmi:type="notation:Node" xmi:id="_H7cXkzHpEeKxV6SQAlDbkg" type="4002"/>
+        <children xmi:type="notation:Node" xmi:id="_H7cXlDHpEeKxV6SQAlDbkg" type="5004">
+          <styles xmi:type="notation:DrawerStyle" xmi:id="_H7cXlTHpEeKxV6SQAlDbkg"/>
+          <styles xmi:type="notation:SortingStyle" xmi:id="_H7cXljHpEeKxV6SQAlDbkg"/>
+          <styles xmi:type="notation:FilteringStyle" xmi:id="_H7cXlzHpEeKxV6SQAlDbkg"/>
+          <layoutConstraint xmi:type="notation:Ratio" xmi:id="_QHgaEDHpEeKxV6SQAlDbkg" value="0.24489795918367346"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_H7cXmDHpEeKxV6SQAlDbkg" type="5005">
+          <styles xmi:type="notation:DrawerStyle" xmi:id="_H7cXmTHpEeKxV6SQAlDbkg"/>
+          <styles xmi:type="notation:SortingStyle" xmi:id="_H7cXmjHpEeKxV6SQAlDbkg"/>
+          <styles xmi:type="notation:FilteringStyle" xmi:id="_H7cXmzHpEeKxV6SQAlDbkg"/>
+          <layoutConstraint xmi:type="notation:Ratio" xmi:id="_QHgaETHpEeKxV6SQAlDbkg" value="0.40816326530612246"/>
+        </children>
+        <styles xmi:type="notation:ShapeStyle" xmi:id="_H7cXkTHpEeKxV6SQAlDbkg" fontColor="4210752" fontName="Segoe UI" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
+        <element xmi:type="ecore:EClass" href="SonarModelBusPlugin.ecore#//Sonar%20ModelBus%20Plugin/ModelBusPlugin"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_H7cXkjHpEeKxV6SQAlDbkg" x="127" y="15" width="135" height="51"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_VpOWMDHpEeKxV6SQAlDbkg" type="2003">
+        <children xmi:type="notation:Node" xmi:id="_VpOWMzHpEeKxV6SQAlDbkg" type="4002"/>
+        <children xmi:type="notation:Node" xmi:id="_VpOWNDHpEeKxV6SQAlDbkg" type="5004">
+          <styles xmi:type="notation:DrawerStyle" xmi:id="_VpOWNTHpEeKxV6SQAlDbkg"/>
+          <styles xmi:type="notation:SortingStyle" xmi:id="_VpOWNjHpEeKxV6SQAlDbkg"/>
+          <styles xmi:type="notation:FilteringStyle" xmi:id="_VpOWNzHpEeKxV6SQAlDbkg"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_VpOWODHpEeKxV6SQAlDbkg" type="5005">
+          <styles xmi:type="notation:DrawerStyle" xmi:id="_VpOWOTHpEeKxV6SQAlDbkg"/>
+          <styles xmi:type="notation:SortingStyle" xmi:id="_VpOWOjHpEeKxV6SQAlDbkg"/>
+          <styles xmi:type="notation:FilteringStyle" xmi:id="_VpOWOzHpEeKxV6SQAlDbkg"/>
+        </children>
+        <styles xmi:type="notation:ShapeStyle" xmi:id="_VpOWMTHpEeKxV6SQAlDbkg" fontColor="4210752" fontName="Segoe UI" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
+        <element xmi:type="ecore:EClass" href="SonarModelBusPlugin.ecore#//Sonar%20ModelBus%20Plugin/MetrinoAdapter"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_VpOWMjHpEeKxV6SQAlDbkg" x="19" y="123"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_W7VeUDHpEeKxV6SQAlDbkg" type="2003">
+        <children xmi:type="notation:Node" xmi:id="_W7bk8DHpEeKxV6SQAlDbkg" type="4002"/>
+        <children xmi:type="notation:Node" xmi:id="_W7bk8THpEeKxV6SQAlDbkg" type="5004">
+          <styles xmi:type="notation:DrawerStyle" xmi:id="_W7bk8jHpEeKxV6SQAlDbkg"/>
+          <styles xmi:type="notation:SortingStyle" xmi:id="_W7bk8zHpEeKxV6SQAlDbkg"/>
+          <styles xmi:type="notation:FilteringStyle" xmi:id="_W7bk9DHpEeKxV6SQAlDbkg"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_W7bk9THpEeKxV6SQAlDbkg" type="5005">
+          <styles xmi:type="notation:DrawerStyle" xmi:id="_W7bk9jHpEeKxV6SQAlDbkg"/>
+          <styles xmi:type="notation:SortingStyle" xmi:id="_W7bk9zHpEeKxV6SQAlDbkg"/>
+          <styles xmi:type="notation:FilteringStyle" xmi:id="_W7bk-DHpEeKxV6SQAlDbkg"/>
+        </children>
+        <styles xmi:type="notation:ShapeStyle" xmi:id="_W7VeUTHpEeKxV6SQAlDbkg" fontColor="4210752" fontName="Segoe UI" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
+        <element xmi:type="ecore:EClass" href="SonarModelBusPlugin.ecore#//Sonar%20ModelBus%20Plugin/ModelBusAdapter"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_W7VeUjHpEeKxV6SQAlDbkg" x="235" y="123"/>
+      </children>
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_FXsocDHpEeKxV6SQAlDbkg"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_FXsocTHpEeKxV6SQAlDbkg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_FXsocjHpEeKxV6SQAlDbkg"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_FXmh0THpEeKxV6SQAlDbkg" fontColor="4210752" fontName="Segoe UI" fontHeight="10" fillColor="13150135" lineColor="4210752"/>
+    <styles xmi:type="notation:MultiDiagramLinkStyle" xmi:id="_FXmh0jHpEeKxV6SQAlDbkg"/>
+    <element xmi:type="ecore:EPackage" href="SonarModelBusPlugin.ecore#//Sonar%20ModelBus%20Plugin"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_FXmh0zHpEeKxV6SQAlDbkg" x="84" y="240" width="387" height="219"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_Ajz4ITHoEeKxV6SQAlDbkg"/>
+  <element xmi:type="ecore:EPackage" href="SonarModelBusPlugin.ecore#/"/>
+  <edges xmi:type="notation:Edge" xmi:id="_Mnxj0DHpEeKxV6SQAlDbkg" type="3003" source="_H7cXkDHpEeKxV6SQAlDbkg" target="_AWsMsDHpEeKxV6SQAlDbkg">
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_Mnxj0THpEeKxV6SQAlDbkg" routing="Rectilinear" lineColor="4210752"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_Mnxj0jHpEeKxV6SQAlDbkg" fontName="Segoe UI"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Mnxj0zHpEeKxV6SQAlDbkg" points="[3, -20, -28, 139]$[22, -179, -9, -20]"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_Y_g8kDHpEeKxV6SQAlDbkg" type="3002" source="_H7cXkDHpEeKxV6SQAlDbkg" target="_VpOWMDHpEeKxV6SQAlDbkg">
+    <children xmi:type="notation:Node" xmi:id="_Y_nDMDHpEeKxV6SQAlDbkg" type="4011">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_Y_nDMTHpEeKxV6SQAlDbkg" x="-10" y="-10"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_Y_nDMjHpEeKxV6SQAlDbkg" type="4012">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_Y_nDMzHpEeKxV6SQAlDbkg" x="10" y="10"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_Y_g8kTHpEeKxV6SQAlDbkg" lineColor="4210752"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_Y_g8kjHpEeKxV6SQAlDbkg" fontColor="4210752" fontName="Segoe UI" fontHeight="10"/>
+    <element xmi:type="ecore:EReference" href="SonarModelBusPlugin.ecore#//Sonar%20ModelBus%20Plugin/ModelBusPlugin/has"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Y_g8kzHpEeKxV6SQAlDbkg" points="[-11, 25, 17, -61]$[-84, 86, -56, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_cakuMDHpEeKxV6SQAlDbkg" type="3002" source="_H7cXkDHpEeKxV6SQAlDbkg" target="_W7VeUDHpEeKxV6SQAlDbkg">
+    <children xmi:type="notation:Node" xmi:id="_cakuNDHpEeKxV6SQAlDbkg" type="4011">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_cakuNTHpEeKxV6SQAlDbkg" x="-10" y="-10"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_caq00DHpEeKxV6SQAlDbkg" type="4012">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_caq00THpEeKxV6SQAlDbkg" x="10" y="10"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_cakuMTHpEeKxV6SQAlDbkg" lineColor="4210752"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_cakuMjHpEeKxV6SQAlDbkg" fontColor="4210752" fontName="Segoe UI" fontHeight="10"/>
+    <element xmi:type="ecore:EReference" href="SonarModelBusPlugin.ecore#//Sonar%20ModelBus%20Plugin/ModelBusPlugin/has.1"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_cakuMzHpEeKxV6SQAlDbkg" points="[33, 25, -119, -79]$[90, 98, -62, -6]"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_i8MBEDHpEeKxV6SQAlDbkg" type="3002" source="_VpOWMDHpEeKxV6SQAlDbkg" target="_RgY4kDHpEeKxV6SQAlDbkg">
+    <children xmi:type="notation:Node" xmi:id="_i8MBFDHpEeKxV6SQAlDbkg" type="4011">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_i8MBFTHpEeKxV6SQAlDbkg" x="-10" y="-10"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_i8MBFjHpEeKxV6SQAlDbkg" type="4012">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_i8MBFzHpEeKxV6SQAlDbkg" x="10" y="10"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_i8MBETHpEeKxV6SQAlDbkg" lineColor="4210752"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_i8MBEjHpEeKxV6SQAlDbkg" fontColor="4210752" fontName="Segoe UI" fontHeight="10"/>
+    <element xmi:type="ecore:EReference" href="SonarModelBusPlugin.ecore#//Sonar%20ModelBus%20Plugin/MetrinoAdapter/connection"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_i8MBEzHpEeKxV6SQAlDbkg" points="[-3, 21, 25, -145]$[-19, 146, 9, -20]"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_nKXRsDHpEeKxV6SQAlDbkg" type="3002" source="_W7VeUDHpEeKxV6SQAlDbkg" target="_TBSDkDHpEeKxV6SQAlDbkg">
+    <children xmi:type="notation:Node" xmi:id="_nKXRtDHpEeKxV6SQAlDbkg" type="4011">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_nKXRtTHpEeKxV6SQAlDbkg" x="-10" y="-10"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_nKXRtjHpEeKxV6SQAlDbkg" type="4012">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_nKXRtzHpEeKxV6SQAlDbkg" x="10" y="10"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_nKXRsTHpEeKxV6SQAlDbkg" lineColor="4210752"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_nKXRsjHpEeKxV6SQAlDbkg" fontColor="4210752" fontName="Segoe UI" fontHeight="10"/>
+    <element xmi:type="ecore:EReference" href="SonarModelBusPlugin.ecore#//Sonar%20ModelBus%20Plugin/ModelBusAdapter/connection"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_nKXRszHpEeKxV6SQAlDbkg" points="[12, 21, -77, -144]$[162, 167, 73, 2]"/>
+  </edges>
+</notation:Diagram>
