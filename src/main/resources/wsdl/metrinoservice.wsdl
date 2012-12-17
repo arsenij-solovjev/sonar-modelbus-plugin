@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="MetrinoServiceService" targetNamespace="http://www.modelbus.org/MetrinoService/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.modelbus.org/MetrinoService/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xsd:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.modelbus.org/MetrinoService/" xmlns:tns="http://www.modelbus.org/MetrinoService/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="satisfiesAllConstraints" type="tns:satisfiesAllConstraints"/>
+  <xsd:complexType name="satisfiesAllConstraints">
+    <xsd:sequence>
+      <xsd:element form="qualified" minOccurs="0" name="model" nillable="true" type="xsd:string"/>
+      <xsd:element form="qualified" minOccurs="0" name="metricModel" nillable="true" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="satisfiesAllConstraintsResponse" type="tns:satisfiesAllConstraintsResponse"/>
+  <xsd:complexType name="satisfiesAllConstraintsResponse">
+    <xsd:sequence>
+      <xsd:element name="result" type="xsd:boolean"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="getDiagram" type="tns:getDiagram"/>
+  <xsd:complexType name="getDiagram">
+    <xsd:sequence>
+      <xsd:element form="qualified" minOccurs="0" name="model" nillable="true" type="xsd:string"/>
+      <xsd:element form="qualified" minOccurs="0" name="metricModel" nillable="true" type="xsd:string"/>
+      <xsd:element form="qualified" minOccurs="0" name="measurand" nillable="true" type="xsd:string"/>
+      <xsd:element form="qualified" name="timeChecked" type="xsd:long"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="getDiagramResponse" type="tns:getDiagramResponse"/>
+  <xsd:complexType name="getDiagramResponse">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="imageStream" nillable="true" type="xsd:base64Binary"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="checkModel" type="tns:checkModel"/>
+  <xsd:complexType name="checkModel">
+    <xsd:sequence>
+      <xsd:element form="qualified" minOccurs="0" name="model" nillable="true" type="xsd:string"/>
+      <xsd:element form="qualified" minOccurs="0" name="metricModel" nillable="true" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="checkModelResponse" type="tns:checkModelResponse"/>
+  <xsd:complexType name="checkModelResponse">
+    <xsd:sequence/>
+  </xsd:complexType>
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getDiagram">
+    <wsdl:part element="tns:getDiagram" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="satisfiesAllConstraintsResponse">
+    <wsdl:part element="tns:satisfiesAllConstraintsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="checkModelResponse">
+    <wsdl:part element="tns:checkModelResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="checkModel">
+    <wsdl:part element="tns:checkModel" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDiagramResponse">
+    <wsdl:part element="tns:getDiagramResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="satisfiesAllConstraints">
+    <wsdl:part element="tns:satisfiesAllConstraints" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="MetrinoService">
+    <wsdl:operation name="satisfiesAllConstraints">
+      <wsdl:input message="tns:satisfiesAllConstraints" name="satisfiesAllConstraints">
+    </wsdl:input>
+      <wsdl:output message="tns:satisfiesAllConstraintsResponse" name="satisfiesAllConstraintsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDiagram">
+      <wsdl:input message="tns:getDiagram" name="getDiagram">
+    </wsdl:input>
+      <wsdl:output message="tns:getDiagramResponse" name="getDiagramResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkModel">
+      <wsdl:input message="tns:checkModel" name="checkModel">
+    </wsdl:input>
+      <wsdl:output message="tns:checkModelResponse" name="checkModelResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MetrinoServiceServiceSoapBinding" type="tns:MetrinoService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="satisfiesAllConstraints">
+      <soap:operation soapAction="http://www.modelbus.org/MetrinoService/satisfiesAllConstraints" style="document"/>
+      <wsdl:input name="satisfiesAllConstraints">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="satisfiesAllConstraintsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDiagram">
+      <soap:operation soapAction="http://www.modelbus.org/MetrinoService/getDiagram" style="document"/>
+      <wsdl:input name="getDiagram">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getDiagramResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkModel">
+      <soap:operation soapAction="http://www.modelbus.org/MetrinoService/checkModel" style="document"/>
+      <wsdl:input name="checkModel">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="checkModelResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MetrinoServiceService">
+    <wsdl:port binding="tns:MetrinoServiceServiceSoapBinding" name="MetrinoServicePort">
+      <soap:address location="http://localhost:9090/metrinoservice"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
