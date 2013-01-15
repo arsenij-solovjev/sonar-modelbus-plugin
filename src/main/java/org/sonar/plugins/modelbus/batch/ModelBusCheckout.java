@@ -2,7 +2,6 @@ package org.sonar.plugins.modelbus.batch;
 
 import java.io.File;
 import java.io.IOException;
-
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.modelbus.core.lib.IRepositoryHelper;
@@ -17,8 +16,9 @@ import org.modelbus.dosgi.repository.descriptor.RepositoryRuntimeException;
 import org.modelbus.dosgi.repository.descriptor.Session;
 import org.sonar.api.batch.Initializer;
 import org.sonar.api.resources.Project;
+import org.sonar.plugins.modelbus.CustomClassLoader;
 
-public class ModelBusCheckout extends Initializer {
+public class ModelBusCheckout extends Initializer {	
 	private static final String BASE_DIRECTORY = "MODELBUS";
 	  
 	private Session session;
@@ -51,16 +51,10 @@ public class ModelBusCheckout extends Initializer {
 	      RepositoryDirEntry root = repository.getRoot(session);
 		  System.out.println("- reading root directory...");
 	      CheckOutDirectory(BASE_DIRECTORY, root);
-	    } catch (IOException e) {
-	      e.printStackTrace();
-	    } catch (RepositoryRuntimeException e) {
-	      e.printStackTrace();
-	    } catch (RepositoryAuthentificationException e) {
-	      e.printStackTrace();
-	    } catch (NonExistingResourceException e) {
-	      e.printStackTrace();
-	    } catch (InvalidRevisionException e) {
-	      e.printStackTrace();
+	    } catch (Exception e) {
+	    	System.out.println(e.getMessage());
+	    	e.printStackTrace();
+	    	throw new RuntimeException(e);
 	    }
 	}
 	  
@@ -104,8 +98,14 @@ public class ModelBusCheckout extends Initializer {
 	
 	@Override
 	public void execute(Project project) {
-		InitSession();
-	    InitRepository();
-	    TraverseRepository();
+		ClassLoader initialClassLoader = Thread.currentThread().getContextClassLoader();
+	    try {
+	      Thread.currentThread().setContextClassLoader(getClass().getClassLoader());
+	      InitSession();
+		  InitRepository();
+		  TraverseRepository();
+	    } finally {
+	      Thread.currentThread().setContextClassLoader(initialClassLoader);
+	    }
 	}
 }

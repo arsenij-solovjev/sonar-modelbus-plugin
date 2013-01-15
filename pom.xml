@@ -23,12 +23,13 @@
 
 		<sonar.buildVersion>2.10</sonar.buildVersion>
 		<jdk.min.version>1.5</jdk.min.version>
-		<cxf.version>2.6.1</cxf.version>
+		<cxf.version>2.7.0</cxf.version><!-- 2.6.1 -->
 	</properties>
 
 	<dependencies>
 
-		<dependency>
+		<!-- Apache CXF -->
+		<!-- dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-frontend-jaxws</artifactId>
 			<version>${cxf.version}</version>
@@ -37,22 +38,23 @@
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-transports-http</artifactId>
 			<version>${cxf.version}</version>
-		</dependency>
+		</dependency-->
 
-
+		<!-- Sonar -->
 		<dependency>
 			<groupId>org.codehaus.sonar</groupId>
 			<artifactId>sonar-plugin-api</artifactId>
 			<version>${sonar.buildVersion}</version>
 			<scope>provided</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.codehaus.sonar</groupId>
 			<artifactId>sonar-testing-harness</artifactId>
 			<version>${sonar.buildVersion}</version>
 			<scope>test</scope>
 		</dependency>
+		
+		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>

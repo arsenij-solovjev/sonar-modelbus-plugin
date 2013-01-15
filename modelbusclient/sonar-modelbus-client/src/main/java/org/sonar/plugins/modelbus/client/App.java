@@ -15,9 +15,6 @@ import org.modelbus.dosgi.repository.descriptor.RepositoryDirEntry;
 import org.modelbus.dosgi.repository.descriptor.RepositoryNodeKind;
 import org.modelbus.dosgi.repository.descriptor.RepositoryRuntimeException;
 import org.modelbus.dosgi.repository.descriptor.Session;
-//import org.modelbus.cxf.*;
-//import org.modelbus.cxf.dosgi.*;
-//import org.modelbus.cxf.dosgi.startup.*;
 
 public class App 
 {
