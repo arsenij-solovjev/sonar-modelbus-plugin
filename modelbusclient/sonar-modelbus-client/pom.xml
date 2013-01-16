@@ -28,7 +28,7 @@
 	            <configuration>
 	                <archive>
 	                    <manifest>
-	                        <mainClass>org.sonar.plugins.modelbus.client.App</mainClass>
+	                        <mainClass>org.sonar.plugins.modelbus.client.Client</mainClass>
 	                    </manifest>
 	                </archive>
 	                <descriptorRefs>
