@@ -18,29 +18,20 @@ import org.sonar.plugins.modelbus.wsclient.metrino.*;
  */
 public class MetrinoClient {
 	
-	public static void main(String[] args) {
-		MetrinoClient wsc = new MetrinoClient();
-		wsc.run();
+	MetrinoService client;
+	
+	public MetrinoClient() throws MalformedURLException {
+		client = createClient();
 	}
+	
 
-	private void run() {
-		try {
-
-			MetrinoService client = createClient();
-			client.checkModel("www.modelbus.org/system/model/user.ecore", 
-					"www.berlin.de/nothing/to/do/SampleMetrics.smm");
-
-//			String result = client.authenticate("modelbus", "modelbus");
-//			logger.info("My first log: " + result);
-//			System.out.println(result);
-		} catch (Exception e) {
-			System.out.println("Exception: " + e.getMessage());
-			e.printStackTrace();
-		}
+	public void checkModel(String modelUri, String smmUri){
+		client.checkModel(modelUri, smmUri);
 	}
+	
 
 	private MetrinoService createClient() throws MalformedURLException {
-		URL wsdlURL = new URL("http://openstoryboards.org:9090/metrino?wsdl");
+		URL wsdlURL = new URL("http://localhost:9090/metrinoservice?wsdl");
 		QName SERVICE_NAME = new QName("http://www.modelbus.org/MetrinoService/",
 				"MetrinoServiceService");
 		@SuppressWarnings("restriction")
