@@ -24,9 +24,16 @@ public final class ModelbusMetrics implements Metrics {
       .setDomain(CoreMetrics.DOMAIN_GENERAL)
       .create();
 
+  public static final Metric COUNTCLASSES = new Metric.Builder("countClasses", "Count Classes", Metric.ValueType.INT)
+	  .setDescription("Count number of classes")
+	  .setDirection(Metric.DIRECTION_BETTER)
+	  .setQualitative(false)
+	  .setDomain(CoreMetrics.DOMAIN_GENERAL)
+	  .create();
+  
   // getMetrics() method is defined in the Metrics interface and is used by
   // Sonar to retrieve the list of new metrics
   public List<Metric> getMetrics() {
-    return Arrays.asList(MESSAGE, RANDOM);
+    return Arrays.asList(MESSAGE, RANDOM, COUNTCLASSES);
   }
 }
