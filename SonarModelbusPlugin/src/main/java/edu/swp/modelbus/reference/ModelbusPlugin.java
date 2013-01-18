@@ -1,8 +1,11 @@
 package edu.swp.modelbus.reference;
 
 
+import edu.swp.modelbus.reference.batch.CountClassesDecorator;
+import edu.swp.modelbus.reference.batch.CountClassesSensor;
 import edu.swp.modelbus.reference.batch.ExampleSensor;
 import edu.swp.modelbus.reference.batch.RandomDecorator;
+import edu.swp.modelbus.reference.batch.ServicePostJob;
 import edu.swp.modelbus.reference.ui.ExampleFooter;
 import edu.swp.modelbus.reference.ui.ExampleRubyWidget;
 
@@ -19,8 +22,8 @@ import java.util.List;
 @Properties({
   @Property(
     key = ModelbusPlugin.MY_PROPERTY,
-    name = "Plugin Property",
-    description = "A property for the plugin",
+    name = "Modelbus Plugin",
+    description = "Modelbus and Metrino Connector",
     defaultValue = "Hello World!")})
 public final class ModelbusPlugin extends SonarPlugin {
 
@@ -33,7 +36,9 @@ public final class ModelbusPlugin extends SonarPlugin {
         ModelbusMetrics.class,
 
         // Batch
-        ExampleSensor.class, RandomDecorator.class,
+        ExampleSensor.class, RandomDecorator.class,CountClassesSensor.class,ServicePostJob.class,
+        
+        //CountClassesDecorator.class,
 
         // UI
         ExampleFooter.class, ExampleRubyWidget.class);
