@@ -3,9 +3,9 @@ package org.sonar.plugins.modelbus;
 import org.sonar.api.Properties;
 import org.sonar.api.Property;
 import org.sonar.api.SonarPlugin;
-import org.sonar.plugins.modelbus.batch.ExampleSensor;
-import org.sonar.plugins.modelbus.batch.ModelBusCheckout;
+import org.sonar.plugins.modelbus.batch.ModelBusSensor;
 import org.sonar.plugins.modelbus.batch.RandomDecorator;
+import org.sonar.plugins.modelbus.metrinoclient.CheckModels;
 import org.sonar.plugins.modelbus.ui.ExampleFooter;
 import org.sonar.plugins.modelbus.ui.ExampleRubyWidget;
 
@@ -31,8 +31,8 @@ public final class ExamplePlugin extends SonarPlugin {
         ExampleMetrics.class,
 
         // Batch
-        ExampleSensor.class, RandomDecorator.class,
-        ModelBusCheckout.class,
+        ModelBusSensor.class, RandomDecorator.class,
+        CheckModels.class,
         
         // UI
         ExampleFooter.class, ExampleRubyWidget.class);
