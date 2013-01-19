@@ -2,10 +2,7 @@ package edu.swp.modelbus.reference;
 
 
 import edu.swp.modelbus.reference.batch.CountClassesDecorator;
-import edu.swp.modelbus.reference.batch.CountClassesSensor;
-import edu.swp.modelbus.reference.batch.ExampleSensor;
-import edu.swp.modelbus.reference.batch.RandomDecorator;
-import edu.swp.modelbus.reference.batch.ServicePostJob;
+
 import edu.swp.modelbus.reference.ui.ExampleFooter;
 import edu.swp.modelbus.reference.ui.ExampleRubyWidget;
 
@@ -36,9 +33,7 @@ public final class ModelbusPlugin extends SonarPlugin {
         ModelbusMetrics.class,
 
         // Batch
-        ExampleSensor.class, RandomDecorator.class,CountClassesSensor.class,ServicePostJob.class,
-        
-        //CountClassesDecorator.class,
+        CountClassesDecorator.class,
 
         // UI
         ExampleFooter.class, ExampleRubyWidget.class);
