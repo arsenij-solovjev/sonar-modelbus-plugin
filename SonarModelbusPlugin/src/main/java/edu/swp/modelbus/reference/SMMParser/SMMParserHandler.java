@@ -32,8 +32,8 @@ public class SMMParserHandler extends DefaultHandler {
 
 	@Override
 	public void startElement(String namespaceURI, String localName, String qName, Attributes atts){
-		// if this is a normal element, describing a new metric
 		if(qName.equals("sMMElement")) {
+			// if this is a normal element, describing a new metric
 			if(atts.getValue("xsi:type").equals("SoftwareMetricsMetamodel2:DirectMeasure")) {
 				String id = atts.getValue("xmi:id");
 				String name = atts.getValue("name");
