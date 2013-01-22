@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "getDiagram", propOrder = {
+@XmlType(name = "getDiagram_", propOrder = {
     "model",
     "metricModel",
     "measurand",

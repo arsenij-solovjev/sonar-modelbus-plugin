@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "satisfiesAllConstraintsResponse", propOrder = {
+@XmlType(name = "satisfiesAllConstraintsResponse_", propOrder = {
     "result"
 })
 @Generated(value = "com.sun.tools.xjc.Driver", date = "2012-12-16T09:29:30+01:00", comments = "JAXB RI v2.2.5")

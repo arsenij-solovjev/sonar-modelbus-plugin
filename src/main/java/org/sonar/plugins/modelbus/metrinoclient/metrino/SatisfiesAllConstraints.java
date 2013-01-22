@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "satisfiesAllConstraints", propOrder = {
+@XmlType(name = "satisfiesAllConstraints_", propOrder = {
     "model",
     "metricModel"
 })

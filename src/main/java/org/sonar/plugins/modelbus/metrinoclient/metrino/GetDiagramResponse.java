@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "getDiagramResponse", propOrder = {
+@XmlType(name = "getDiagramResponse_", propOrder = {
     "imageStream"
 })
 @Generated(value = "com.sun.tools.xjc.Driver", date = "2012-12-16T09:29:30+01:00", comments = "JAXB RI v2.2.5")

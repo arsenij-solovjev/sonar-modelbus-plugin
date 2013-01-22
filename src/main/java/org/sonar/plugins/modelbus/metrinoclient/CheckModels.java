@@ -26,10 +26,12 @@ public class CheckModels {
 	private static final String SMM = "http://sonar-modelbus-plugin/src/main/resources/metrinostuff/SampleMetrics.smm";
 	private Session session;
 	private IRepositoryHelper repository;
+	MetrinoSoapClient metrino;
 
 	private void initSession() {
 		session = new Session();
 		session.setId(EcoreUtil.generateUUID());
+		metrino = new MetrinoSoapClient();
 		Property propertyUserName = new Property();
 		propertyUserName.setKey("username");
 		propertyUserName.setValue("Admin");
@@ -46,33 +48,40 @@ public class CheckModels {
 		System.out.println("- modelbus repository initialized");
 	}
 
-	private void traverseRepository() {
+	private void traverseRepository(Project project) {
 		try { // retrieve the root entry from the repository
 			RepositoryDirEntry root = repository.getRoot(session);
 			System.out.println("- reading root directory...");
-			checkAllModels(root);
+
+			checkAllModels(root, project);
 		} catch (Exception e) {
 			reportError("An error occured while checking the models", e);
 		}
 	}
 
-	public void checkAllModels(RepositoryDirEntry directory) throws RepositoryRuntimeException, RepositoryAuthentificationException, IOException, InvalidRevisionException, NonExistingResourceException {
+	public void checkAllModels(RepositoryDirEntry directory, Project project)
+			throws RepositoryRuntimeException, RepositoryAuthentificationException, IOException,
+			InvalidRevisionException, NonExistingResourceException {
 		// retrieve the child entries from an repository
 		// entry from the repository
 		// (note that revision -1 corresponds to the latest revision)
-		RepositoryDirEntry[] entries = repository.getDirEntries(session,
-				URI.createURI(directory.getUri()), -1L);
+		RepositoryDirEntry[] entries;
+		if (project == null)
+			entries = repository.getDirEntries(session, URI.createURI(directory.getUri()), -1L);
+		else
+			entries = repository.getDirEntries(session,
+					URI.createURI(directory.getUri() + project.getArtifactId()), -1L);
 		System.out.println("- visting directory '" + directory.getUri() + "'...");
-		MetrinoClient metrino = new MetrinoClient();
+
 		for (int i = 0; i < entries.length; i++) {
 			RepositoryDirEntry entry = entries[i];
 			if (entry.getKind().equals(RepositoryNodeKind.DIR)) {
-				checkAllModels(entry);
+				checkAllModels(entry, null);
 			} else {
 				String filename = entry.getName();
 				if (filename.endsWith(UML_EXT)) {
 					System.out.println("checking model '" + filename + "'...");
-					metrino.checkModel(entry.getUri(), SMM);
+					metrino.ccheckModel(entry.getUri(), SMM);
 				}
 			}
 		}
@@ -101,7 +110,7 @@ public class CheckModels {
 			Thread.currentThread().setContextClassLoader(getClass().getClassLoader());
 			initSession();
 			initRepository();
-			traverseRepository();
+			traverseRepository(project);
 		} finally {
 			Thread.currentThread().setContextClassLoader(initialClassLoader);
 		}
