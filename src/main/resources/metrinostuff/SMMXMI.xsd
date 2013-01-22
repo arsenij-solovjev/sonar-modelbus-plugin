@@ -1,0 +1,702 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:smm="http://schema.omg.org/spec/SMM/1.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://schema.omg.org/spec/SMM/1.0">
+  <xsd:import namespace="http://www.omg.org/XMI" schemaLocation="platform:/plugin/org.eclipse.emf.ecore/model/XMI.xsd"/>
+  <xsd:simpleType name="Accumulator">
+    <xsd:restriction base="xsd:NCName">
+      <xsd:enumeration value="sum"/>
+      <xsd:enumeration value="maximum"/>
+      <xsd:enumeration value="minimum"/>
+      <xsd:enumeration value="average"/>
+      <xsd:enumeration value="standardDeviation"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType abstract="true" name="AbstractMeasureElement">
+    <xsd:complexContent>
+      <xsd:extension base="smm:SmmElement"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="AbstractMeasureElement" type="smm:AbstractMeasureElement"/>
+  <xsd:complexType name="Annotation">
+    <xsd:complexContent>
+      <xsd:extension base="smm:SmmElement">
+        <xsd:attribute name="text" type="xsd:string" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="Annotation" type="smm:Annotation"/>
+  <xsd:complexType name="Argument">
+    <xsd:complexContent>
+      <xsd:extension base="smm:SmmElement">
+        <xsd:attribute name="type" type="xsd:string"/>
+        <xsd:attribute name="value" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="Argument" type="smm:Argument"/>
+  <xsd:complexType name="Attribute">
+    <xsd:complexContent>
+      <xsd:extension base="smm:SmmElement">
+        <xsd:attribute name="tag" type="xsd:string" use="required"/>
+        <xsd:attribute name="value" type="xsd:string" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="Attribute" type="smm:Attribute"/>
+  <xsd:complexType name="Base1MeasureRelationship">
+    <xsd:complexContent>
+      <xsd:extension base="smm:MeasureRelationship">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="from" type="smm:BinaryMeasure"/>
+          <xsd:element name="to" type="smm:DimensionalMeasure"/>
+        </xsd:choice>
+        <xsd:attribute name="from" type="xsd:string"/>
+        <xsd:attribute name="to" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="Base1MeasureRelationship" type="smm:Base1MeasureRelationship"/>
+  <xsd:complexType name="Base1MeasurementRelationship">
+    <xsd:complexContent>
+      <xsd:extension base="smm:MeasurementRelationship">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="from" type="smm:BinaryMeasurement"/>
+          <xsd:element name="to" type="smm:DimensionalMeasurement"/>
+        </xsd:choice>
+        <xsd:attribute name="from" type="xsd:string"/>
+        <xsd:attribute name="to" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="Base1MeasurementRelationship" type="smm:Base1MeasurementRelationship"/>
+  <xsd:complexType name="Base2MeasureRelationship">
+    <xsd:complexContent>
+      <xsd:extension base="smm:MeasureRelationship">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="from" type="smm:BinaryMeasure"/>
+          <xsd:element name="to" type="smm:DimensionalMeasure"/>
+        </xsd:choice>
+        <xsd:attribute name="from" type="xsd:string"/>
+        <xsd:attribute name="to" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="Base2MeasureRelationship" type="smm:Base2MeasureRelationship"/>
+  <xsd:complexType name="Base2MeasurementRelationship">
+    <xsd:complexContent>
+      <xsd:extension base="smm:MeasurementRelationship">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="from" type="smm:BinaryMeasurement"/>
+          <xsd:element name="to" type="smm:DimensionalMeasurement"/>
+        </xsd:choice>
+        <xsd:attribute name="from" type="xsd:string"/>
+        <xsd:attribute name="to" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="Base2MeasurementRelationship" type="smm:Base2MeasurementRelationship"/>
+  <xsd:complexType name="BaseMeasureRelationship">
+    <xsd:complexContent>
+      <xsd:extension base="smm:MeasureRelationship">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="from" type="smm:CollectiveMeasure"/>
+          <xsd:element name="to" type="smm:DimensionalMeasure"/>
+        </xsd:choice>
+        <xsd:attribute name="from" type="xsd:string"/>
+        <xsd:attribute name="to" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="BaseMeasureRelationship" type="smm:BaseMeasureRelationship"/>
+  <xsd:complexType name="BaseMeasurementRelationship">
+    <xsd:complexContent>
+      <xsd:extension base="smm:MeasurementRelationship">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="from" type="smm:CollectiveMeasurement"/>
+          <xsd:element name="to" type="smm:DimensionalMeasurement"/>
+        </xsd:choice>
+        <xsd:attribute name="from" type="xsd:string"/>
+        <xsd:attribute name="to" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="BaseMeasurementRelationship" type="smm:BaseMeasurementRelationship"/>
+  <xsd:complexType name="BinaryMeasure">
+    <xsd:complexContent>
+      <xsd:extension base="smm:DimensionalMeasure">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="baseMeasure1To" type="smm:Base1MeasureRelationship"/>
+          <xsd:element name="baseMeasure2To" type="smm:Base2MeasureRelationship"/>
+        </xsd:choice>
+        <xsd:attribute name="functor" type="xsd:string" use="required"/>
+        <xsd:attribute name="baseMeasure1To" type="xsd:string"/>
+        <xsd:attribute name="baseMeasure2To" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="BinaryMeasure" type="smm:BinaryMeasure"/>
+  <xsd:complexType name="BinaryMeasurement">
+    <xsd:complexContent>
+      <xsd:extension base="smm:DimensionalMeasurement">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="baseMeasurement1To" type="smm:Base1MeasurementRelationship"/>
+          <xsd:element name="baseMeasurement2To" type="smm:Base2MeasurementRelationship"/>
+        </xsd:choice>
+        <xsd:attribute name="isBaseSupplied" type="xsd:string" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="BinaryMeasurement" type="smm:BinaryMeasurement"/>
+  <xsd:complexType name="CategoryRelationship">
+    <xsd:complexContent>
+      <xsd:extension base="smm:SmmRelationship">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="from" type="smm:MeasureCategory"/>
+          <xsd:element name="to" type="smm:AbstractMeasureElement"/>
+        </xsd:choice>
+        <xsd:attribute name="from" type="xsd:string"/>
+        <xsd:attribute name="to" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="CategoryRelationship" type="smm:CategoryRelationship"/>
+  <xsd:complexType name="Characteristic">
+    <xsd:complexContent>
+      <xsd:extension base="smm:AbstractMeasureElement">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="parent" type="smm:Characteristic"/>
+        </xsd:choice>
+        <xsd:attribute name="parent" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="Characteristic" type="smm:Characteristic"/>
+  <xsd:complexType name="CollectiveMeasure">
+    <xsd:complexContent>
+      <xsd:extension base="smm:DimensionalMeasure">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="baseMeasureTo" type="smm:BaseMeasureRelationship"/>
+        </xsd:choice>
+        <xsd:attribute name="accumulator" type="smm:Accumulator" use="required"/>
+        <xsd:attribute name="baseMeasureTo" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="CollectiveMeasure" type="smm:CollectiveMeasure"/>
+  <xsd:complexType name="CollectiveMeasurement">
+    <xsd:complexContent>
+      <xsd:extension base="smm:DimensionalMeasurement">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="baseMeasurementTo" type="smm:BaseMeasurementRelationship"/>
+        </xsd:choice>
+        <xsd:attribute name="accumulator" type="smm:Accumulator" use="required"/>
+        <xsd:attribute name="isBaseSupplied" type="xsd:string" use="required"/>
+        <xsd:attribute name="baseMeasurementTo" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="CollectiveMeasurement" type="smm:CollectiveMeasurement"/>
+  <xsd:complexType name="Count">
+    <xsd:complexContent>
+      <xsd:extension base="smm:DirectMeasurement"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="Count" type="smm:Count"/>
+  <xsd:complexType name="Counting">
+    <xsd:complexContent>
+      <xsd:extension base="smm:DirectMeasure"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="Counting" type="smm:Counting"/>
+  <xsd:complexType name="DimensionalMeasure">
+    <xsd:complexContent>
+      <xsd:extension base="smm:Measure">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="baseMeasureFrom" type="smm:BaseMeasureRelationship"/>
+          <xsd:element name="baseMeasure1From" type="smm:Base1MeasureRelationship"/>
+          <xsd:element name="baseMeasure2From" type="smm:Base2MeasureRelationship"/>
+          <xsd:element name="rescaleTo" type="smm:RescaleMeasureRelationship"/>
+          <xsd:element name="rankingFrom" type="smm:RankingMeasureRelationship"/>
+        </xsd:choice>
+        <xsd:attribute name="unit" type="xsd:string" use="required"/>
+        <xsd:attribute name="baseMeasureFrom" type="xsd:string"/>
+        <xsd:attribute name="baseMeasure1From" type="xsd:string"/>
+        <xsd:attribute name="baseMeasure2From" type="xsd:string"/>
+        <xsd:attribute name="rescaleTo" type="xsd:string"/>
+        <xsd:attribute name="rankingFrom" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="DimensionalMeasure" type="smm:DimensionalMeasure"/>
+  <xsd:complexType abstract="true" name="DimensionalMeasurement">
+    <xsd:complexContent>
+      <xsd:extension base="smm:Measurement">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="baseMeasurementFrom" type="smm:BaseMeasurementRelationship"/>
+          <xsd:element name="baseMeasurement1From" type="smm:Base1MeasurementRelationship"/>
+          <xsd:element name="baseMeasurement2From" type="smm:Base2MeasurementRelationship"/>
+          <xsd:element name="rescaleTo" type="smm:RescaleMeasurementRelationship"/>
+          <xsd:element name="rankingFrom" type="smm:RankingMeasurementRelationship"/>
+        </xsd:choice>
+        <xsd:attribute name="value" type="xsd:string"/>
+        <xsd:attribute name="baseMeasurementFrom" type="xsd:string"/>
+        <xsd:attribute name="baseMeasurement1From" type="xsd:string"/>
+        <xsd:attribute name="baseMeasurement2From" type="xsd:string"/>
+        <xsd:attribute name="rescaleTo" type="xsd:string"/>
+        <xsd:attribute name="rankingFrom" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="DimensionalMeasurement" type="smm:DimensionalMeasurement"/>
+  <xsd:complexType name="DirectMeasure">
+    <xsd:complexContent>
+      <xsd:extension base="smm:DimensionalMeasure">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="operation" type="smm:Operation"/>
+        </xsd:choice>
+        <xsd:attribute name="operation" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="DirectMeasure" type="smm:DirectMeasure"/>
+  <xsd:complexType name="DirectMeasurement">
+    <xsd:complexContent>
+      <xsd:extension base="smm:DimensionalMeasurement"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="DirectMeasurement" type="smm:DirectMeasurement"/>
+  <xsd:complexType name="EquivalentMeasureRelationship">
+    <xsd:complexContent>
+      <xsd:extension base="smm:MeasureRelationship">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="mapping" type="smm:Operation"/>
+          <xsd:element name="from" type="smm:Measure"/>
+          <xsd:element name="to" type="smm:Measure"/>
+        </xsd:choice>
+        <xsd:attribute name="mapping" type="xsd:string"/>
+        <xsd:attribute name="from" type="xsd:string"/>
+        <xsd:attribute name="to" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="EquivalentMeasureRelationship" type="smm:EquivalentMeasureRelationship"/>
+  <xsd:complexType name="EquivalentMeasurementRelationship">
+    <xsd:complexContent>
+      <xsd:extension base="smm:MeasurementRelationship">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="from" type="smm:Measurement"/>
+          <xsd:element name="to" type="smm:Measurement"/>
+        </xsd:choice>
+        <xsd:attribute name="from" type="xsd:string"/>
+        <xsd:attribute name="to" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="EquivalentMeasurementRelationship" type="smm:EquivalentMeasurementRelationship"/>
+  <xsd:complexType name="Grade">
+    <xsd:complexContent>
+      <xsd:extension base="smm:Measurement">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="rankingTo" type="smm:RankingMeasurementRelationship"/>
+        </xsd:choice>
+        <xsd:attribute name="isBaseSupplied" type="xsd:string" use="required"/>
+        <xsd:attribute name="value" type="xsd:string"/>
+        <xsd:attribute name="rankingTo" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="Grade" type="smm:Grade"/>
+  <xsd:complexType abstract="true" name="Measure">
+    <xsd:complexContent>
+      <xsd:extension base="smm:AbstractMeasureElement">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="category" type="smm:MeasureCategory"/>
+          <xsd:element name="trait" type="smm:Characteristic"/>
+          <xsd:element name="scope" type="smm:Scope"/>
+          <xsd:element name="refinementTo" type="smm:RefinementMeasureRelationship"/>
+          <xsd:element name="refinementFrom" type="smm:RefinementMeasureRelationship"/>
+          <xsd:element name="equivalentTo" type="smm:EquivalentMeasureRelationship"/>
+          <xsd:element name="equivalentFrom" type="smm:EquivalentMeasureRelationship"/>
+          <xsd:element name="recursiveTo" type="smm:RecursiveMeasureRelationship"/>
+          <xsd:element name="recursiveFrom" type="smm:RecursiveMeasureRelationship"/>
+          <xsd:element name="measureRelationships" type="smm:MeasureRelationship"/>
+          <xsd:element name="defaultQuery" type="smm:Operation"/>
+          <xsd:element name="inbound" type="smm:MeasureRelationship"/>
+          <xsd:element name="outbound" type="smm:MeasureRelationship"/>
+        </xsd:choice>
+        <xsd:attribute name="measureLabelFormat" type="xsd:string"/>
+        <xsd:attribute name="measurementLabelFormat" type="xsd:string"/>
+        <xsd:attribute name="visible" type="xsd:string"/>
+        <xsd:attribute name="category" type="xsd:string"/>
+        <xsd:attribute name="trait" type="xsd:string"/>
+        <xsd:attribute name="scope" type="xsd:string"/>
+        <xsd:attribute name="refinementTo" type="xsd:string"/>
+        <xsd:attribute name="refinementFrom" type="xsd:string"/>
+        <xsd:attribute name="equivalentTo" type="xsd:string"/>
+        <xsd:attribute name="equivalentFrom" type="xsd:string"/>
+        <xsd:attribute name="recursiveTo" type="xsd:string"/>
+        <xsd:attribute name="recursiveFrom" type="xsd:string"/>
+        <xsd:attribute name="defaultQuery" type="xsd:string"/>
+        <xsd:attribute name="inbound" type="xsd:string"/>
+        <xsd:attribute name="outbound" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="Measure" type="smm:Measure"/>
+  <xsd:complexType name="MeasureCategory">
+    <xsd:complexContent>
+      <xsd:extension base="smm:AbstractMeasureElement">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="category" type="smm:MeasureCategory"/>
+          <xsd:element name="categoryElement" type="smm:MeasureCategory"/>
+          <xsd:element name="categoryMeasure" type="smm:Measure"/>
+        </xsd:choice>
+        <xsd:attribute name="category" type="xsd:string"/>
+        <xsd:attribute name="categoryElement" type="xsd:string"/>
+        <xsd:attribute name="categoryMeasure" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="MeasureCategory" type="smm:MeasureCategory"/>
+  <xsd:complexType name="MeasureLibrary">
+    <xsd:complexContent>
+      <xsd:extension base="smm:SmmElement">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="measureElements" type="smm:AbstractMeasureElement"/>
+          <xsd:element name="categoryRelationships" type="smm:CategoryRelationship"/>
+        </xsd:choice>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="MeasureLibrary" type="smm:MeasureLibrary"/>
+  <xsd:complexType abstract="true" name="MeasureRelationship">
+    <xsd:complexContent>
+      <xsd:extension base="smm:SmmRelationship">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="measurandQuery" type="smm:Operation"/>
+        </xsd:choice>
+        <xsd:attribute name="measurandQuery" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="MeasureRelationship" type="smm:MeasureRelationship"/>
+  <xsd:complexType abstract="true" name="Measurement">
+    <xsd:complexContent>
+      <xsd:extension base="smm:SmmElement">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="measurand" type="smm:MofElement"/>
+          <xsd:element name="refinementTo" type="smm:RefinementMeasurementRelationship"/>
+          <xsd:element name="refinementFrom" type="smm:RefinementMeasurementRelationship"/>
+          <xsd:element name="equivalentTo" type="smm:EquivalentMeasurementRelationship"/>
+          <xsd:element name="equivalentFrom" type="smm:EquivalentMeasurementRelationship"/>
+          <xsd:element name="recursiveTo" type="smm:RecursiveMeasurementRelationship"/>
+          <xsd:element name="recursiveFrom" type="smm:RecursiveMeasurementRelationship"/>
+          <xsd:element name="measurementRelationships" type="smm:MeasurementRelationship"/>
+          <xsd:element name="inbound" type="smm:MeasurementRelationship"/>
+          <xsd:element name="outbound" type="smm:MeasurementRelationship"/>
+        </xsd:choice>
+        <xsd:attribute name="error" type="xsd:string"/>
+        <xsd:attribute name="breakValue" type="xsd:string"/>
+        <xsd:attribute name="measurand" type="xsd:string"/>
+        <xsd:attribute name="refinementTo" type="xsd:string"/>
+        <xsd:attribute name="refinementFrom" type="xsd:string"/>
+        <xsd:attribute name="equivalentTo" type="xsd:string"/>
+        <xsd:attribute name="equivalentFrom" type="xsd:string"/>
+        <xsd:attribute name="recursiveTo" type="xsd:string"/>
+        <xsd:attribute name="recursiveFrom" type="xsd:string"/>
+        <xsd:attribute name="inbound" type="xsd:string"/>
+        <xsd:attribute name="outbound" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="Measurement" type="smm:Measurement"/>
+  <xsd:complexType abstract="true" name="MeasurementRelationship">
+    <xsd:complexContent>
+      <xsd:extension base="smm:SmmRelationship"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="MeasurementRelationship" type="smm:MeasurementRelationship"/>
+  <xsd:complexType name="MofElement">
+    <xsd:choice maxOccurs="unbounded" minOccurs="0">
+      <xsd:element ref="xmi:Extension"/>
+    </xsd:choice>
+    <xsd:attribute ref="xmi:id"/>
+    <xsd:attributeGroup ref="xmi:ObjectAttribs"/>
+  </xsd:complexType>
+  <xsd:element name="MofElement" type="smm:MofElement"/>
+  <xsd:complexType name="NamedMeasure">
+    <xsd:complexContent>
+      <xsd:extension base="smm:DimensionalMeasure"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="NamedMeasure" type="smm:NamedMeasure"/>
+  <xsd:complexType name="NamedMeasurement">
+    <xsd:complexContent>
+      <xsd:extension base="smm:DimensionalMeasurement"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="NamedMeasurement" type="smm:NamedMeasurement"/>
+  <xsd:complexType name="OCLOperation">
+    <xsd:complexContent>
+      <xsd:extension base="smm:AbstractMeasureElement">
+        <xsd:attribute name="context" type="xsd:string"/>
+        <xsd:attribute name="body" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="OCLOperation" type="smm:OCLOperation"/>
+  <xsd:complexType name="Observation">
+    <xsd:complexContent>
+      <xsd:extension base="smm:SmmElement">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="scopes" type="smm:ObservationScope"/>
+          <xsd:element name="observedMeasures" type="smm:ObservedMeasure"/>
+          <xsd:element name="requestedMeasures" type="smm:SmmElement"/>
+          <xsd:element name="measurementRelations" type="smm:SmmRelationship"/>
+          <xsd:element name="arguments" type="smm:Argument"/>
+        </xsd:choice>
+        <xsd:attribute name="observer" type="xsd:string"/>
+        <xsd:attribute name="tool" type="xsd:string"/>
+        <xsd:attribute name="whenObserved" type="xsd:string"/>
+        <xsd:attribute name="requestedMeasures" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="Observation" type="smm:Observation"/>
+  <xsd:complexType name="ObservationScope">
+    <xsd:complexContent>
+      <xsd:extension base="smm:SmmElement">
+        <xsd:attribute name="scopeUri" type="xsd:string" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ObservationScope" type="smm:ObservationScope"/>
+  <xsd:complexType name="ObservedMeasure">
+    <xsd:complexContent>
+      <xsd:extension base="smm:SmmRelationship">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="measure" type="smm:Measure"/>
+          <xsd:element name="measurements" type="smm:Measurement"/>
+        </xsd:choice>
+        <xsd:attribute name="measure" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ObservedMeasure" type="smm:ObservedMeasure"/>
+  <xsd:complexType name="Operation">
+    <xsd:complexContent>
+      <xsd:extension base="smm:AbstractMeasureElement">
+        <xsd:attribute name="language" type="xsd:string"/>
+        <xsd:attribute name="body" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="Operation" type="smm:Operation"/>
+  <xsd:complexType name="Ranking">
+    <xsd:complexContent>
+      <xsd:extension base="smm:Measure">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="interval" type="smm:RankingInterval"/>
+          <xsd:element name="rankingTo" type="smm:RankingMeasureRelationship"/>
+        </xsd:choice>
+        <xsd:attribute name="rankingTo" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="Ranking" type="smm:Ranking"/>
+  <xsd:complexType name="RankingInterval">
+    <xsd:complexContent>
+      <xsd:extension base="smm:SmmElement">
+        <xsd:attribute name="maximumEndpoint" type="xsd:string" use="required"/>
+        <xsd:attribute name="maximumOpen" type="xsd:string"/>
+        <xsd:attribute name="minimumEndpoint" type="xsd:string" use="required"/>
+        <xsd:attribute name="minimumOpen" type="xsd:string"/>
+        <xsd:attribute name="symbol" type="xsd:string" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="RankingInterval" type="smm:RankingInterval"/>
+  <xsd:complexType name="RankingMeasureRelationship">
+    <xsd:complexContent>
+      <xsd:extension base="smm:MeasureRelationship">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="from" type="smm:Ranking"/>
+          <xsd:element name="to" type="smm:DimensionalMeasure"/>
+        </xsd:choice>
+        <xsd:attribute name="from" type="xsd:string"/>
+        <xsd:attribute name="to" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="RankingMeasureRelationship" type="smm:RankingMeasureRelationship"/>
+  <xsd:complexType name="RankingMeasurementRelationship">
+    <xsd:complexContent>
+      <xsd:extension base="smm:MeasurementRelationship">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="from" type="smm:Grade"/>
+          <xsd:element name="to" type="smm:DimensionalMeasurement"/>
+        </xsd:choice>
+        <xsd:attribute name="from" type="xsd:string"/>
+        <xsd:attribute name="to" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="RankingMeasurementRelationship" type="smm:RankingMeasurementRelationship"/>
+  <xsd:complexType name="RatioMeasure">
+    <xsd:complexContent>
+      <xsd:extension base="smm:BinaryMeasure"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="RatioMeasure" type="smm:RatioMeasure"/>
+  <xsd:complexType name="RatioMeasurement">
+    <xsd:complexContent>
+      <xsd:extension base="smm:BinaryMeasurement"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="RatioMeasurement" type="smm:RatioMeasurement"/>
+  <xsd:complexType name="RecursiveMeasureRelationship">
+    <xsd:complexContent>
+      <xsd:extension base="smm:MeasureRelationship">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="from" type="smm:Measure"/>
+          <xsd:element name="to" type="smm:Measure"/>
+        </xsd:choice>
+        <xsd:attribute name="from" type="xsd:string"/>
+        <xsd:attribute name="to" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="RecursiveMeasureRelationship" type="smm:RecursiveMeasureRelationship"/>
+  <xsd:complexType name="RecursiveMeasurementRelationship">
+    <xsd:complexContent>
+      <xsd:extension base="smm:MeasurementRelationship">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="from" type="smm:Measurement"/>
+          <xsd:element name="to" type="smm:Measurement"/>
+        </xsd:choice>
+        <xsd:attribute name="from" type="xsd:string"/>
+        <xsd:attribute name="to" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="RecursiveMeasurementRelationship" type="smm:RecursiveMeasurementRelationship"/>
+  <xsd:complexType name="RefinementMeasureRelationship">
+    <xsd:complexContent>
+      <xsd:extension base="smm:MeasureRelationship">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="from" type="smm:Measure"/>
+          <xsd:element name="to" type="smm:Measure"/>
+        </xsd:choice>
+        <xsd:attribute name="from" type="xsd:string"/>
+        <xsd:attribute name="to" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="RefinementMeasureRelationship" type="smm:RefinementMeasureRelationship"/>
+  <xsd:complexType name="RefinementMeasurementRelationship">
+    <xsd:complexContent>
+      <xsd:extension base="smm:MeasurementRelationship">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="from" type="smm:Measurement"/>
+          <xsd:element name="to" type="smm:Measurement"/>
+        </xsd:choice>
+        <xsd:attribute name="from" type="xsd:string"/>
+        <xsd:attribute name="to" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="RefinementMeasurementRelationship" type="smm:RefinementMeasurementRelationship"/>
+  <xsd:complexType name="RescaledMeasure">
+    <xsd:complexContent>
+      <xsd:extension base="smm:DimensionalMeasure">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="rescaleFrom" type="smm:RescaleMeasureRelationship"/>
+        </xsd:choice>
+        <xsd:attribute name="formula" type="xsd:string" use="required"/>
+        <xsd:attribute name="rescaleFrom" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="RescaledMeasure" type="smm:RescaledMeasure"/>
+  <xsd:complexType name="RescaleMeasureRelationship">
+    <xsd:complexContent>
+      <xsd:extension base="smm:MeasureRelationship">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="to" type="smm:RescaledMeasure"/>
+          <xsd:element name="from" type="smm:DimensionalMeasure"/>
+        </xsd:choice>
+        <xsd:attribute name="to" type="xsd:string"/>
+        <xsd:attribute name="from" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="RescaleMeasureRelationship" type="smm:RescaleMeasureRelationship"/>
+  <xsd:complexType name="RescaledMeasurement">
+    <xsd:complexContent>
+      <xsd:extension base="smm:DimensionalMeasurement">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="rescaleFrom" type="smm:RescaleMeasurementRelationship"/>
+        </xsd:choice>
+        <xsd:attribute name="isBaseSupplied" type="xsd:string" use="required"/>
+        <xsd:attribute name="rescaleFrom" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="RescaledMeasurement" type="smm:RescaledMeasurement"/>
+  <xsd:complexType name="RescaleMeasurementRelationship">
+    <xsd:complexContent>
+      <xsd:extension base="smm:MeasurementRelationship">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="to" type="smm:RescaledMeasurement"/>
+          <xsd:element name="from" type="smm:DimensionalMeasurement"/>
+        </xsd:choice>
+        <xsd:attribute name="to" type="xsd:string"/>
+        <xsd:attribute name="from" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="RescaleMeasurementRelationship" type="smm:RescaleMeasurementRelationship"/>
+  <xsd:complexType name="Scope">
+    <xsd:complexContent>
+      <xsd:extension base="smm:AbstractMeasureElement">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="recognizer" type="smm:Operation"/>
+          <xsd:element name="breakCondition" type="smm:Operation"/>
+        </xsd:choice>
+        <xsd:attribute name="class" type="xsd:string" use="required"/>
+        <xsd:attribute name="recognizer" type="xsd:string"/>
+        <xsd:attribute name="breakCondition" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="Scope" type="smm:Scope"/>
+  <xsd:complexType abstract="true" name="SmmElement">
+    <xsd:choice maxOccurs="unbounded" minOccurs="0">
+      <xsd:element name="attributes" type="smm:Attribute"/>
+      <xsd:element name="annotations" type="smm:Annotation"/>
+      <xsd:element ref="xmi:Extension"/>
+    </xsd:choice>
+    <xsd:attribute ref="xmi:id"/>
+    <xsd:attributeGroup ref="xmi:ObjectAttribs"/>
+    <xsd:attribute name="name" type="xsd:string"/>
+    <xsd:attribute name="shortDescription" type="xsd:string"/>
+    <xsd:attribute name="description" type="xsd:string"/>
+  </xsd:complexType>
+  <xsd:element name="SmmElement" type="smm:SmmElement"/>
+  <xsd:complexType name="SmmModel">
+    <xsd:complexContent>
+      <xsd:extension base="smm:SmmElement">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="observations" type="smm:Observation"/>
+          <xsd:element name="librairies" type="smm:MeasureLibrary"/>
+        </xsd:choice>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="SmmModel" type="smm:SmmModel"/>
+  <xsd:complexType abstract="true" name="SmmRelationship">
+    <xsd:complexContent>
+      <xsd:extension base="smm:SmmElement"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="SmmRelationship" type="smm:SmmRelationship"/>
+</xsd:schema>

@@ -1,0 +1,2 @@
+http://www.omg.org/spec/SMM/1.0/
+http://www.omg.org/spec/SMM/20120101/SMMXMI.xsd
