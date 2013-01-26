@@ -36,6 +36,9 @@ public class ModelBusSensor implements Sensor {
 	}
 
 	public void analyse(Project project, SensorContext sensorContext) {
+
+		// HACK: context classloader must be overwritten with the plugin
+		// classloader (otherwise modelbus fails on initialization)
 		ClassLoader initialClassLoader = Thread.currentThread().getContextClassLoader();
 		try {
 
