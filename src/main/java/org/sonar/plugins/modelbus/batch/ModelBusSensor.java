@@ -36,27 +36,37 @@ public class ModelBusSensor implements Sensor {
 	}
 
 	public void analyse(Project project, SensorContext sensorContext) {
+		ClassLoader initialClassLoader = Thread.currentThread().getContextClassLoader();
+		try {
 
-		CheckModels checkModels = new CheckModels();
-		checkModels.execute(project);
-		// returns an SMM inputStream, which should be passed to the XML parser
+			Thread.currentThread().setContextClassLoader(getClass().getClassLoader());
 
-		// Add a measure to the current Java method
-		// Read SMM file
-		SMMModel smmModel = SMMParser.load(checkModels.checkoutSmm());
-		EList<SMMElement> smmElements = smmModel.getSMMElement();
+			CheckModels checkModels = new CheckModels();
+			checkModels.execute(project);
+			// returns an SMM inputStream, which should be passed to the XML
+			// parser
 
-		// find measures (measurements have references to measurements)
-		List<DirectMeasure> measures = new ArrayList<DirectMeasure>();
-		DirectMeasure measure;
-		for (SMMElement item : smmElements) {
-			if (item instanceof DirectMeasure) {
-				measure = (DirectMeasure) item;
-				measures.add(measure);
-				System.out.println("\t | Measure " + measure.getName() + " has "
-						+ measure.getMeasurement().size() + " measurements");
-				System.out.println("\t | The measurements are " + measure.getMeasurement());
+			// Add a measure to the current Java method
+			// Read SMM file
+			SMMModel smmModel = SMMParser.load(checkModels.checkoutSmm());
+			EList<SMMElement> smmElements = smmModel.getSMMElement();
+
+			// find measures (measurements have references to measurements)
+			List<DirectMeasure> measures = new ArrayList<DirectMeasure>();
+			DirectMeasure measure;
+			for (SMMElement item : smmElements) {
+				if (item instanceof DirectMeasure) {
+					measure = (DirectMeasure) item;
+					measures.add(measure);
+					System.out.println("\t | Measure " + measure.getName() + " has "
+							+ measure.getMeasurement().size() + " measurements");
+					System.out.println("\t | The measurements are " + measure.getMeasurement());
+
+				}
 			}
+
+		} finally {
+			Thread.currentThread().setContextClassLoader(initialClassLoader);
 		}
 	}
 }
