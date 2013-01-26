@@ -46,8 +46,6 @@ public class ModelBusSensor implements Sensor {
 
 			CheckModels checkModels = new CheckModels();
 			checkModels.execute(project);
-			// returns an SMM inputStream, which should be passed to the XML
-			// parser
 
 			// Add a measure to the current Java method
 			// Read SMM file
@@ -64,7 +62,7 @@ public class ModelBusSensor implements Sensor {
 					System.out.println("\t | Measure " + measure.getName() + " has "
 							+ measure.getMeasurement().size() + " measurements");
 					System.out.println("\t | The measurements are " + measure.getMeasurement());
-
+					
 				}
 			}
 

@@ -6,6 +6,7 @@ package org.sonar.plugins.modelbus;
 import org.sonar.api.Properties;
 import org.sonar.api.Property;
 import org.sonar.api.SonarPlugin;
+import org.sonar.plugins.modelbus.batch.CountClassesDecorator;
 import org.sonar.plugins.modelbus.batch.ModelBusSensor;
 import org.sonar.plugins.modelbus.ui.ExampleFooter;
 import org.sonar.plugins.modelbus.ui.ModelBusWidget;
@@ -34,6 +35,7 @@ public final class ModelBusPlugin extends SonarPlugin {
 
         // Batch
         ModelBusSensor.class,
+        CountClassesDecorator.class,
         // UI
         ExampleFooter.class, ModelBusWidget.class);
   }
