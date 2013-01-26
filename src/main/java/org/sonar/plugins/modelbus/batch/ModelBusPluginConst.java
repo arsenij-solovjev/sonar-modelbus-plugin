@@ -6,7 +6,7 @@ package org.sonar.plugins.modelbus.batch;
  * @author akrillo
  *
  */
-public class ModelBusPluginConst {
+public class  ModelBusPluginConst {
   public static final String MODEL_PATH = "\\src\\main\\java\\models\\";
 
 }

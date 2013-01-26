@@ -12,15 +12,17 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.sonar.plugins.modelbus.smmparser.Measurement;
+import org.sonar.plugins.modelbus.smmparser.SMMElement;
+import org.sonar.plugins.modelbus.smmparser.SMMModel;
+import org.sonar.plugins.modelbus.smmparser.SoftwareMetricsMetamodel2Package;
+import org.sonar.plugins.modelbus.smmparser.impl.DirectMeasureImpl;
 
-import SoftwareMetricsMetamodel2.Measurement;
-import SoftwareMetricsMetamodel2.SMMElement;
-import SoftwareMetricsMetamodel2.SMMModel;
-import SoftwareMetricsMetamodel2.SoftwareMetricsMetamodel2Package;
-import SoftwareMetricsMetamodel2.impl.DirectMeasureImpl;
 
 
 public class SMMParser {
+	private static final String SMM = "/home/arsenij/workspace/sonar-modelbus-plugin/src/main/resources/metrinostuff/SampleMetrics.smm";
+
 	public static SMMModel load(File file) {
 		// Initialize the model
 		SoftwareMetricsMetamodel2Package.eINSTANCE.eClass();
@@ -47,7 +49,7 @@ public class SMMParser {
 		System.out.println("| PARSING SMM [BEGIN]");
 
 		// Read SMM file
-		SMMModel smmModel = load(new File("SMM.smm"));
+		SMMModel smmModel = load(new File(SMM));
 		EList<SMMElement> smmElements = smmModel.getSMMElement();
 
 		// find measures (measurements have references to measurements)

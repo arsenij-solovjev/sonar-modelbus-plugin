@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  * This class is the entry point for all extensions
- */
+ */ 
 @Properties({
   @Property(
     key = ModelbusPlugin.MY_PROPERTY,
