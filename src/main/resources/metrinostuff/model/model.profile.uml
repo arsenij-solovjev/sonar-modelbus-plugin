@@ -1,0 +1,587 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_Sg7YoCELEeK2ZvNoV194Rw" name="Profile" metaclassReference="_sccfcCELEeK2ZvNoV194Rw _Uk3J0CEMEeK2ZvNoV194Rw" metamodelReference="_Sg7YoSELEeK2ZvNoV194Rw">
+  <eAnnotations xmi:id="_rUs0QSELEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_rzc64SENEeK2ZvNoV194Rw" name="Profile" nsURI="http:///schemas/Profile/_rzc64CENEeK2ZvNoV194Rw/6" nsPrefix="Profile">
+      <eAnnotations xmi:id="_rzc7FyENEeK2ZvNoV194Rw" source="PapyrusVersion">
+        <details xmi:id="_rzc7GCENEeK2ZvNoV194Rw" key="Version" value="0.0.7"/>
+        <details xmi:id="_rzc7GSENEeK2ZvNoV194Rw" key="Comment" value=""/>
+        <details xmi:id="_rzc7GiENEeK2ZvNoV194Rw" key="Copyright" value=""/>
+        <details xmi:id="_rzc7GyENEeK2ZvNoV194Rw" key="Date" value="2012-10-28"/>
+        <details xmi:id="_rzc7HCENEeK2ZvNoV194Rw" key="Author" value="Gamm El Fleisch"/>
+      </eAnnotations>
+      <eSubpackages xmi:id="_rzc64iENEeK2ZvNoV194Rw" name="Firma" nsURI="http:///Profile/Firma.ecore" nsPrefix="Profile.Firma">
+        <eAnnotations xmi:id="_rzc64yENEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/4.0.0/UML" references="_qDo1ACELEeK2ZvNoV194Rw"/>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_rzc65CENEeK2ZvNoV194Rw" name="Firma">
+          <eAnnotations xmi:id="_rzc65SENEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_s7H_gCELEeK2ZvNoV194Rw"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_rzc65iENEeK2ZvNoV194Rw" name="name" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_rzc66CENEeK2ZvNoV194Rw" name="base_Class" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_rzc66iENEeK2ZvNoV194Rw" name="Abteilung">
+          <eAnnotations xmi:id="_rzc66yENEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_tx-H8CELEeK2ZvNoV194Rw"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_rzc67CENEeK2ZvNoV194Rw" name="id" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_rzc67iENEeK2ZvNoV194Rw" name="ertrag" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_rzc68CENEeK2ZvNoV194Rw" name="base_Class" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_rzc68iENEeK2ZvNoV194Rw" name="Gruppe">
+          <eAnnotations xmi:id="_rzc68yENEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_ueJRcCELEeK2ZvNoV194Rw"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_rzc69CENEeK2ZvNoV194Rw" name="id" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_rzc69iENEeK2ZvNoV194Rw" name="base_Class" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_rzc6-CENEeK2ZvNoV194Rw" name="Mitarbeiter">
+          <eAnnotations xmi:id="_rzc6-SENEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_vF-tgCELEeK2ZvNoV194Rw"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_rzc6-iENEeK2ZvNoV194Rw" name="alter" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//Integer"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_rzc6_CENEeK2ZvNoV194Rw" name="einkommen" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_rzc6_iENEeK2ZvNoV194Rw" name="typ" ordered="false" lowerBound="1" eType="_rzc7AiENEeK2ZvNoV194Rw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_rzc7ACENEeK2ZvNoV194Rw" name="base_Class" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EEnum" xmi:id="_rzc7AiENEeK2ZvNoV194Rw" name="MitarbeiterTyp">
+          <eAnnotations xmi:id="_rzc7AyENEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_BucdcCEMEeK2ZvNoV194Rw"/>
+          <eLiterals xmi:id="_rzc7BCENEeK2ZvNoV194Rw" name="VOLLZEIT"/>
+          <eLiterals xmi:id="_rzc7BSENEeK2ZvNoV194Rw" name="TEILZEIT" value="1"/>
+          <eLiterals xmi:id="_rzc7BiENEeK2ZvNoV194Rw" name="EXTERN" value="2"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_rzc7ByENEeK2ZvNoV194Rw" name="hatAbteilung">
+          <eAnnotations xmi:id="_rzc7CCENEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_dmVKUCEMEeK2ZvNoV194Rw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_rzc7CSENEeK2ZvNoV194Rw" name="base_Association" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Association"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_rzc7CyENEeK2ZvNoV194Rw" name="bestehtAusGruppe">
+          <eAnnotations xmi:id="_rzc7DCENEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_eoyF0CEMEeK2ZvNoV194Rw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_rzc7DSENEeK2ZvNoV194Rw" name="base_Association" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Association"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_rzc7DyENEeK2ZvNoV194Rw" name="hatChef">
+          <eAnnotations xmi:id="_rzc7ECENEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_f2TB0CEMEeK2ZvNoV194Rw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_rzc7ESENEeK2ZvNoV194Rw" name="base_Association" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Association"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_rzc7EyENEeK2ZvNoV194Rw" name="bestehtAusMitarbeiter">
+          <eAnnotations xmi:id="_rzc7FCENEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_gkJmUCEMEeK2ZvNoV194Rw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_rzc7FSENEeK2ZvNoV194Rw" name="base_Association" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Association"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+      </eSubpackages>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_PAOAESENEeK2ZvNoV194Rw" name="Profile" nsURI="http:///schemas/Profile/_PAOAECENEeK2ZvNoV194Rw/5" nsPrefix="Profile">
+      <eAnnotations xmi:id="_PAOnSSENEeK2ZvNoV194Rw" source="PapyrusVersion">
+        <details xmi:id="_PAOnSiENEeK2ZvNoV194Rw" key="Version" value="0.0.6"/>
+        <details xmi:id="_PAOnSyENEeK2ZvNoV194Rw" key="Comment" value=""/>
+        <details xmi:id="_PAOnTCENEeK2ZvNoV194Rw" key="Copyright" value=""/>
+        <details xmi:id="_PAOnTSENEeK2ZvNoV194Rw" key="Date" value="2012-10-28"/>
+        <details xmi:id="_PAOnTiENEeK2ZvNoV194Rw" key="Author" value="Gamm El Fleisch"/>
+      </eAnnotations>
+      <eSubpackages xmi:id="_PAOAEiENEeK2ZvNoV194Rw" name="Firma" nsURI="http:///Profile/Firma.ecore" nsPrefix="Profile.Firma">
+        <eAnnotations xmi:id="_PAOAEyENEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/4.0.0/UML" references="_qDo1ACELEeK2ZvNoV194Rw"/>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_PAOAFCENEeK2ZvNoV194Rw" name="Firma">
+          <eAnnotations xmi:id="_PAOAFSENEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_s7H_gCELEeK2ZvNoV194Rw"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_PAOAFiENEeK2ZvNoV194Rw" name="name" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_PAOAGCENEeK2ZvNoV194Rw" name="base_Class" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_PAOAGiENEeK2ZvNoV194Rw" name="Abteilung">
+          <eAnnotations xmi:id="_PAOAGyENEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_tx-H8CELEeK2ZvNoV194Rw"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_PAOAHCENEeK2ZvNoV194Rw" name="id" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_PAOnICENEeK2ZvNoV194Rw" name="ertrag" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_PAOnIiENEeK2ZvNoV194Rw" name="base_Class" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_PAOnJCENEeK2ZvNoV194Rw" name="Gruppe">
+          <eAnnotations xmi:id="_PAOnJSENEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_ueJRcCELEeK2ZvNoV194Rw"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_PAOnJiENEeK2ZvNoV194Rw" name="id" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_PAOnKCENEeK2ZvNoV194Rw" name="base_Class" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_PAOnKiENEeK2ZvNoV194Rw" name="Mitarbeiter">
+          <eAnnotations xmi:id="_PAOnKyENEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_vF-tgCELEeK2ZvNoV194Rw"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_PAOnLCENEeK2ZvNoV194Rw" name="alter" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//Integer"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_PAOnLiENEeK2ZvNoV194Rw" name="einkommen" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_PAOnMCENEeK2ZvNoV194Rw" name="typ" ordered="false" lowerBound="1" eType="_PAOnNCENEeK2ZvNoV194Rw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_PAOnMiENEeK2ZvNoV194Rw" name="base_Class" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EEnum" xmi:id="_PAOnNCENEeK2ZvNoV194Rw" name="MitarbeiterTyp">
+          <eAnnotations xmi:id="_PAOnNSENEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_BucdcCEMEeK2ZvNoV194Rw"/>
+          <eLiterals xmi:id="_PAOnNiENEeK2ZvNoV194Rw" name="VOLLZEIT"/>
+          <eLiterals xmi:id="_PAOnNyENEeK2ZvNoV194Rw" name="TEILZEIT" value="1"/>
+          <eLiterals xmi:id="_PAOnOCENEeK2ZvNoV194Rw" name="EXTERN" value="2"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_PAOnOSENEeK2ZvNoV194Rw" name="hatAbteilung">
+          <eAnnotations xmi:id="_PAOnOiENEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_dmVKUCEMEeK2ZvNoV194Rw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_PAOnOyENEeK2ZvNoV194Rw" name="base_Association" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Association"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_PAOnPSENEeK2ZvNoV194Rw" name="bestehtAusGruppe">
+          <eAnnotations xmi:id="_PAOnPiENEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_eoyF0CEMEeK2ZvNoV194Rw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_PAOnPyENEeK2ZvNoV194Rw" name="base_Association" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Association"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_PAOnQSENEeK2ZvNoV194Rw" name="hatChef">
+          <eAnnotations xmi:id="_PAOnQiENEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_f2TB0CEMEeK2ZvNoV194Rw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_PAOnQyENEeK2ZvNoV194Rw" name="base_Association" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Association"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_PAOnRSENEeK2ZvNoV194Rw" name="bestehtAusMitarbeiter">
+          <eAnnotations xmi:id="_PAOnRiENEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_gkJmUCEMEeK2ZvNoV194Rw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_PAOnRyENEeK2ZvNoV194Rw" name="base_Association" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Association"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+      </eSubpackages>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_rtG3wSEMEeK2ZvNoV194Rw" name="Profile" nsURI="http:///schemas/Profile/_rtG3wCEMEeK2ZvNoV194Rw/4" nsPrefix="Profile">
+      <eAnnotations xmi:id="_rtJUASEMEeK2ZvNoV194Rw" source="PapyrusVersion">
+        <details xmi:id="_rtJUAiEMEeK2ZvNoV194Rw" key="Version" value="0.0.5"/>
+        <details xmi:id="_rtJUAyEMEeK2ZvNoV194Rw" key="Comment" value=""/>
+        <details xmi:id="_rtJUBCEMEeK2ZvNoV194Rw" key="Copyright" value=""/>
+        <details xmi:id="_rtJUBSEMEeK2ZvNoV194Rw" key="Date" value="2012-10-28"/>
+        <details xmi:id="_rtJUBiEMEeK2ZvNoV194Rw" key="Author" value="Gamm El Fleisch"/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_rtG3wiEMEeK2ZvNoV194Rw" name="Firma">
+        <eAnnotations xmi:id="_rtG3wyEMEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_s7H_gCELEeK2ZvNoV194Rw"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_rtG3xCEMEeK2ZvNoV194Rw" name="name" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_rtG3xiEMEeK2ZvNoV194Rw" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_rtG3yCEMEeK2ZvNoV194Rw" name="Abteilung">
+        <eAnnotations xmi:id="_rtG3ySEMEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_tx-H8CELEeK2ZvNoV194Rw"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_rtG3yiEMEeK2ZvNoV194Rw" name="id" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_rtG3zCEMEeK2ZvNoV194Rw" name="ertrag" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_rtG3ziEMEeK2ZvNoV194Rw" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_rtG30CEMEeK2ZvNoV194Rw" name="Gruppe">
+        <eAnnotations xmi:id="_rtG30SEMEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_ueJRcCELEeK2ZvNoV194Rw"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_rtG30iEMEeK2ZvNoV194Rw" name="id" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_rtG31CEMEeK2ZvNoV194Rw" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_rtG31iEMEeK2ZvNoV194Rw" name="Mitarbeiter">
+        <eAnnotations xmi:id="_rtG31yEMEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_vF-tgCELEeK2ZvNoV194Rw"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_rtG32CEMEeK2ZvNoV194Rw" name="alter" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//Integer"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_rtG32iEMEeK2ZvNoV194Rw" name="einkommen" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_rtG33CEMEeK2ZvNoV194Rw" name="typ" ordered="false" lowerBound="1" eType="_rtG34CEMEeK2ZvNoV194Rw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_rtG33iEMEeK2ZvNoV194Rw" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EEnum" xmi:id="_rtG34CEMEeK2ZvNoV194Rw" name="MitarbeiterTyp">
+        <eAnnotations xmi:id="_rtG34SEMEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_BucdcCEMEeK2ZvNoV194Rw"/>
+        <eLiterals xmi:id="_rtG34iEMEeK2ZvNoV194Rw" name="VOLLZEIT"/>
+        <eLiterals xmi:id="_rtG34yEMEeK2ZvNoV194Rw" name="TEILZEIT" value="1"/>
+        <eLiterals xmi:id="_rtG35CEMEeK2ZvNoV194Rw" name="EXTERN" value="2"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_rtG35SEMEeK2ZvNoV194Rw" name="hatAbteilung">
+        <eAnnotations xmi:id="_rtG35iEMEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_dmVKUCEMEeK2ZvNoV194Rw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_rtG35yEMEeK2ZvNoV194Rw" name="base_Association" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Association"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_rtG36SEMEeK2ZvNoV194Rw" name="bestehtAusGruppe">
+        <eAnnotations xmi:id="_rtG36iEMEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_eoyF0CEMEeK2ZvNoV194Rw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_rtG36yEMEeK2ZvNoV194Rw" name="base_Association" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Association"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_rtG37SEMEeK2ZvNoV194Rw" name="hatChef">
+        <eAnnotations xmi:id="_rtG37iEMEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_f2TB0CEMEeK2ZvNoV194Rw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_rtG37yEMEeK2ZvNoV194Rw" name="base_Association" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Association"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_rtG38SEMEeK2ZvNoV194Rw" name="bestehtAusMitarbeiter">
+        <eAnnotations xmi:id="_rtG38iEMEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_gkJmUCEMEeK2ZvNoV194Rw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_rtG38yEMEeK2ZvNoV194Rw" name="base_Association" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Association"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eSubpackages xmi:id="_rtG39SEMEeK2ZvNoV194Rw" name="Firma" nsURI="http:///Profile/Firma.ecore" nsPrefix="Profile.Firma">
+        <eAnnotations xmi:id="_rtG39iEMEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/4.0.0/UML" references="_qDo1ACELEeK2ZvNoV194Rw"/>
+      </eSubpackages>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_kZVvMCEMEeK2ZvNoV194Rw" name="Profile" nsURI="http:///schemas/Profile/_kZVIICEMEeK2ZvNoV194Rw/3" nsPrefix="Profile">
+      <eAnnotations xmi:id="_kZXkYSEMEeK2ZvNoV194Rw" source="PapyrusVersion">
+        <details xmi:id="_kZXkYiEMEeK2ZvNoV194Rw" key="Version" value="0.0.4"/>
+        <details xmi:id="_kZXkYyEMEeK2ZvNoV194Rw" key="Comment" value=""/>
+        <details xmi:id="_kZXkZCEMEeK2ZvNoV194Rw" key="Copyright" value=""/>
+        <details xmi:id="_kZXkZSEMEeK2ZvNoV194Rw" key="Date" value="2012-10-28"/>
+        <details xmi:id="_kZXkZiEMEeK2ZvNoV194Rw" key="Author" value="Gamm El Fleisch"/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_kZVvMSEMEeK2ZvNoV194Rw" name="Firma">
+        <eAnnotations xmi:id="_kZVvMiEMEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_s7H_gCELEeK2ZvNoV194Rw"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_kZVvMyEMEeK2ZvNoV194Rw" name="name" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_kZVvNSEMEeK2ZvNoV194Rw" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_kZVvNyEMEeK2ZvNoV194Rw" name="Abteilung">
+        <eAnnotations xmi:id="_kZVvOCEMEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_tx-H8CELEeK2ZvNoV194Rw"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_kZVvOSEMEeK2ZvNoV194Rw" name="id" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_kZVvOyEMEeK2ZvNoV194Rw" name="ertrag" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_kZVvPSEMEeK2ZvNoV194Rw" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_kZVvPyEMEeK2ZvNoV194Rw" name="Gruppe">
+        <eAnnotations xmi:id="_kZVvQCEMEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_ueJRcCELEeK2ZvNoV194Rw"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_kZVvQSEMEeK2ZvNoV194Rw" name="id" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_kZVvQyEMEeK2ZvNoV194Rw" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_kZVvRSEMEeK2ZvNoV194Rw" name="Mitarbeiter">
+        <eAnnotations xmi:id="_kZVvRiEMEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_vF-tgCELEeK2ZvNoV194Rw"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_kZVvRyEMEeK2ZvNoV194Rw" name="alter" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//Integer"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_kZVvSSEMEeK2ZvNoV194Rw" name="einkommen" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_kZVvSyEMEeK2ZvNoV194Rw" name="typ" ordered="false" lowerBound="1" eType="_kZVvTyEMEeK2ZvNoV194Rw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_kZVvTSEMEeK2ZvNoV194Rw" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EEnum" xmi:id="_kZVvTyEMEeK2ZvNoV194Rw" name="MitarbeiterTyp">
+        <eAnnotations xmi:id="_kZVvUCEMEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_BucdcCEMEeK2ZvNoV194Rw"/>
+        <eLiterals xmi:id="_kZVvUSEMEeK2ZvNoV194Rw" name="VOLLZEIT"/>
+        <eLiterals xmi:id="_kZVvUiEMEeK2ZvNoV194Rw" name="TEILZEIT" value="1"/>
+        <eLiterals xmi:id="_kZVvUyEMEeK2ZvNoV194Rw" name="EXTERN" value="2"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_kZVvVCEMEeK2ZvNoV194Rw" name="hatAbteilung">
+        <eAnnotations xmi:id="_kZVvVSEMEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_dmVKUCEMEeK2ZvNoV194Rw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_kZVvViEMEeK2ZvNoV194Rw" name="base_Association" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Association"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_kZVvWCEMEeK2ZvNoV194Rw" name="bestehtAusGruppe">
+        <eAnnotations xmi:id="_kZVvWSEMEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_eoyF0CEMEeK2ZvNoV194Rw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_kZVvWiEMEeK2ZvNoV194Rw" name="base_Association" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Association"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_kZVvXCEMEeK2ZvNoV194Rw" name="hatChef">
+        <eAnnotations xmi:id="_kZVvXSEMEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_f2TB0CEMEeK2ZvNoV194Rw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_kZVvXiEMEeK2ZvNoV194Rw" name="base_Association" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Association"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_kZVvYCEMEeK2ZvNoV194Rw" name="bestehtAusMitarbeiter">
+        <eAnnotations xmi:id="_kZVvYSEMEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_gkJmUCEMEeK2ZvNoV194Rw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_kZVvYiEMEeK2ZvNoV194Rw" name="base_Association" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Association"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eSubpackages xmi:id="_kZVvZCEMEeK2ZvNoV194Rw" name="Firma" nsURI="http:///Profile/Firma.ecore" nsPrefix="Profile.Firma">
+        <eAnnotations xmi:id="_kZVvZSEMEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/4.0.0/UML" references="_qDo1ACELEeK2ZvNoV194Rw"/>
+      </eSubpackages>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_Rw2KESEMEeK2ZvNoV194Rw" name="Profile" nsURI="http:///schemas/Profile/_Rw2KECEMEeK2ZvNoV194Rw/2" nsPrefix="Profile">
+      <eAnnotations xmi:id="_Rw3YMCEMEeK2ZvNoV194Rw" source="PapyrusVersion">
+        <details xmi:id="_Rw3YMSEMEeK2ZvNoV194Rw" key="Version" value="0.0.3"/>
+        <details xmi:id="_Rw3YMiEMEeK2ZvNoV194Rw" key="Comment" value=""/>
+        <details xmi:id="_Rw3YMyEMEeK2ZvNoV194Rw" key="Copyright" value=""/>
+        <details xmi:id="_Rw3YNCEMEeK2ZvNoV194Rw" key="Date" value="2012-10-28"/>
+        <details xmi:id="_Rw3YNSEMEeK2ZvNoV194Rw" key="Author" value="Gamm El Fleisch"/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_Rw2KEiEMEeK2ZvNoV194Rw" name="Firma">
+        <eAnnotations xmi:id="_Rw2KEyEMEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_s7H_gCELEeK2ZvNoV194Rw"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_Rw2KFCEMEeK2ZvNoV194Rw" name="name" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_Rw2KFiEMEeK2ZvNoV194Rw" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_Rw2KGCEMEeK2ZvNoV194Rw" name="Abteilung">
+        <eAnnotations xmi:id="_Rw2KGSEMEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_tx-H8CELEeK2ZvNoV194Rw"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_Rw2KGiEMEeK2ZvNoV194Rw" name="id" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_Rw2KHCEMEeK2ZvNoV194Rw" name="ertrag" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_Rw2KHiEMEeK2ZvNoV194Rw" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_Rw2KICEMEeK2ZvNoV194Rw" name="Gruppe">
+        <eAnnotations xmi:id="_Rw2KISEMEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_ueJRcCELEeK2ZvNoV194Rw"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_Rw2KIiEMEeK2ZvNoV194Rw" name="id" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_Rw2KJCEMEeK2ZvNoV194Rw" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_Rw2KJiEMEeK2ZvNoV194Rw" name="Mitarbeiter">
+        <eAnnotations xmi:id="_Rw2KJyEMEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_vF-tgCELEeK2ZvNoV194Rw"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_Rw2KKCEMEeK2ZvNoV194Rw" name="alter" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//Integer"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_Rw2KKiEMEeK2ZvNoV194Rw" name="einkommen" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_Rw2KLCEMEeK2ZvNoV194Rw" name="typ" ordered="false" lowerBound="1" eType="_Rw2KMCEMEeK2ZvNoV194Rw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_Rw2KLiEMEeK2ZvNoV194Rw" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EEnum" xmi:id="_Rw2KMCEMEeK2ZvNoV194Rw" name="MitarbeiterTyp">
+        <eAnnotations xmi:id="_Rw2KMSEMEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_BucdcCEMEeK2ZvNoV194Rw"/>
+        <eLiterals xmi:id="_Rw2KMiEMEeK2ZvNoV194Rw" name="VOLLZEIT"/>
+        <eLiterals xmi:id="_Rw2KMyEMEeK2ZvNoV194Rw" name="TEILZEIT" value="1"/>
+        <eLiterals xmi:id="_Rw2KNCEMEeK2ZvNoV194Rw" name="EXTERN" value="2"/>
+      </eClassifiers>
+      <eSubpackages xmi:id="_Rw2KNSEMEeK2ZvNoV194Rw" name="Firma" nsURI="http:///Profile/Firma.ecore" nsPrefix="Profile.Firma">
+        <eAnnotations xmi:id="_Rw2KNiEMEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/4.0.0/UML" references="_qDo1ACELEeK2ZvNoV194Rw"/>
+      </eSubpackages>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_6KwCgSELEeK2ZvNoV194Rw" name="Profile" nsURI="http:///schemas/Profile/_6KwCgCELEeK2ZvNoV194Rw/1" nsPrefix="Profile">
+      <eAnnotations xmi:id="_6KwCkiELEeK2ZvNoV194Rw" source="PapyrusVersion">
+        <details xmi:id="_6KwCkyELEeK2ZvNoV194Rw" key="Version" value="0.0.2"/>
+        <details xmi:id="_6KwClCELEeK2ZvNoV194Rw" key="Comment" value=""/>
+        <details xmi:id="_6KwClSELEeK2ZvNoV194Rw" key="Copyright" value=""/>
+        <details xmi:id="_6KwCliELEeK2ZvNoV194Rw" key="Date" value="2012-10-28"/>
+        <details xmi:id="_6KwClyELEeK2ZvNoV194Rw" key="Author" value="Gamm El Fleisch"/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_6KwCgiELEeK2ZvNoV194Rw" name="Firma">
+        <eAnnotations xmi:id="_6KwCgyELEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_s7H_gCELEeK2ZvNoV194Rw"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_6KwChCELEeK2ZvNoV194Rw" name="name" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_6KwChiELEeK2ZvNoV194Rw" name="Abteilung">
+        <eAnnotations xmi:id="_6KwChyELEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_tx-H8CELEeK2ZvNoV194Rw"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_6KwCiCELEeK2ZvNoV194Rw" name="id" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_6KwCiiELEeK2ZvNoV194Rw" name="ertrag" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_6KwCjCELEeK2ZvNoV194Rw" name="Gruppe">
+        <eAnnotations xmi:id="_6KwCjSELEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_ueJRcCELEeK2ZvNoV194Rw"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_6KwCjiELEeK2ZvNoV194Rw" name="Mitarbeiter">
+        <eAnnotations xmi:id="_6KwCjyELEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_vF-tgCELEeK2ZvNoV194Rw"/>
+      </eClassifiers>
+      <eSubpackages xmi:id="_6KwCkCELEeK2ZvNoV194Rw" name="Firma" nsURI="http:///Profile/Firma.ecore" nsPrefix="Profile.Firma">
+        <eAnnotations xmi:id="_6KwCkSELEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/4.0.0/UML" references="_qDo1ACELEeK2ZvNoV194Rw"/>
+      </eSubpackages>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_rUs0QiELEeK2ZvNoV194Rw" name="Profile" nsURI="http:///schemas/Profile/_rUs0QCELEeK2ZvNoV194Rw/0" nsPrefix="Profile">
+      <eAnnotations xmi:id="_rUs0RSELEeK2ZvNoV194Rw" source="PapyrusVersion">
+        <details xmi:id="_rUs0RiELEeK2ZvNoV194Rw" key="Version" value="0.0.1"/>
+        <details xmi:id="_rUs0RyELEeK2ZvNoV194Rw" key="Comment" value=""/>
+        <details xmi:id="_rUs0SCELEeK2ZvNoV194Rw" key="Copyright" value=""/>
+        <details xmi:id="_rUs0SSELEeK2ZvNoV194Rw" key="Date" value="2012-10-28"/>
+        <details xmi:id="_rUs0SiELEeK2ZvNoV194Rw" key="Author" value="Gamm El Fleisch"/>
+      </eAnnotations>
+      <eSubpackages xmi:id="_rUs0QyELEeK2ZvNoV194Rw" name="Firma" nsURI="http:///Profile/Firma.ecore" nsPrefix="Profile.Firma">
+        <eAnnotations xmi:id="_rUs0RCELEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/4.0.0/UML" references="_qDo1ACELEeK2ZvNoV194Rw"/>
+      </eSubpackages>
+    </contents>
+  </eAnnotations>
+  <elementImport xmi:id="_sccfcCELEeK2ZvNoV194Rw" alias="Class">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+  </elementImport>
+  <elementImport xmi:id="_Uk3J0CEMEeK2ZvNoV194Rw" alias="Association">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Association"/>
+  </elementImport>
+  <packageImport xmi:id="_Sg7YoSELEeK2ZvNoV194Rw">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_METAMODELS/UML.metamodel.uml#_0"/>
+  </packageImport>
+  <packageImport xmi:id="_Sg7YoiELEeK2ZvNoV194Rw">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Package" xmi:id="_qDo1ACELEeK2ZvNoV194Rw" name="Firma">
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_s7H_gCELEeK2ZvNoV194Rw" name="Firma">
+      <ownedAttribute xmi:id="_wX_H8CELEeK2ZvNoV194Rw" name="name" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_wfeQACELEeK2ZvNoV194Rw" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_wfe3ECELEeK2ZvNoV194Rw" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_wffeICELEeK2ZvNoV194Rw">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_QWRCcCEMEeK2ZvNoV194Rw" name="base_Class" association="_QWRCcSEMEeK2ZvNoV194Rw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_tx-H8CELEeK2ZvNoV194Rw" name="Abteilung">
+      <ownedAttribute xmi:id="_zDpc8CELEeK2ZvNoV194Rw" name="id" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#ELong"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_zS9rUCELEeK2ZvNoV194Rw" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_zS9rUSELEeK2ZvNoV194Rw" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_zS-SYCELEeK2ZvNoV194Rw">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_3FI8cCELEeK2ZvNoV194Rw" name="ertrag" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EDouble"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3Rum8CELEeK2ZvNoV194Rw" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3RvOACELEeK2ZvNoV194Rw" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_3Rv1ECELEeK2ZvNoV194Rw">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_QsslcCEMEeK2ZvNoV194Rw" name="base_Class" association="_QsslcSEMEeK2ZvNoV194Rw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_ueJRcCELEeK2ZvNoV194Rw" name="Gruppe">
+      <ownedAttribute xmi:id="_8nwQcCELEeK2ZvNoV194Rw" name="id">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#ELong"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_Q_dwcCEMEeK2ZvNoV194Rw" name="base_Class" association="_Q_eXgCEMEeK2ZvNoV194Rw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_vF-tgCELEeK2ZvNoV194Rw" name="Mitarbeiter">
+      <ownedAttribute xmi:id="_FiunYCEMEeK2ZvNoV194Rw" name="alter" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_FymPYCEMEeK2ZvNoV194Rw" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Fym2cCEMEeK2ZvNoV194Rw" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_Fym2cSEMEeK2ZvNoV194Rw">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_H_C40CEMEeK2ZvNoV194Rw" name="einkommen" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EDouble"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_IOOkUCEMEeK2ZvNoV194Rw" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_IOOkUSEMEeK2ZvNoV194Rw" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_IOPLYCEMEeK2ZvNoV194Rw">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_MjVjYCEMEeK2ZvNoV194Rw" name="typ" visibility="public" type="_BucdcCEMEeK2ZvNoV194Rw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MxgiQCEMEeK2ZvNoV194Rw" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MxgiQSEMEeK2ZvNoV194Rw" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_MxhJUCEMEeK2ZvNoV194Rw">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_RVDl8CEMEeK2ZvNoV194Rw" name="base_Class" association="_RVENACEMEeK2ZvNoV194Rw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_BucdcCEMEeK2ZvNoV194Rw" name="MitarbeiterTyp">
+      <ownedLiteral xmi:id="_ClI04CEMEeK2ZvNoV194Rw" name="VOLLZEIT"/>
+      <ownedLiteral xmi:id="_DUvs4CEMEeK2ZvNoV194Rw" name="TEILZEIT"/>
+      <ownedLiteral xmi:id="_EddocCEMEeK2ZvNoV194Rw" name="EXTERN"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_QWRCcSEMEeK2ZvNoV194Rw" name="E_Firma_Class1" memberEnd="_QWRCciEMEeK2ZvNoV194Rw _QWRCcCEMEeK2ZvNoV194Rw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_QWRCciEMEeK2ZvNoV194Rw" name="extension_Firma" type="_s7H_gCELEeK2ZvNoV194Rw" aggregation="composite" association="_QWRCcSEMEeK2ZvNoV194Rw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_QsslcSEMEeK2ZvNoV194Rw" name="E_Abteilung_Class1" memberEnd="_QsslciEMEeK2ZvNoV194Rw _QsslcCEMEeK2ZvNoV194Rw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_QsslciEMEeK2ZvNoV194Rw" name="extension_Abteilung" type="_tx-H8CELEeK2ZvNoV194Rw" aggregation="composite" association="_QsslcSEMEeK2ZvNoV194Rw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_Q_eXgCEMEeK2ZvNoV194Rw" name="E_Gruppe_Class1" memberEnd="_Q_eXgSEMEeK2ZvNoV194Rw _Q_dwcCEMEeK2ZvNoV194Rw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_Q_eXgSEMEeK2ZvNoV194Rw" name="extension_Gruppe" type="_ueJRcCELEeK2ZvNoV194Rw" aggregation="composite" association="_Q_eXgCEMEeK2ZvNoV194Rw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_RVENACEMEeK2ZvNoV194Rw" name="E_Mitarbeiter_Class1" memberEnd="_RVENASEMEeK2ZvNoV194Rw _RVDl8CEMEeK2ZvNoV194Rw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_RVENASEMEeK2ZvNoV194Rw" name="extension_Mitarbeiter" type="_vF-tgCELEeK2ZvNoV194Rw" aggregation="composite" association="_RVENACEMEeK2ZvNoV194Rw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_dmVKUCEMEeK2ZvNoV194Rw" name="hatAbteilung">
+      <ownedAttribute xmi:id="_i_9hcCEMEeK2ZvNoV194Rw" name="base_Association" association="_i_9hcSEMEeK2ZvNoV194Rw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Association"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_eoyF0CEMEeK2ZvNoV194Rw" name="bestehtAusGruppe">
+      <ownedAttribute xmi:id="_jQ-Y8CEMEeK2ZvNoV194Rw" name="base_Association" association="_jQ-Y8SEMEeK2ZvNoV194Rw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Association"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_f2TB0CEMEeK2ZvNoV194Rw" name="hatChef">
+      <ownedAttribute xmi:id="_jjMxYCEMEeK2ZvNoV194Rw" name="base_Association" association="_jjNYcCEMEeK2ZvNoV194Rw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Association"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_gkJmUCEMEeK2ZvNoV194Rw" name="bestehtAusMitarbeiter">
+      <ownedAttribute xmi:id="_j1bw4CEMEeK2ZvNoV194Rw" name="base_Association" association="_j1bw4SEMEeK2ZvNoV194Rw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Association"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_i_9hcSEMEeK2ZvNoV194Rw" name="E_hatAbteilung_Association1" memberEnd="_i_9hciEMEeK2ZvNoV194Rw _i_9hcCEMEeK2ZvNoV194Rw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_i_9hciEMEeK2ZvNoV194Rw" name="extension_hatAbteilung" type="_dmVKUCEMEeK2ZvNoV194Rw" aggregation="composite" association="_i_9hcSEMEeK2ZvNoV194Rw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_jQ-Y8SEMEeK2ZvNoV194Rw" name="E_bestehtAusGruppe_Association1" memberEnd="_jQ-Y8iEMEeK2ZvNoV194Rw _jQ-Y8CEMEeK2ZvNoV194Rw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_jQ-Y8iEMEeK2ZvNoV194Rw" name="extension_bestehtAusGruppe" type="_eoyF0CEMEeK2ZvNoV194Rw" aggregation="composite" association="_jQ-Y8SEMEeK2ZvNoV194Rw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_jjNYcCEMEeK2ZvNoV194Rw" name="E_hatChef_Association1" memberEnd="_jjNYcSEMEeK2ZvNoV194Rw _jjMxYCEMEeK2ZvNoV194Rw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_jjNYcSEMEeK2ZvNoV194Rw" name="extension_hatChef" type="_f2TB0CEMEeK2ZvNoV194Rw" aggregation="composite" association="_jjNYcCEMEeK2ZvNoV194Rw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_j1bw4SEMEeK2ZvNoV194Rw" name="E_bestehtAusMitarbeiter_Association1" memberEnd="_j1bw4iEMEeK2ZvNoV194Rw _j1bw4CEMEeK2ZvNoV194Rw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_j1bw4iEMEeK2ZvNoV194Rw" name="extension_bestehtAusMitarbeiter" type="_gkJmUCEMEeK2ZvNoV194Rw" aggregation="composite" association="_j1bw4SEMEeK2ZvNoV194Rw"/>
+    </packagedElement>
+    <profileApplication xmi:id="_ISGiQCENEeK2ZvNoV194Rw" appliedProfile="_Sg7YoCELEeK2ZvNoV194Rw">
+      <eAnnotations xmi:id="_ISLawCENEeK2ZvNoV194Rw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_PAOAESENEeK2ZvNoV194Rw"/>
+    </profileApplication>
+  </packagedElement>
+</uml:Profile>

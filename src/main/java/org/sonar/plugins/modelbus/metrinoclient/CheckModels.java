@@ -103,16 +103,8 @@ public class CheckModels {
 	}
 
 	public void execute(Project project) {
-		// HACK: context classloader must be overwritten with the plugin
-		// classloader (otherwise modelbus fails on initialization)
-		ClassLoader initialClassLoader = Thread.currentThread().getContextClassLoader();
-		try {
-			Thread.currentThread().setContextClassLoader(getClass().getClassLoader());
-			initSession();
-			initRepository();
-			traverseRepository(project);
-		} finally {
-			Thread.currentThread().setContextClassLoader(initialClassLoader);
-		}
+		initSession();
+		initRepository();
+		traverseRepository(project);
 	}
 }
