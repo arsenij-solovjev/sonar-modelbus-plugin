@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_g37K0GfBEeKCtukk-1y-nA" name="Model">
+  <packageImport xmi:id="_g37K0WfBEeKCtukk-1y-nA">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="_oonf8GfBEeKCtukk-1y-nA" clientDependency="_6rDKoGfBEeKCtukk-1y-nA" name="Car">
+    <generalization xmi:id="_mn0a8GfDEeKCtukk-1y-nA" general="_MKmVQGfDEeKCtukk-1y-nA"/>
+    <generalization xmi:id="_27eaMGfEEeKCtukk-1y-nA" general="_sofugGfEEeKCtukk-1y-nA"/>
+    <ownedAttribute xmi:id="_CagJoGfCEeKCtukk-1y-nA" name="doors" visibility="public" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MFfBMGfCEeKCtukk-1y-nA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MF3bsGfCEeKCtukk-1y-nA" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_MGDo8GfCEeKCtukk-1y-nA">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_PviREGfCEeKCtukk-1y-nA" name="seats" visibility="public" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_UWpmIGfCEeKCtukk-1y-nA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_UWvswGfCEeKCtukk-1y-nA" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_UW1zYGfCEeKCtukk-1y-nA">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_5Nr38GfFEeKCtukk-1y-nA" name="color" visibility="public" type="_w8hTAGfFEeKCtukk-1y-nA" isUnique="false">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9Ws7wGfFEeKCtukk-1y-nA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9Ws7wWfFEeKCtukk-1y-nA" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_9W5JAGfFEeKCtukk-1y-nA">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedOperation xmi:id="_aJzQgGfCEeKCtukk-1y-nA" name="drive"/>
+    <ownedOperation xmi:id="_dEVH8GfCEeKCtukk-1y-nA" name="honk"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Abstraction" xmi:id="_6rDKoGfBEeKCtukk-1y-nA" name="Abstraction1" client="_oonf8GfBEeKCtukk-1y-nA" supplier="_oonf8GfBEeKCtukk-1y-nA"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_jgZMcGfCEeKCtukk-1y-nA" name="Bus">
+    <generalization xmi:id="_ysdG8GfCEeKCtukk-1y-nA" general="_oonf8GfBEeKCtukk-1y-nA"/>
+    <ownedAttribute xmi:id="_nQDVEGfCEeKCtukk-1y-nA" name="length" visibility="public" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qwXaIGfCEeKCtukk-1y-nA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qwXaIWfCEeKCtukk-1y-nA" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_qwdgwGfCEeKCtukk-1y-nA">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_05OggGfCEeKCtukk-1y-nA" name="Tank">
+    <generalization xmi:id="_CJ5sYGfDEeKCtukk-1y-nA" general="_oonf8GfBEeKCtukk-1y-nA"/>
+    <ownedAttribute xmi:id="_3794wGfCEeKCtukk-1y-nA" name="ammo" visibility="public" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_58zvIGfCEeKCtukk-1y-nA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_58zvIWfCEeKCtukk-1y-nA" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_5851wGfCEeKCtukk-1y-nA">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedOperation xmi:id="_7wTGAGfCEeKCtukk-1y-nA" name="shoot"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_MKmVQGfDEeKCtukk-1y-nA" name="Vehicle">
+    <ownedAttribute xmi:id="_acaOAGfDEeKCtukk-1y-nA" name="wheels" visibility="public" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_gQPN0GfDEeKCtukk-1y-nA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_gQVUcGfDEeKCtukk-1y-nA" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_gQbbEGfDEeKCtukk-1y-nA">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedOperation xmi:id="_jV0esGfDEeKCtukk-1y-nA" name="drive"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_VAbtgGfDEeKCtukk-1y-nA" name="Bike">
+    <generalization xmi:id="_naE-UGfDEeKCtukk-1y-nA" general="_MKmVQGfDEeKCtukk-1y-nA"/>
+    <generalization xmi:id="_2RIcsGfEEeKCtukk-1y-nA" general="_sofugGfEEeKCtukk-1y-nA"/>
+    <ownedOperation xmi:id="_rxzzkGfDEeKCtukk-1y-nA" name="ring"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_1eLyQGfDEeKCtukk-1y-nA" name="vehicles"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_sofugGfEEeKCtukk-1y-nA" name="Vehicle" isAbstract="true">
+    <generalization xmi:id="_B217kGfFEeKCtukk-1y-nA" general="_9rJXMGfEEeKCtukk-1y-nA"/>
+    <ownedAttribute xmi:id="_xku_AGfEEeKCtukk-1y-nA" name="wheels" visibility="public" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_z05q0GfEEeKCtukk-1y-nA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_z05q0WfEEeKCtukk-1y-nA" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_z1Db0GfEEeKCtukk-1y-nA">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedOperation xmi:id="_vfOEAGfEEeKCtukk-1y-nA" name="drive"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_9rJXMGfEEeKCtukk-1y-nA" name="Moveable">
+    <generalization xmi:id="_vEXekGfFEeKCtukk-1y-nA" general="_ipDNYGfFEeKCtukk-1y-nA"/>
+    <ownedOperation xmi:id="_GfVwsGfFEeKCtukk-1y-nA" name="move"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_OWAK8GfFEeKCtukk-1y-nA" name="Submarine">
+    <generalization xmi:id="_bzHQUGfFEeKCtukk-1y-nA" general="_9rJXMGfEEeKCtukk-1y-nA"/>
+    <ownedOperation xmi:id="_YhThUGfFEeKCtukk-1y-nA" name="dive"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_hoa20GfFEeKCtukk-1y-nA" name="PrimitiveType1"/>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_ipDNYGfFEeKCtukk-1y-nA" name="NamedElement">
+    <ownedOperation xmi:id="_olFuAGfFEeKCtukk-1y-nA" name="getName"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="_w8hTAGfFEeKCtukk-1y-nA" name="Color">
+    <ownedLiteral xmi:id="_yNPUAGfFEeKCtukk-1y-nA" name="RED"/>
+    <ownedLiteral xmi:id="_zU4RgGfFEeKCtukk-1y-nA" name="GREEN"/>
+    <ownedLiteral xmi:id="_0eT-wGfFEeKCtukk-1y-nA" name="BLUE"/>
+  </packagedElement>
+</uml:Model>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_6IGcUGfGEeKCtukk-1y-nA" name="model">
+  <ownedComment xmi:id="_hX-fsGfIEeKCtukk-1y-nA" annotatedElement="_T_5gwGfHEeKCtukk-1y-nA">
+    <body> a example</body>
+  </ownedComment>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_F1eCYGfHEeKCtukk-1y-nA" name="register">
+    <include xmi:id="_N4CVMGfIEeKCtukk-1y-nA" addition="_T_5gwGfHEeKCtukk-1y-nA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_KLEJoGfHEeKCtukk-1y-nA" name="User"/>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_Lc_EgGfHEeKCtukk-1y-nA" name="Admin"/>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_MvenIGfHEeKCtukk-1y-nA" name="Guest"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_S2qAwGfHEeKCtukk-1y-nA" name="A_guest_register" memberEnd="_S2qAwWfHEeKCtukk-1y-nA _S2qAxGfHEeKCtukk-1y-nA">
+    <ownedEnd xmi:id="_S2qAwWfHEeKCtukk-1y-nA" name="guest" type="_MvenIGfHEeKCtukk-1y-nA" association="_S2qAwGfHEeKCtukk-1y-nA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_S2qAwmfHEeKCtukk-1y-nA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_S2qAw2fHEeKCtukk-1y-nA" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_S2qAxGfHEeKCtukk-1y-nA" name="register" type="_F1eCYGfHEeKCtukk-1y-nA" association="_S2qAwGfHEeKCtukk-1y-nA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_S2qAxWfHEeKCtukk-1y-nA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_S2qAxmfHEeKCtukk-1y-nA" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_T_5gwGfHEeKCtukk-1y-nA" name="login">
+    <extend xmi:id="_PChLUGfIEeKCtukk-1y-nA" extendedCase="_W_68MGfHEeKCtukk-1y-nA" extensionLocation="_PD2oEGfIEeKCtukk-1y-nA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_W_68MGfHEeKCtukk-1y-nA" name="activate">
+    <extensionPoint xmi:id="_PD2oEGfIEeKCtukk-1y-nA" name="blubb"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_YpTU0GfHEeKCtukk-1y-nA" name="A_admin_activate" memberEnd="_YpTU0WfHEeKCtukk-1y-nA _YpTU1GfHEeKCtukk-1y-nA">
+    <ownedEnd xmi:id="_YpTU0WfHEeKCtukk-1y-nA" name="admin" type="_Lc_EgGfHEeKCtukk-1y-nA" association="_YpTU0GfHEeKCtukk-1y-nA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YpTU0mfHEeKCtukk-1y-nA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YpTU02fHEeKCtukk-1y-nA" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_YpTU1GfHEeKCtukk-1y-nA" name="activate" type="_W_68MGfHEeKCtukk-1y-nA" association="_YpTU0GfHEeKCtukk-1y-nA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YpTU1WfHEeKCtukk-1y-nA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YpTU1mfHEeKCtukk-1y-nA" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_ZgbKEGfHEeKCtukk-1y-nA" name="A_guest_login" memberEnd="_ZgbKEWfHEeKCtukk-1y-nA _ZgbKFGfHEeKCtukk-1y-nA">
+    <ownedEnd xmi:id="_ZgbKEWfHEeKCtukk-1y-nA" name="guest" type="_MvenIGfHEeKCtukk-1y-nA" association="_ZgbKEGfHEeKCtukk-1y-nA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZgbKEmfHEeKCtukk-1y-nA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZgbKE2fHEeKCtukk-1y-nA" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_ZgbKFGfHEeKCtukk-1y-nA" name="login" type="_T_5gwGfHEeKCtukk-1y-nA" association="_ZgbKEGfHEeKCtukk-1y-nA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZgbKFWfHEeKCtukk-1y-nA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZgbKFmfHEeKCtukk-1y-nA" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_aQxo8GfHEeKCtukk-1y-nA" name="add post"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_bvYU8GfHEeKCtukk-1y-nA" name="A_user_add post" memberEnd="_bvYU8WfHEeKCtukk-1y-nA _bvYU9GfHEeKCtukk-1y-nA">
+    <ownedEnd xmi:id="_bvYU8WfHEeKCtukk-1y-nA" name="user" type="_KLEJoGfHEeKCtukk-1y-nA" association="_bvYU8GfHEeKCtukk-1y-nA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bvYU8mfHEeKCtukk-1y-nA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_bvYU82fHEeKCtukk-1y-nA" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_bvYU9GfHEeKCtukk-1y-nA" name="add post" type="_aQxo8GfHEeKCtukk-1y-nA" association="_bvYU8GfHEeKCtukk-1y-nA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bvYU9WfHEeKCtukk-1y-nA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_bvYU9mfHEeKCtukk-1y-nA" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_3MOroGfHEeKCtukk-1y-nA" name="" memberEnd="_3MOroWfHEeKCtukk-1y-nA _3MOrpGfHEeKCtukk-1y-nA">
+    <ownedEnd xmi:id="_3MOroWfHEeKCtukk-1y-nA" name="add post" type="_aQxo8GfHEeKCtukk-1y-nA" association="_3MOroGfHEeKCtukk-1y-nA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3MOromfHEeKCtukk-1y-nA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3MOro2fHEeKCtukk-1y-nA" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_3MOrpGfHEeKCtukk-1y-nA" name="add post" type="_aQxo8GfHEeKCtukk-1y-nA" association="_3MOroGfHEeKCtukk-1y-nA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3MOrpWfHEeKCtukk-1y-nA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3MOrpmfHEeKCtukk-1y-nA" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+</uml:Model>
