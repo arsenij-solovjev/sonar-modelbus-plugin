@@ -25,6 +25,7 @@ import org.sonar.plugins.modelbus.smmparser.DirectMeasure;
 import org.sonar.plugins.modelbus.smmparser.SMMElement;
 import org.sonar.plugins.modelbus.smmparser.SMMModel;
 import org.sonar.plugins.modelbus.smmparser.SMMParser;
+import org.sonar.plugins.modelbus.smmparser.SmmModelWrapper;
 
 public class ModelBusSensor implements Sensor {
 
@@ -52,6 +53,9 @@ public class ModelBusSensor implements Sensor {
 			SMMModel smmModel = SMMParser.load(checkModels.checkoutSmm());
 			EList<SMMElement> smmElements = smmModel.getSMMElement();
 
+			SmmModelWrapper smm = new SmmModelWrapper(smmModel);
+			smm.getResourceToMetricsList(project.getFileSystem());
+			
 			// find measures (measurements have references to measurements)
 			List<DirectMeasure> measures = new ArrayList<DirectMeasure>();
 			DirectMeasure measure;

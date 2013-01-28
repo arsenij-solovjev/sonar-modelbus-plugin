@@ -82,6 +82,8 @@ public class CheckModels {
 				if (filename.endsWith(UML_EXT)) {
 					System.out.println("checking model '" + filename + "'...");
 					metrino.ccheckModel(entry.getUri(), SMM);
+					System.out.println("Entry URI: " + entry.getUri());
+					System.out.println("Directory URI: " + directory.getUri());
 				}
 			}
 		}

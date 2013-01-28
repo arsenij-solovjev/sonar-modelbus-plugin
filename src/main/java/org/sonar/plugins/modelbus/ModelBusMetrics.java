@@ -1,6 +1,6 @@
 package org.sonar.plugins.modelbus;
 
-import java.util.Arrays;
+import java.util.Arrays; 
 import java.util.List;
 
 import org.sonar.api.measures.CoreMetrics;
