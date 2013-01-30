@@ -9,7 +9,7 @@ import org.sonar.api.SonarPlugin;
 import org.sonar.plugins.modelbus.batch.CountClassesDecorator;
 import org.sonar.plugins.modelbus.batch.ModelBusSensor;
 import org.sonar.plugins.modelbus.ui.ExampleFooter;
-import org.sonar.plugins.modelbus.ui.ExampleRubyWidget;
+import org.sonar.plugins.modelbus.ui.ModelBusWidget;
 
 import java.util.Arrays;
 import java.util.List;
@@ -37,6 +37,6 @@ public final class ModelBusPlugin extends SonarPlugin {
         ModelBusSensor.class,
         CountClassesDecorator.class,
         // UI
-        ExampleFooter.class, ExampleRubyWidget.class);
+        ExampleFooter.class, ModelBusWidget.class);
   }
 }

@@ -3,7 +3,7 @@ package org.sonar.plugins.modelbus.ui;
 import org.sonar.api.web.*;
 
 @UserRole(UserRole.USER)
-@Description("Show how to use Ruby Widget API")
+@Description("Show ModelBus metrics")
 @WidgetCategory("Sample")
 @WidgetProperties({
     @WidgetProperty(key = "param1",
@@ -22,18 +22,18 @@ import org.sonar.api.web.*;
         description = "test description"
     )
 })
-public class ExampleRubyWidget extends AbstractRubyTemplate implements RubyRailsWidget {
+public class ModelBusWidget extends AbstractRubyTemplate implements RubyRailsWidget {
 
   public String getId() {
-    return "sample";
+    return "modelbus";
   }
 
   public String getTitle() {
-    return "Sample";
+    return "ModelBus metrics";
   }
 
   @Override
   protected String getTemplatePath() {
-    return "/example/example_widget.html.erb";
+    return "/widgets/main.html.erb";
   }
 }
