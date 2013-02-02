@@ -1,0 +1,1 @@
+mogrify -format eps *.png

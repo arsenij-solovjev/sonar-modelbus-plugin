@@ -100,7 +100,7 @@ Download the following copy of our repository:
 
 \url{https://github.com/arsenij-solovjev/sonar-modelbus-plugin/archive/master.zip}
 
-Extract the archive and if you like: copy the folder sonar-modelbus-plugin-master a special folder. It is just important that u don't copy this folder in your Eclipse workspace.
+Extract the archive and if you like copy the folder sonar-modelbus-plugin-master into a special folder. It is just important that you don't copy this folder in your Eclipse workspace.
 
 
 
@@ -115,7 +115,7 @@ Now create a new Eclipse project:
 	\label{fig:neweclipseproject}
 \end{figure}
 
-Unselect the "`Use default location"' box and select the sonar-modelbus-plugin-master folder. Don't forget to choose a project name.
+Unselect the "`Use default location"' box and select the sonar-modelbus-plugin-master folder. Don't forget to set a project name.
  
 \begin{figure}
 	\centering
@@ -126,3 +126,84 @@ Unselect the "`Use default location"' box and select the sonar-modelbus-plugin-m
 
 Notice: If you finish the project creation process you may get
 "`Git could not detect where GIT is installed"' or "`check HOME directory"' warning but it doesn't matter in this case.
+
+
+
+\subsection{Convert your project to a Maven project}
+Right click on your project folder and choose "`Configure | Convert to Maven Project"'.
+ 
+\begin{figure}
+	\centering
+		\includegraphics[width=\textwidth]{converttomavenproject}
+	\caption{Converting to a Maven project}
+	\label{fig:converttomavenproject}
+\end{figure}
+
+Notice: If you get any errors (this is not unusual) just ignore them. If you can't do the next step just repeat the previous one.
+
+
+
+\subsection{Compilation}
+Next: right click on your project again and select "`Run as | Maven install"'.
+\begin{figure}
+	\centering
+		\includegraphics[width=\textwidth]{maveninstall}
+	\caption{Maven install}
+	\label{fig:maveninstall}
+\end{figure} 
+If everything works well you see a "`BUILD SUCCESS"' reports like this:
+\begin{figure}
+	\centering
+		\includegraphics[width=\textwidth]{buildsuccess}
+	\caption{BUILD SUCCESS}
+	\label{fig:buildsuccess}
+\end{figure}
+
+
+
+\subsection{Deploy the Sonar server}
+To run Sonar with our example plugin we need to run maven with an other goal. Right click on your Project and select "`Run as | Maven Build"'. In "`Goals"' you must copy-paste 
+\begin{verbatim}
+org.codehaus.sonar:sonar-dev-maven-plugin::start-war
+-Dsonar.runtimeVersion=3.3
+\end{verbatim}
+Then press "`Run"' to start the build process that will deploy a Sonar server for you. 
+
+\begin{figure}
+	\centering
+		\includegraphics[width=\textwidth]{sonardeploy}
+	\caption{Deploying Sonar with Maven}
+	\label{fig:sonardeploy}
+\end{figure}
+ 
+Notice: this can take some minutes and if it seems to be frozen just restart the build process. If some errors occur just restart.
+If everything went fine you will see following status messages:
+ 
+\begin{figure}
+	\centering
+		\includegraphics[width=\textwidth]{sonarready}
+	\caption{Sonar is ready}
+	\label{fig:sonarready}
+\end{figure}
+
+Now you can see Sonar running at "`localhost:9000"'  in your browser.
+
+\begin{figure}
+	\centering
+		\includegraphics[width=\textwidth]{sonarrunning}
+	\caption{Sonar in the browser}
+	\label{fig:sonarrunning}
+\end{figure}
+
+
+
+\subsection{Analysing with Sonar}
+If you like to analyse your project with Sonar (or any other Maven project) you can start the build process with the goal "`sonar:sonar"'. After processing you can refresh your browser at "`localhost:9000"' and can see the results of the analysis.
+
+\begin{figure}
+	\centering
+		\includegraphics[width=\textwidth]{sonarinaction}
+	\caption{Sonar in action}
+	\label{fig:sonarinaction}
+\end{figure}
+
