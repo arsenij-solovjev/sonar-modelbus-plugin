@@ -56,11 +56,11 @@ Remember to select the correct version for your operating system.
 
 
 \subsection{Maven Plugin for Eclipse}
-Open Eclipse and open "`Help | Install New Software..."'. Now select or add the repository of your eclipse version. In our example we will use 
+Open Eclipse and open "Help | Install New Software...". Now select or add the repository of your eclipse version. In our example we will use 
 
 \url{http://download.eclipse.org/releases/juno}
  
-Select "`m2e – Maven Integration for Eclipse"' and click through the progress to install the plugin. If everything works well, Eclipse will ask you for an Eclipse restart. 
+Select "m2e – Maven Integration for Eclipse" and click through the progress to install the plugin. If everything works well, Eclipse will ask you for an Eclipse restart. 
 
 \begin{figure}
 	\centering
@@ -88,10 +88,57 @@ Request \href{http://www.modelbus.org/modelbus/}{the Modelbus developers} for a 
 	\item de.fraunhofer.fokus.metrino.ruleEvaluator
 	\item de.fraunhofer.fokus.metrino.measure
 \end{itemize}
+Extract Modelbus to any location in your file system. Now you have to setup the configuartaion file of Modelbus. Open the "modelbus.config" in the "serverConfiguration" folder of your modelbus installation. Set the "repositoryLocation" to "http://localhost:8080/modelbusrepository" and the "svnRepositoryLocation" to "repository":
+\begingroup
+    \fontsize{10pt}{12pt}\selectfont
+    \begin{verbatim}  
+<?xml version="1.0" encoding="UTF-8"?>
+<config:ConfigModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" 
+  xmlns:config="http://www.modelbus.org/system/model/config.ecore">
+  <locations name="repositoryLocation" location="http://localhost:8080/modelbusrepository"/>
+<!-- <locations name="secureRepositoryLocation" location="https://0.0.0.0:8181/modelbusrepository">
+    <properties name="SSLTrustStore" value="SSL/cacerts.jks"/>
+    <properties name="SSLTrustStorePassword" value="password"/>
+    <properties name="SSLKeyStore" value="SSL/modelbus.keystore"/>
+    <properties name="SSLKeyStorePassword" value="password"/>
+    <properties name="SSLAlgorithm" value="RSA"/>
+    <properties name="SSLPassword" value="password"/>
+  </locations> //-->
+  <locations name="notificationLocation" location="tcp://localhost:61616"/>
+  <locations name="svnRepositoryLocation" location="repository"/>
+</config:ConfigModel>
+    \end{verbatim}  
+\endgroup
+Then you will have to set some environment variables. Set
+\begin{itemize}
+	\item MODELBUS\_ROOT to the folder of your Modelbus installation
+	\item MODELBUS\_NOTIFICATION\_LOCATION  to "tcp://localhost:61616" like in the config file
+	\item MODELBUS\_REPOSITORY\_LOCATION to "http://localhost:8080/modelbusrepository" like in the config file
+\end{itemize}
 
 
 
 \section{Usage Manual}
+
+The typical workflow for plugin development is:
+\begin{enumerate}
+	\item start Modelbus
+	\item open the plugin project with Eclipse 
+	\item make some changes to the code
+	\item build the project with the Maven goal "install"
+	\item deploy Sonar including out plugin via Maven
+	\item analyse the project with the goal "sonar:sonar" to test the plugin on your installed Modelbus repository
+\end{enumerate}
+
+The typical workflow for an user of our plugin is:
+\begin{enumerate}
+	\item start ModelBus
+	\item start Sonar with our plugin via Maven
+	\item check in models into the Modelbus repository
+	\item analyse a Maven project with the goal "sonar:sonar" (this will also analyse your installed Modelbus repository)
+\end{enumerate}
+
+The single steps are described below in detail.
 
 
 
@@ -104,6 +151,32 @@ Extract the archive and if you like copy the folder sonar-modelbus-plugin-master
 
 
 
+\subsection{Start Modelbus}
+Under Windows start the "startModelBusServer.exe" of your Modelbus installation.
+
+Under Linux run the "startup.sh" as root user. Make sure that the "startup.sh" and the "bin/service" files are executable.
+
+If Modelbus is up, you can visit the Modelbus manager under \url{http://localhost:8080/modelbus?startup=manager}: You can login with the username "Admin" and the password "ModelBus". Here you can see all the checked in files and models. When uploading a new file, press the refresh button to see the changes.
+
+\begin{figure}
+	\centering
+		\includegraphics[width=\textwidth]{modelbusmanager}
+	\caption{The Modelbus manager}
+	\label{fig:modelbusmanager}
+\end{figure}
+
+
+\subsection{Uploading models}
+We created a tool for checking in and out files from/to the ModelBus repository. It can be simply called via "make". First compile the tool: Go to the "modelbusclient/sonar-modelbus-client" folder and run:
+\begin{verbatim}
+make install
+\end{verbatim}
+This will compile and package the tool. Next, checkin some models to the Modelbus repository using:
+\begin{verbatim}
+make checkin URI=http://uri.de/location/in/repository/file.txt FILENAME=location/to/local/file.txt
+\end{verbatim}
+You can find some example models in the "/src/main/resources/metrinostuff" folder of our plugin.
+
 
 \subsection{Create a new Eclipse project}
 Now create a new Eclipse project:
@@ -115,7 +188,7 @@ Now create a new Eclipse project:
 	\label{fig:neweclipseproject}
 \end{figure}
 
-Unselect the "`Use default location"' box and select the sonar-modelbus-plugin-master folder. Don't forget to set a project name.
+Unselect the "Use default location" box and select the sonar-modelbus-plugin-master folder. Don't forget to set a project name.
  
 \begin{figure}
 	\centering
@@ -125,12 +198,12 @@ Unselect the "`Use default location"' box and select the sonar-modelbus-plugin-m
 \end{figure}
 
 Notice: If you finish the project creation process you may get
-"`Git could not detect where GIT is installed"' or "`check HOME directory"' warning but it doesn't matter in this case.
+"Git could not detect where GIT is installed" or "check HOME directory" warning but it doesn't matter in this case.
 
 
 
 \subsection{Convert your project to a Maven project}
-Right click on your project folder and choose "`Configure | Convert to Maven Project"'.
+Right click on your project folder and choose "Configure | Convert to Maven Project".
  
 \begin{figure}
 	\centering
@@ -144,14 +217,14 @@ Notice: If you get any errors (this is not unusual) just ignore them. If you can
 
 
 \subsection{Compilation}
-Next: right click on your project again and select "`Run as | Maven install"'.
+Next: right click on your project again and select "Run as | Maven install".
 \begin{figure}
 	\centering
 		\includegraphics[width=\textwidth]{maveninstall}
 	\caption{Maven install}
 	\label{fig:maveninstall}
 \end{figure} 
-If everything works well you see a "`BUILD SUCCESS"' reports like this:
+If everything works well you see a "BUILD SUCCESS" reports like this:
 \begin{figure}
 	\centering
 		\includegraphics[width=\textwidth]{buildsuccess}
@@ -162,12 +235,12 @@ If everything works well you see a "`BUILD SUCCESS"' reports like this:
 
 
 \subsection{Deploy the Sonar server}
-To run Sonar with our example plugin we need to run maven with an other goal. Right click on your Project and select "`Run as | Maven Build"'. In "`Goals"' you must copy-paste 
+To run Sonar with our example plugin we need to run maven with an other goal. Right click on your Project and select "Run as | Maven Build". In "Goals" you must copy-paste 
 \begin{verbatim}
 org.codehaus.sonar:sonar-dev-maven-plugin::start-war
 -Dsonar.runtimeVersion=3.3
 \end{verbatim}
-Then press "`Run"' to start the build process that will deploy a Sonar server for you. 
+Then press "Run" to start the build process that will deploy a Sonar server for you. 
 
 \begin{figure}
 	\centering
@@ -186,7 +259,7 @@ If everything went fine you will see following status messages:
 	\label{fig:sonarready}
 \end{figure}
 
-Now you can see Sonar running at "`localhost:9000"'  in your browser.
+Now you can see Sonar running at "localhost:9000"  in your browser.
 
 \begin{figure}
 	\centering
@@ -198,7 +271,7 @@ Now you can see Sonar running at "`localhost:9000"'  in your browser.
 
 
 \subsection{Analysing with Sonar}
-If you like to analyse your project with Sonar (or any other Maven project) you can start the build process with the goal "`sonar:sonar"'. After processing you can refresh your browser at "`localhost:9000"' and can see the results of the analysis.
+If you like to analyse your project with Sonar (or any other Maven project) you can start the build process with the goal "sonar:sonar". After processing you can refresh your browser at "localhost:9000" and can see the results of the analysis.
 
 \begin{figure}
 	\centering
@@ -206,4 +279,3 @@ If you like to analyse your project with Sonar (or any other Maven project) you 
 	\caption{Sonar in action}
 	\label{fig:sonarinaction}
 \end{figure}
-
