@@ -1,0 +1,128 @@
+\chapter{Installation and Usage}
+\section{Software Requirements}
+For development following software components are needed:
+
+\begin{itemize}
+	\item Java (JDK) 1.6 or 1.7
+	\item Maven
+  \item Eclipse (Juno)
+	\item Maven Plugin for Eclipse
+  \item Git or Egit for Eclipse
+  \item Modelbus Team Provider for Eclipse
+	\item Modelbus 1.9.7
+	\item Metrino for Modelbus with following plugins
+		\begin{itemize}
+			\item Metrino rule evaluator plugin
+			\item Metrino measure plugin
+		\end{itemize}
+\end{itemize}
+Sonar will be downloaded and deployed via Maven at compile time.
+
+\section{Installation Manual}
+In the following sections we explain every detail. Just skip a section if you think you still have done that what the regarding section focuses. 
+
+
+
+\subsection{Java}
+We tested the software with Java 1.6 and 1.7. You can get those from \href{http://www.oracle.com/technetwork/java/javase/downloads/index.html}{here}. Select and download the current JDK to install it on your system. If Java is ready, make sure that the following system variables exist:
+\begin{verbatim}
+JAVA_HOME = C:\Program Files\Java\jdk1.7.0_09
+(change the path to your JDK install path)
+\end{verbatim}
+
+Also you must add your JAVA\_HOME variable (add \textbackslash bin\textbackslash ) to your path variable.
+\begin{verbatim}
+PATH =...;%JAVA_HOME%\bin\;
+\end{verbatim}
+
+
+
+\subsection{Maven}
+Download the current Maven from \href{http://maven.apache.org/download.html}{here} and follow the instructions from the README: Extract it somewhere and create following path variables:
+\begin{verbatim}
+M2_HOME = C:\Program Files\apache-maven-3.0.4 
+(change the path to your maven folder)
+M2 = %M2_HOME%\bin\
+PATH =...;%M2%;
+\end{verbatim}
+
+
+
+\subsection{Eclipse}
+Download Eclipse from \href{http://www.eclipse.org/juno/}{here}.
+We recommend a current Eclipse version. We use Eclipse Juno (4.2) for Java developer.
+Remember to select the correct version for your operating system. 
+
+
+
+\subsection{Maven Plugin for Eclipse}
+Open Eclipse and open "`Help | Install New Software..."'. Now select or add the repository of your eclipse version. In our example we will use 
+
+\url{http://download.eclipse.org/releases/juno}
+ 
+Select "`m2e – Maven Integration for Eclipse"' and click through the progress to install the plugin. If everything works well, Eclipse will ask you for an Eclipse restart. 
+
+\begin{figure}
+	\centering
+		\includegraphics[width=\textwidth]{m2eplugin}
+	\caption{Maven Eclipse plugin installation}
+	\label{fig:m2eplugin}
+\end{figure}
+
+
+
+
+\subsection{Git or Egit for Eclipse}
+If you have installed Juno, Egit is already integrated. If not so, you can download Egit from \href{http://download.eclipse.org/egit/updates}{here}. Or you get and install Git from \href{http://git-scm.com/download/}{here}.
+	
+
+
+\subsection{Modelbus Team Provider for Eclipse}
+The update site for the Modelbus Team Provider is \href{http://www.modelbus.org/modelbus/downloads/current/site}{here}. Select only the ModelBus Team Provider for the installation.
+
+
+
+\subsection{Modelbus and Metrino}
+Request \href{http://www.modelbus.org/modelbus/}{the Modelbus developers} for a version of Modelbus with an integrated Metrino service. Make sure that the following Jars lie in the plugin folder of Modelbus:
+\begin{itemize}
+	\item de.fraunhofer.fokus.metrino.ruleEvaluator
+	\item de.fraunhofer.fokus.metrino.measure
+\end{itemize}
+
+
+
+\section{Usage Manual}
+
+
+
+\subsection{Download the source of our Sonar-Modelbus-Plugin}
+Download the following copy of our repository:
+
+\url{https://github.com/arsenij-solovjev/sonar-modelbus-plugin/archive/master.zip}
+
+Extract the archive and if you like: copy the folder sonar-modelbus-plugin-master a special folder. It is just important that u don't copy this folder in your Eclipse workspace.
+
+
+
+
+\subsection{Create a new Eclipse project}
+Now create a new Eclipse project:
+
+\begin{figure}
+	\centering
+		\includegraphics[width=\textwidth]{neweclipseproject}
+	\caption{Creating a new Eclispe project}
+	\label{fig:neweclipseproject}
+\end{figure}
+
+Unselect the "`Use default location"' box and select the sonar-modelbus-plugin-master folder. Don't forget to choose a project name.
+ 
+\begin{figure}
+	\centering
+		\includegraphics[width=\textwidth]{selectlocation}
+	\caption{Selecting a location}
+	\label{fig:selectlocation}
+\end{figure}
+
+Notice: If you finish the project creation process you may get
+"`Git could not detect where GIT is installed"' or "`check HOME directory"' warning but it doesn't matter in this case.
