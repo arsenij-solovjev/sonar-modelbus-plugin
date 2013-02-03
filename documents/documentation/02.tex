@@ -113,7 +113,8 @@ Then you will have to set some environment variables. Set
 \begin{itemize}
 	\item MODELBUS\_ROOT to the folder of your Modelbus installation
 	\item MODELBUS\_NOTIFICATION\_LOCATION  to "tcp://localhost:61616" like in the config file
-	\item MODELBUS\_REPOSITORY\_LOCATION to "http://localhost:8080/modelbusrepository" like in the config file
+	\item MODELBUS\_REPOSITORY\_LOCATION to \\
+	"http://localhost:8080/modelbusrepository" like in the config file
 \end{itemize}
 
 
@@ -173,7 +174,9 @@ make install
 \end{verbatim}
 This will compile and package the tool. Next, checkin some models to the Modelbus repository using:
 \begin{verbatim}
-make checkin URI=http://uri.de/location/in/repository/file.txt FILENAME=location/to/local/file.txt
+make checkin 
+  URI=http://uri.de/location/in/repository/file.txt 
+  FILENAME=location/to/local/file.txt
 \end{verbatim}
 You can find some example models in the "/src/main/resources/metrinostuff" folder of our plugin.
 
