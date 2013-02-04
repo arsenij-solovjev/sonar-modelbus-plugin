@@ -1,0 +1,115 @@
+\documentclass[book, 14pt]{memoir}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+%\usepackage{euler}
+\usepackage{todo}
+\usepackage{blindtext}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{calc}
+\usepackage{euler}
+\setlrmarginsandblock{3cm}{3cm}{*}
+\setulmarginsandblock{3cm}{3cm}{*}
+\checkandfixthelayout
+
+%%%%%%%%%%%%%%%%%%%%% Telefon-Umgebung %%%%%%%%%%%%%%%%%%%%%
+\newenvironment{telefon}[1]{%
+	\par
+	\noindent{\large \ding{38}}
+	\begin{minipage}[t]{14.5cm}
+		\textbf{Telefonat mit #1:}
+		}{
+	\end{minipage}
+	\par
+}
+
+%%%%%%%%%%%%%%%%%%%%% E-Mail-Umgebung %%%%%%%%%%%%%%%%%%%%%
+\newenvironment{mail}[1]{%
+	\vspace{0.5em}
+	\par
+	\noindent{\large \ding{41}}
+	\begin{minipage}[t]{14.5cm}
+		\textbf{E-Mail an #1:}
+		}{
+	\end{minipage}
+	\par
+}
+
+%%%%%%%%%%%%%%%%%%%%% Chat-Umgebung %%%%%%%%%%%%%%%%%%%%%
+\newenvironment{chat}[1]{%
+	\par
+	\noindent{\large \copyright}
+	\begin{minipage}[t]{14.5cm}
+		\textbf{Chat mit #1:}
+		}{
+	\end{minipage}
+	\par
+}
+
+%%%%%%%%%%%%%%%%%%%%% Gammeliese-Umgebung %%%%%%%%%%%%%%%%%%%%%
+\newenvironment{gammeliese}[1]{%
+	\vspace{0.5em}
+	\par
+	\noindent{\large \ding{41}}
+	\begin{minipage}[t]{14.5cm}
+		}{
+	\end{minipage}
+	\par
+}
+	
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%% Aussehen Kapitel %%%%%%%%%%%%%%%%%%%%%
+\providecommand{\HUGE}{\Huge}
+\newlength{\drop}
+\newcommand*{\FSfont}[1]{\fontencoding{T1}\fontfamily{#1}\selectfont}
+\newcommand*{\TXfont}[1]{\fontencoding{T1}\fontfamily{#1}\selectfont}
+\makeatletter
+\DeclareRobustCommand\ltseries
+{\not@math@alphabet\ltseries\relax
+\fontseries\ltdefault\selectfont}
+\newcommand{\ltdefault}{l}
+\DeclareRobustCommand\hbseries
+{\not@math@alphabet\hbseries\relax
+\fontseries\hbdefault\selectfont}
+\newcommand{\hbdefault}{hb}
+\chapterstyle{chappell}
+
+%%%%%%%%%%%%%%%%%%%%% Aussehen Titelseite %%%%%%%%%%%%%%%%%%%%%
+\begin{minipage}[hbt]{5cm}
+	\centering
+	\includegraphics[width=45mm]{logo_fokus}
+\end{minipage}
+\hfill
+\begin{minipage}[hbt]{5cm}
+	\centering
+	\includegraphics[width=50mm]{logo_fu-berlin}
+\end{minipage}
+
+\begin{center}
+\thispagestyle{empty}
+\drop=0.1\textheight
+\settowidth{\unitlength}{\LARGE *************************************}
+\vspace*{\baselineskip}\vspace*{\baselineskip}\vspace*{\baselineskip}
+\vspace*{\baselineskip}\vspace*{\baselineskip}\vspace*{\baselineskip}
+{\scshape Damla Durmaz, Ferhat Beyaz, Sebastian Barthel, Arsenij Solovjev, Markus Rudolph, Alexander Dümont}\\[\baselineskip]
+\rule{\unitlength}{1.3pt}\\[\baselineskip]
+{\LARGE Sonar Modelbus Plugin \\ Project Manual}\\[\baselineskip]
+{\itshape Softwareproject WiSe 2012 \\ Modelbased Software Engineering Softwareentwicklung}\\[0.2\baselineskip]
+\rule{\unitlength}{1.3pt}\\[\baselineskip]
+{\large\scshape \today}\par
+\vfill
+%{\large\scshape \textrm{XIII} }\\[\baselineskip]
+{\small\scshape \textrm{Freie Universität Berlin, Fachbereich Informatik \\ AG Software Engineering, Wintersemester 2012} \\ Ina Schieferdecker, Tom Ritter und Christian Hein}
+\par\vspace*{\drop}
+\end{center}
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%% KAPITEL %%%%%%%%%%%%%%%%%%%%%
+\tableofcontents
+\include{01}
+\include{02}
+\include{03}
+\include{04}
+\include{progress}
+\end{document}

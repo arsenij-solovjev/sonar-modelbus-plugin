@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -18,13 +19,18 @@ import org.slf4j.LoggerFactory;
 import org.sonar.api.batch.Sensor;
 import org.sonar.api.batch.SensorContext;
 import org.sonar.api.measures.Measure;
+import org.sonar.api.measures.Metric;
 import org.sonar.api.resources.Project;
+import org.sonar.api.resources.ProjectFileSystem;
+import org.sonar.api.resources.Resource;
 import org.sonar.plugins.modelbus.ModelBusMetrics;
+import org.sonar.plugins.modelbus.Resources;
 import org.sonar.plugins.modelbus.metrinoclient.CheckModels;
 import org.sonar.plugins.modelbus.smmparser.DirectMeasure;
 import org.sonar.plugins.modelbus.smmparser.SMMElement;
 import org.sonar.plugins.modelbus.smmparser.SMMModel;
 import org.sonar.plugins.modelbus.smmparser.SMMParser;
+import org.sonar.plugins.modelbus.smmparser.SmmModelAdapter;
 
 public class ModelBusSensor implements Sensor {
 
@@ -43,33 +49,31 @@ public class ModelBusSensor implements Sensor {
 		try {
 
 			Thread.currentThread().setContextClassLoader(getClass().getClassLoader());
-
+			Resources resources = Resources.getInstance();
+			
 			CheckModels checkModels = new CheckModels();
-			checkModels.execute(project);
-			// returns an SMM inputStream, which should be passed to the XML
-			// parser
+			checkModels.run(project);
 
-			// Add a measure to the current Java method
-			// Read SMM file
+			// Create parse resulting model, and make it accessible via Resources
 			SMMModel smmModel = SMMParser.load(checkModels.checkoutSmm());
-			EList<SMMElement> smmElements = smmModel.getSMMElement();
+		
+			SmmModelAdapter smm = new SmmModelAdapter(smmModel, project.getFileSystem());
 
-			// find measures (measurements have references to measurements)
-			List<DirectMeasure> measures = new ArrayList<DirectMeasure>();
-			DirectMeasure measure;
-			for (SMMElement item : smmElements) {
-				if (item instanceof DirectMeasure) {
-					measure = (DirectMeasure) item;
-					measures.add(measure);
-					System.out.println("\t | Measure " + measure.getName() + " has "
-							+ measure.getMeasurement().size() + " measurements");
-					System.out.println("\t | The measurements are " + measure.getMeasurement());
-
-				}
-			}
-
-		} finally {
+			resources.setModel(smm);			
+			
+		} catch (Exception e){
+			e.printStackTrace();	
+		}
+		
+		finally {
 			Thread.currentThread().setContextClassLoader(initialClassLoader);
 		}
+	}
+	
+	@Override
+	public String toString(){
+		
+		return this.getClass().getSimpleName();
+		
 	}
 }

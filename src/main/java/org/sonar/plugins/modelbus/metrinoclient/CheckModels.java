@@ -17,13 +17,13 @@ import org.modelbus.dosgi.repository.descriptor.RepositoryNodeKind;
 import org.modelbus.dosgi.repository.descriptor.RepositoryRuntimeException;
 import org.modelbus.dosgi.repository.descriptor.Session;
 import org.sonar.api.resources.Project;
+import org.sonar.plugins.modelbus.Resources;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class CheckModels {
 	Logger log = LoggerFactory.getLogger(getClass());
-	private static final String UML_EXT = ".uml";
-	private static final String SMM = "http://sonar-modelbus-plugin/src/main/resources/metrinostuff/SampleMetrics.smm";
+
 	private Session session;
 	private IRepositoryHelper repository;
 	MetrinoSoapClient metrino;
@@ -79,9 +79,11 @@ public class CheckModels {
 				checkAllModels(entry, null);
 			} else {
 				String filename = entry.getName();
-				if (filename.endsWith(UML_EXT)) {
+				if (filename.endsWith(Resources.UML_EXT)) {
 					System.out.println("checking model '" + filename + "'...");
-					metrino.ccheckModel(entry.getUri(), SMM);
+					metrino.ccheckModel(entry.getUri(), Resources.SMM);
+					System.out.println("Entry URI: " + entry.getUri());
+					System.out.println("Directory URI: " + directory.getUri());
 				}
 			}
 		}
@@ -89,7 +91,7 @@ public class CheckModels {
 
 	public InputStream checkoutSmm() {
 		try {
-			return repository.checkOutFile(session, URI.createURI(SMM), -1L);
+			return repository.checkOutFile(session, URI.createURI(Resources.SMM), -1L);
 		} catch (Exception e) {
 			reportError("An error occured while checking out the SMM", e);
 		}
@@ -102,7 +104,7 @@ public class CheckModels {
 		e.printStackTrace();
 	}
 
-	public void execute(Project project) {
+	public void run(Project project) {
 		initSession();
 		initRepository();
 		traverseRepository(project);

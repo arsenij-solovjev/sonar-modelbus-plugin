@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_qy5LMGjqEeK2ILMZuMKxxg" name="Model">
+  <ownedComment xmi:id="_PJfCYGjuEeK2ILMZuMKxxg" annotatedElement="_AUMpIGjuEeK2ILMZuMKxxg">
+    <body>u.U. veraltet</body>
+  </ownedComment>
+  <packageImport xmi:id="_qy5LMWjqEeK2ILMZuMKxxg">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="__YBcIGjqEeK2ILMZuMKxxg" name="Auto">
+    <generalization xmi:id="_FrqkcGjrEeK2ILMZuMKxxg" general="_D7F-sGjrEeK2ILMZuMKxxg"/>
+    <ownedAttribute xmi:id="_exob8GjuEeK2ILMZuMKxxg" name="AnzahlRäder">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedOperation xmi:id="_X4Re0GjrEeK2ILMZuMKxxg" name="fahren"/>
+    <ownedOperation xmi:id="_Yq4ngGjrEeK2ILMZuMKxxg" name="stoppen"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="__wKPUGjqEeK2ILMZuMKxxg" name="Mieter" isActive="true">
+    <generalization xmi:id="_TMqEQGjrEeK2ILMZuMKxxg" general="_SDnYkGjrEeK2ILMZuMKxxg"/>
+    <ownedAttribute xmi:id="_COghEGjrEeK2ILMZuMKxxg" name="auto" type="__YBcIGjqEeK2ILMZuMKxxg" association="_COmnsGjrEeK2ILMZuMKxxg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_COghEWjrEeK2ILMZuMKxxg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_COghEmjrEeK2ILMZuMKxxg" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_lIq94GjrEeK2ILMZuMKxxg" name="name">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_COmnsGjrEeK2ILMZuMKxxg" name="mietet" memberEnd="_COmnsWjrEeK2ILMZuMKxxg _COghEGjrEeK2ILMZuMKxxg">
+    <ownedEnd xmi:id="_COmnsWjrEeK2ILMZuMKxxg" name="mieter" type="__wKPUGjqEeK2ILMZuMKxxg" association="_COmnsGjrEeK2ILMZuMKxxg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_COmnsmjrEeK2ILMZuMKxxg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_COmns2jrEeK2ILMZuMKxxg" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_D7F-sGjrEeK2ILMZuMKxxg" name="Vehikel" clientDependency="_JeFGIGjrEeK2ILMZuMKxxg" isAbstract="true">
+    <interfaceRealization xmi:id="_JeFGIGjrEeK2ILMZuMKxxg" name="InterfaceRealization0" supplier="_HD47oGjrEeK2ILMZuMKxxg" client="_D7F-sGjrEeK2ILMZuMKxxg" contract="_HD47oGjrEeK2ILMZuMKxxg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_UcSgIGjrEeK2ILMZuMKxxg" name="person_geschlecht_0" memberEnd="_UcSgIWjrEeK2ILMZuMKxxg _UcJWMGjrEeK2ILMZuMKxxg">
+    <ownedEnd xmi:id="_UcSgIWjrEeK2ILMZuMKxxg" name="person" type="_SDnYkGjrEeK2ILMZuMKxxg" association="_UcSgIGjrEeK2ILMZuMKxxg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_UcSgImjrEeK2ILMZuMKxxg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_UcSgI2jrEeK2ILMZuMKxxg" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_oW0U4GjrEeK2ILMZuMKxxg" name="World">
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_ObO8oGjrEeK2ILMZuMKxxg" name="Geschlecht">
+      <ownedLiteral xmi:id="_Pas1kGjrEeK2ILMZuMKxxg" name="Weiblich"/>
+      <ownedLiteral xmi:id="_QSmG4GjrEeK2ILMZuMKxxg" name="Männlich"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_HD47oGjrEeK2ILMZuMKxxg" name="Movable"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_SDnYkGjrEeK2ILMZuMKxxg" name="Person">
+      <ownedAttribute xmi:id="_UcJWMGjrEeK2ILMZuMKxxg" name="geschlecht" type="_ObO8oGjrEeK2ILMZuMKxxg" association="_UcSgIGjrEeK2ILMZuMKxxg">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_UcJWMWjrEeK2ILMZuMKxxg" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_UcJWMmjrEeK2ILMZuMKxxg" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b_SXgGjrEeK2ILMZuMKxxg" name="geschlecht" type="_ObO8oGjrEeK2ILMZuMKxxg">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_gfRJ0GjrEeK2ILMZuMKxxg" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_gfPUoGjrEeK2ILMZuMKxxg" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_hc0-QGjrEeK2ILMZuMKxxg" name="alter">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:TimeObservation" xmi:id="_9sqmMGjtEeK2ILMZuMKxxg" name=""/>
+  <packagedElement xmi:type="uml:Component" xmi:id="_-nQmMGjtEeK2ILMZuMKxxg" name="OrderSystem" clientDependency="_Ct8HsGjuEeK2ILMZuMKxxg"/>
+  <packagedElement xmi:type="uml:Component" xmi:id="_AUMpIGjuEeK2ILMZuMKxxg" name="InventorySystem"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_Ct8HsGjuEeK2ILMZuMKxxg" name="" supplier="_AUMpIGjuEeK2ILMZuMKxxg" client="_-nQmMGjtEeK2ILMZuMKxxg"/>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_TDL30GjuEeK2ILMZuMKxxg" name="Fiat 123" classifier="__YBcIGjqEeK2ILMZuMKxxg"/>
+</uml:Model>
