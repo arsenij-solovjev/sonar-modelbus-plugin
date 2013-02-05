@@ -17,6 +17,7 @@ import org.sonar.api.measures.Metric;
 import org.sonar.api.resources.ProjectFileSystem;
 import org.sonar.api.resources.Resource;
 import org.sonar.plugins.modelbus.ModelBusMetrics;
+import org.sonar.plugins.modelbus.language.uml.UmlFile;
 
 public class SmmModelAdapter {
 
@@ -68,7 +69,8 @@ public class SmmModelAdapter {
 	public Map<Metric, Double> getMeasurements(Resource resource) {
 
 		for (Resource r : resourceToMetrics.keySet()) {
-			if (r.getKey().equals(resource.getKey()))
+			boolean equals = r.getKey().equals(resource.getKey());
+			if (equals)
 				return resourceToMetrics.get(r);
 		}
 		return null;

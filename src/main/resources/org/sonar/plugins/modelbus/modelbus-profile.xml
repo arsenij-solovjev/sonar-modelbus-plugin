@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Default Erlang profile containing the active rules and their -->
+<!-- severities. Only dialyzer rules are contained for the time
+     being. -->
+
+<profile>
+  <name>Default ModelBus Profile</name>
+  <language>uml</language>
+  <rules>
+    <rule>
+      <repositoryKey>ModelBus</repositoryKey>
+      <key>D001</key>
+      <priority>MAJOR</priority>
+    </rule>
+  </rules>
+</profile>

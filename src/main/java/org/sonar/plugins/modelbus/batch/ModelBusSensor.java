@@ -25,6 +25,8 @@ import org.sonar.api.resources.ProjectFileSystem;
 import org.sonar.api.resources.Resource;
 import org.sonar.plugins.modelbus.ModelBusMetrics;
 import org.sonar.plugins.modelbus.Resources;
+
+import org.sonar.plugins.modelbus.language.uml.Uml;
 import org.sonar.plugins.modelbus.metrinoclient.CheckModels;
 import org.sonar.plugins.modelbus.smmparser.DirectMeasure;
 import org.sonar.plugins.modelbus.smmparser.SMMElement;
@@ -38,6 +40,7 @@ public class ModelBusSensor implements Sensor {
 
 	public boolean shouldExecuteOnProject(Project project) {
 		// This sensor is executed on any type of projects
+//		project.setLanguage(Uml.INSTANCE);
 		return true;
 	}
 
@@ -58,8 +61,10 @@ public class ModelBusSensor implements Sensor {
 			SMMModel smmModel = SMMParser.load(checkModels.checkoutSmm());
 		
 			SmmModelAdapter smm = new SmmModelAdapter(smmModel, project.getFileSystem());
-
-			resources.setModel(smm);			
+			
+			resources.setModel(smm);	
+			
+			
 			
 		} catch (Exception e){
 			e.printStackTrace();	
