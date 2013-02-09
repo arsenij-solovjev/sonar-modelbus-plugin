@@ -17,6 +17,7 @@ import org.sonar.api.measures.Metric;
 import org.sonar.api.resources.ProjectFileSystem;
 import org.sonar.api.resources.Resource;
 import org.sonar.plugins.modelbus.ModelBusMetrics;
+import org.sonar.plugins.modelbus.language.uml.Uml;
 import org.sonar.plugins.modelbus.language.uml.UmlFile;
 
 public class SmmModelAdapter {
@@ -46,7 +47,8 @@ public class SmmModelAdapter {
 
 			String resourceUri = EcoreUtil.getURI(measurement.getMeasurand()).toFileString();
 
-			resource = new org.sonar.api.resources.File(resourceUri);
+			File file = new File(resourceUri);
+			resource = new org.sonar.api.resources.File(Uml.INSTANCE, file.getParent(), file.getName());
 			String metricName = measurement.getMeasure().getName();
 
 			if (metricName.equals("NumberOfClasses"))
