@@ -6,3 +6,10 @@ target/
 .sonar/
 /lib
 /bin
+
+/documents/documentaion/blubber.tex
+/documents/documentaion/main.bbl
+/documents/documentaion/main.blg
+/documents/documentaion/main.log
+/documents/documentaion/main.toc
+/documents/documentaion/main.tps

@@ -24,6 +24,7 @@
 		<sonar.buildVersion>2.10</sonar.buildVersion>
 		<jdk.min.version>1.5</jdk.min.version>
 		<cxf.version>2.7.0</cxf.version><!-- 2.6.1 -->
+                <sonar.language>uml</sonar.language>
 	</properties>
 
 	<dependencies>

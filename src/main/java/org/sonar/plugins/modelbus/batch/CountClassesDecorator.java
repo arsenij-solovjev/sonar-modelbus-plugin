@@ -6,36 +6,24 @@ package org.sonar.plugins.modelbus.batch;
  *
  */
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Map;
-
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.math.RandomUtils;
-import org.eclipse.emf.common.util.EList;
 import org.sonar.api.batch.Decorator;
 import org.sonar.api.batch.DecoratorContext;
-import org.sonar.api.measures.MeasureUtils;
 import org.sonar.api.measures.Metric;
-import org.sonar.api.resources.Java;
 import org.sonar.api.resources.Project;
 import org.sonar.api.resources.Resource;
-import org.sonar.api.resources.Scopes;
-import org.sonar.plugins.modelbus.ModelBusMetrics;
+import org.sonar.api.resources.Language;
+
+import org.sonar.api.resources.ResourceUtils;
 import org.sonar.plugins.modelbus.Resources;
-import org.sonar.plugins.modelbus.metrinoclient.CheckModels;
-import org.sonar.plugins.modelbus.smmparser.SMMElement;
-import org.sonar.plugins.modelbus.smmparser.SMMModel;
-import org.sonar.plugins.modelbus.smmparser.SMMParser;
+import org.sonar.plugins.modelbus.language.uml.Uml;
 import org.sonar.plugins.modelbus.smmparser.SmmModelAdapter;
-import org.xml.sax.SAXException;
+
+;
 
 public class CountClassesDecorator implements Decorator {
 	public static final Logger LOG = LoggerFactory.getLogger(CountClassesDecorator.class);
@@ -56,21 +44,29 @@ public class CountClassesDecorator implements Decorator {
 		return true;
 	}
 
-	public void decorate(Resource resource, DecoratorContext context) {
+	public void decorate(@SuppressWarnings("rawtypes") Resource resource, DecoratorContext context) {
+		if (ResourceUtils.isFile(resource)) {
+			 
+			Language language = resource.getLanguage();
+			boolean equals = language.equals(Uml.INSTANCE);
+			if (equals) {
+				Resources resources = Resources.getInstance();
 
-		Resources resources = Resources.getInstance();
+				String key = resource.getKey();
+				
+				//if (key.endsWith(Resources.UML_EXT)) {
 
-		if (resource.getKey().endsWith(Resources.UML_EXT)) {
+					SmmModelAdapter smm = resources.getModel();
+				
+					Map<Metric, Double> measurements = smm.getMeasurements(resource);
+					// smm.getMetrics();
+					
 
-			SmmModelAdapter smm = resources.getModel();
-			// Map<Resource, Map<Metric, Double>> r2m =
-			// smm.getResourceToMetricsList(project.getFileSystem());
-			Map<Metric, Double> measurements = smm.getMeasurements(resource);
-			// smm.getMetrics();
+					for (Metric m : measurements.keySet())
+						context.saveMeasure(m, measurements.get(m));
 
-			for (Metric m : measurements.keySet())
-				context.saveMeasure(m, measurements.get(m));
-
+				//}
+			}
 		}
 
 	}

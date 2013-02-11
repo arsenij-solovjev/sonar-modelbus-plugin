@@ -3,6 +3,7 @@ package org.sonar.plugins.modelbus.batch;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +26,8 @@ import org.sonar.api.resources.ProjectFileSystem;
 import org.sonar.api.resources.Resource;
 import org.sonar.plugins.modelbus.ModelBusMetrics;
 import org.sonar.plugins.modelbus.Resources;
+
+import org.sonar.plugins.modelbus.language.uml.Uml;
 import org.sonar.plugins.modelbus.metrinoclient.CheckModels;
 import org.sonar.plugins.modelbus.smmparser.DirectMeasure;
 import org.sonar.plugins.modelbus.smmparser.SMMElement;
@@ -38,6 +41,7 @@ public class ModelBusSensor implements Sensor {
 
 	public boolean shouldExecuteOnProject(Project project) {
 		// This sensor is executed on any type of projects
+//		project.setLanguage(Uml.INSTANCE);
 		return true;
 	}
 
@@ -58,9 +62,26 @@ public class ModelBusSensor implements Sensor {
 			SMMModel smmModel = SMMParser.load(checkModels.checkoutSmm());
 		
 			SmmModelAdapter smm = new SmmModelAdapter(smmModel, project.getFileSystem());
-
-			resources.setModel(smm);			
 			
+			resources.setModel(smm);	
+			
+			Map<Metric, Double> sums = new HashMap<Metric, Double>();
+			Map<Resource, Map<Metric, Double>> mapping = smm.getResourceToMetrics();
+			for(Resource resource : mapping.keySet()) {
+				Map<Metric, Double> metrics = mapping.get(resource);
+				for(Metric metric : metrics.keySet()) {
+					//save resource's metric value
+					double value = metrics.get(metric);
+					sensorContext.saveMeasure(resource, metric, value);
+					//summing up the metric values
+					if(sums.containsKey(metric))
+						sums.put(metric, sums.get(metric) + value);
+					else
+						sums.put(metric, value);
+				}
+			}
+			for(Metric metric : sums.keySet())
+				sensorContext.saveMeasure(metric, sums.get(metric));
 		} catch (Exception e){
 			e.printStackTrace();	
 		}
