@@ -51,8 +51,7 @@ public class CountClassesDecorator implements Decorator {
 		if (ResourceUtils.isFile(resource)) {
 			 
 			Language language = resource.getLanguage();
-			boolean equals = language.equals(Uml.INSTANCE);
-			if (equals) {
+			if (language instanceof Uml) {
 				Resources resources = Resources.getInstance();
 
 				String key = resource.getKey();
@@ -70,7 +69,7 @@ public class CountClassesDecorator implements Decorator {
 							context.saveMeasure(m, measurements.get(m));
 						}
 						catch(Exception e) {
-							LOG.warn("Could not save measure \""+m+"\" for resource \""+resource.getName()+"\".", e);
+							LOG.warn("Could not save measure \""+m+"\" for resource \""+resource.getName()+"\": "+e.getMessage());
 						}
 					}
 				//}

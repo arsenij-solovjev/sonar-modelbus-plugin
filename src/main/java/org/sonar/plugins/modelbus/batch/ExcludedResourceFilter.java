@@ -20,6 +20,7 @@
 package org.sonar.plugins.modelbus.batch;
 
 import org.sonar.api.batch.ResourceFilter;
+import org.sonar.api.resources.Directory;
 import org.sonar.api.resources.Project;
 import org.sonar.api.resources.Resource;
 import org.sonar.plugins.modelbus.language.uml.Uml;
@@ -35,13 +36,12 @@ public class ExcludedResourceFilter implements ResourceFilter {
 	}
 
 	public boolean isIgnored(Resource resource) {
-		System.out.println("Ignore Resource? "+resource+"; "+ resource.getLanguage()+"; "+resource.getLongName());
-		if(true)
-		return false;
-		if(resource.getLanguage() != null && resource.getLanguage() instanceof Uml) {
+		
+		if(resource !=null && (resource instanceof Directory || resource.getLanguage() instanceof Uml)) {
 			return false;
 		}
 
+		System.out.println("Ignoring resource "+resource);
 		return true;
 	}
 }
