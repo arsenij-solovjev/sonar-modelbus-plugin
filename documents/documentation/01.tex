@@ -34,9 +34,7 @@ The product owner presented us their system with Modelbus and the Metrino servic
 In the following sections, the requirements will be described in detail and are divided into functional and non-functional requirements.
 
 \subsection{Functional requirements}
-
-\begin{table}[H]
-\begin{tabular}{|c|p{10cm}|}
+\begin{longtable}{|c|p{10cm}|}
 \hline 
 \multicolumn{2}{|l|}{\textbf{Create a plugin for Sonar}} \\ 
 \hline 
@@ -46,11 +44,21 @@ Dependencies & \textbf{none} (should be done first) \\ \hline
 Priority & high \\ \hline 
 State & closed \\ \hline 
 Fit Criterion & The plugin can be build and runs on a chosen server. A client connects to the Modelbus server and understands the WSDL interface. The client receives a message from the WSDL interface of the Modelbus server. \\ \hline 
-\end{tabular}
-\end{table}
+\end{longtable}
 
-\begin{table}[H]
-\begin{tabular}{|c|p{10cm}|}
+\begin{longtable}{|c|p{10cm}|}
+\hline 
+\multicolumn{2}{|l|}{\textbf{Create a plugin for Sonar}} \\ 
+\hline 
+Requirement Number & 1 \\ \hline 
+Description & Each sonar plugin has a specific architecture. The created sonar plugin must hold the specifications for a sonar plugin. Additionally, it must be run on a server and offers a WSDL interface. \\ \hline 
+Dependencies & \textbf{none} (should be done first) \\ \hline 
+Priority & high \\ \hline 
+State & closed \\ \hline 
+Fit Criterion & The plugin can be build and runs on a chosen server. A client connects to the Modelbus server and understands the WSDL interface. The client receives a message from the WSDL interface of the Modelbus server. \\ \hline 
+\end{longtable}
+
+\begin{longtable}{|c|p{10cm}|}
 \hline 
 \multicolumn{2}{|l|}{\textbf{Comprehend and cooperate with ModelBus repository}} \\ 
 \hline 
@@ -60,11 +68,9 @@ Dependencies & \# 1 \\ \hline
 Priority & high \\ \hline 
 State & closed \\ \hline 
 Fit Criterion & The sonar plugin is able to connect to the ModelBus repository via a command. It can fetch the source code for a random project to test, if the connection is established. The sonar plugin can terminate the connection to the repository for a given command. \\ \hline 
-\end{tabular}
-\end{table}
+\end{longtable}
 
-\begin{table}[H]
-\begin{tabular}{|c|p{10cm}|}
+\begin{longtable}{|c|p{10cm}|}
 \hline 
 \multicolumn{2}{|l|}{\textbf{Select the model}} \\ 
 \hline 
@@ -73,12 +79,10 @@ Description & The sonar plugin can fetch model code from the repository and tran
 Dependencies & \# 3 \\ \hline 
 Priority & high \\ \hline 
 State & closed \\ \hline 
-Fit Criterion & The plugin fetched a model. It transforms the model into the format of Metrino. For a test case, the transformed model shall be saved in a file and read successfully by Metrino. \\ \hline 
-\end{tabular}
-\end{table}
-\vspace{-30mm}
-\begin{table}[H]
-\begin{tabular}{|c|p{10cm}|}
+Fit Criterion & The plugin fetched a model. It transforms the model into the format of Metrino. For a test case, the transformed model shall be saved in a file and read successfully by Metrino. \\ \hline
+\end{longtable}
+
+\begin{longtable}{|c|p{10cm}|}
 \hline 
 \multicolumn{2}{|l|}{\textbf{Traverse the directory tree}} \\ 
 \hline 
@@ -87,13 +91,10 @@ Description & In the directory tree of sonar plugin, a lot of source code and mo
 Dependencies & \textbf{none} \\ \hline 
 Priority & high \\ \hline 
 State & closed \\ \hline 
-Fit Criterion & The plugin fetched the whole project tree of the repository. It loads each project into its own directory tree. It traverses the whole directory tree. For each project in its directory tree, it analyzes the code and visualizes it on the web interface. \\ \hline 
-\end{tabular}
-\end{table}
+Fit Criterion & The plugin fetched the whole project tree of the repository. It loads each project into its own directory tree. It traverses the whole directory tree. For each project in its directory tree, it analyzes the code and visualizes it on the web interface. \\ \hline
+\end{longtable}
 
-\noindent\begin{minipage}{\linewidth}
-\centering
-\begin{tabular}{|c|p{10cm}|}
+\begin{longtable}{|c|p{10cm}|}
 \hline 
 \multicolumn{2}{|l|}{\textbf{Analyze source codes}} \\ 
 \hline 
@@ -102,15 +103,11 @@ Description & The sonar plugin can apply a set of metrics to the fetched source 
 Dependencies & \# 2 \\ \hline 
 Priority & high \\ \hline 
 State & Canceled, because requirement is unfeasible with current Sonar version (could be with future versions) \\ \hline 
-Fit Criterion & The plugin fetches source code from the repository. It applies a couple of metrics, which can be chosen from the application interface. \\ \hline 
-\end{tabular}
-\end{minipage}
+Fit Criterion & The plugin fetches source code from the repository. It applies a couple of metrics, which can be chosen from the application interface. \\ \hline
+\end{longtable}
 
 \subsection{Non-functional requirements}
-
-\noindent\begin{minipage}{\linewidth}
-\centering
-\begin{tabular}{|c|p{10cm}|}
+\begin{longtable}{|c|p{10cm}|}
 \hline 
 \multicolumn{2}{|l|}{\textbf{Transfer as many as possible metrics from Metrino to Sonar}} \\ 
 \hline 
@@ -119,13 +116,10 @@ Description & The sonar plugin can already fetch model code from the repository.
 Dependencies & \# 4 \\ \hline 
 Priority & high \\ \hline 
 State & open \\ \hline 
-Fit Criterion & The sonar plugin sends a model to Metrino with the information which object oriented metric shall be applied. Metrino returns the results. The results are visualized. The plugin offers to select at least $10$ object oriented metrics of Metrino to apply to the sent model code. \\ \hline 
-\end{tabular}
-\end{minipage}
+Fit Criterion & The sonar plugin sends a model to Metrino with the information which object oriented metric shall be applied. Metrino returns the results. The results are visualized. The plugin offers to select at least $10$ object oriented metrics of Metrino to apply to the sent model code. \\ \hline
+\end{longtable}
 
-\noindent\begin{minipage}{\linewidth}
-\centering
-\begin{tabular}{|c|p{10cm}|}
+\begin{longtable}{|c|p{10cm}|}
 \hline 
 \multicolumn{2}{|l|}{\textbf{Plugin must work as efficient as possible}} \\ 
 \hline 
@@ -134,11 +128,8 @@ Description & Plugin must traverse the directory tree fastly. The connection to 
 Dependencies & \# 6 \\ \hline 
 Priority & middle \\ \hline 
 State & closed \\ \hline 
-Fit Criterion & Because of the difficulty of the decision, if it works properly fast, a usability test with the customer must be done, who can tell in a better way, if the product works fast or not. \\ \hline 
-\end{tabular}
-\end{minipage}
-
-
+Fit Criterion & Because of the difficulty of the decision, if it works properly fast, a usability test with the customer must be done, who can tell in a better way, if the product works fast or not. \\ \hline
+\end{longtable}
 
 \section{Responsibilities and Progress}
 \begin{table}[htbp]
