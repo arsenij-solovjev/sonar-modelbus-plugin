@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import org.sonar.api.batch.Decorator;
 import org.sonar.api.batch.DecoratorContext;
+import org.sonar.api.measures.CoreMetrics;
 import org.sonar.api.measures.Metric;
 import org.sonar.api.resources.Project;
 import org.sonar.api.resources.Resource;
@@ -45,11 +46,12 @@ public class CountClassesDecorator implements Decorator {
 	}
 
 	public void decorate(@SuppressWarnings("rawtypes") Resource resource, DecoratorContext context) {
+		LOG.debug("decorating resource "+resource+" (" +resource.getLongName()+")");
+		
 		if (ResourceUtils.isFile(resource)) {
 			 
 			Language language = resource.getLanguage();
-			boolean equals = language.equals(Uml.INSTANCE);
-			if (equals) {
+			if (language instanceof Uml) {
 				Resources resources = Resources.getInstance();
 
 				String key = resource.getKey();
@@ -61,10 +63,15 @@ public class CountClassesDecorator implements Decorator {
 					Map<Metric, Double> measurements = smm.getMeasurements(resource);
 					// smm.getMetrics();
 					
-
-					for (Metric m : measurements.keySet())
-						context.saveMeasure(m, measurements.get(m));
-
+					if(measurements!=null)
+					for (Metric m : measurements.keySet()) {
+						try {
+							context.saveMeasure(m, measurements.get(m));
+						}
+						catch(Exception e) {
+							LOG.warn("Could not save measure \""+m+"\" for resource \""+resource.getName()+"\": "+e.getMessage());
+						}
+					}
 				//}
 			}
 		}
