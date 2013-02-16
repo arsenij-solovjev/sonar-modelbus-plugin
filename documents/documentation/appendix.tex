@@ -73,7 +73,7 @@ Our organizer told us, that he will send us a front-end for the Metrino service,
 The last point of discussion was, that one of our team members had the idea, that models can be translated into Java code, which can then be analyzed statically by Sonar. But this would break a requirement, which says that a model must be analyzable, too.
 
 \section{Meeting 10 - 17.12.2012}
-During the last week, we discovered the problem that the checkout of the models from the Modelbus repository did not work. We always got an exception \\\texttt{ServiceConstructionException}. In the standalone version of our plugin, the checkout worked. We explained this error to our supervisor and he explained that we must send this problem to their mailing list. Then, we asked them a few questions about some functions of the Metrino service, which occurred during the work with it.
+During the last week, we discovered the problem that the checkout of the models from the Modelbus repository did not work. We always got an exception \texttt{ServiceConstructionException}. In the standalone version of our plugin, the checkout worked. We explained this error to our supervisor and he explained that we must send this problem to their mailing list. Then, we asked them a few questions about some functions of the Metrino service, which occurred during the work with it.
 
 \section{Meeting 11 - 07.01.2013}
 We reported the current state of our plugin project. Now, the Metrino service runs on our own server on \emph{openstoryboard.org}. The problem is, that we want to reach the service from the outside of the network. Therefore we need a proxy.
@@ -92,7 +92,7 @@ The example SMM files, which we got from our supervisor, computed two metrics: t
 \section{Meeting 13 - 21.01.2013}
 This week, the meeting did not take place. Our group organized a Skype meeting where we discussed the results of our tasks and what are the tasks for the following week. The visualization of results in Sonar still not works properly and we must go on with these tasks. Additionally, we updated our requirements list. We discussed about the SMM parser, which was built until this day and realized, that there are some errors which must be fixed this week, because next week, we want to put all modules of the Sonar plugin together.
 
-\section{Meeting 14 - 26.01.2013}
+\section{Meeting 14 (Hackathon) - 26.01.2013}
 Today, we have a hackathon. We have a lot of results for each little module of our plugin project and we want to put them all together.
 
 At first, we integrated our SMM parser into our plugin. We changed the parser a little bit. We added an input stream to the Resource object, because by doing this we can send the checked out models directly from the main application to our parser instead of saving the checked out models in a file.
