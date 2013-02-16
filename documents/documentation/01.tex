@@ -1,21 +1,26 @@
 \chapter{Introduction}
+
 \section{Motivation}
-Sonar is an open source software quality platform that uses various static code analysis tools such as Checkstyle, PMD, FindBugs to extract software metrics, which then can be used to improve software quality. Usually Sonar is used in combination with programming languages like Java, C or C\#, but Sonar indeed gives the functionality to display all kind of measures and handle more than just sourcecode. From model driven software developement we know, that all the object oriented ideas also can be mapped to models, which represent the original objects. So in fact, we also could analyse models instead of just sourcecode.
+Sonar (\autoref{sec:sonar}) is an open source software quality platform that uses various static code analysis tools such as Checkstyle, PMD and FindBugs to extract software metrics, which can be used to improve software quality. Usually, Sonar is used in combination with programming languages, like Java, C or C\#, but Sonar indeed gives the functionality to display all kind of measures and handle more than just source code. From model driven software development we know, that all the object oriented ideas also can be mapped to models, which represent the original objects. So in fact, we also could analyze models instead of just source code.
 
-Modelbus is a model repository, which is used to achieve a seamless integration between tools and the work of the developement team. In the Modelbus system information (models) can be stored and reused in a transparent way. Therefore it would be an important feature to analyse models located in such a Modelbus repository.
+Modelbus (\autoref{sec:modelbus}) is a model repository, which is used to achieve a seamless integration between tools and the work of the development team. In Modelbus, system information (models) can be stored and reused in a transparent way. Therefore it would be an important feature to analyze models located in such a Modelbus repository.
 
-Since we cannot just use all of the metrics we know from object oriented code analysis, Sonar cant be run out of the box to analyse models. Our plugin should therefore use the Metrino service, which gives us the functionality to examine all of the metrics on models as well. So with our work we want to provide a Sonar plugin to analyse models located at a Modelbus repository using the Metrino Service.
+Since we cannot simply use all of the metrics we know from object oriented code analysis, Sonar cannot be run out of the box to analyze models. Our plugin should therefore use the Metrino service (\autoref{sec:metrino}), which gives us the functionality to examine all of the metrics on models as well. So with our work we want to provide a Sonar plugin to analyze models located at a Modelbus repository using the Metrino Service.
+
+\section{Expectations}
+Our team consists of six computer science MSc students who are motivated to find a stable solution for the given task: Alexander Dümont, Arsenij Solovjev, Damla Durmaz, Ferhat Beyaz, Markus Rudolph, Sebastian Barthel.
+Our goal is to expand Sonar to cooperate with ModelBus. At the beginning of the course none of us had experience in working with neither Sonar nor Modelbus nor Metrino. So in fact our first expectation was to learn the usage of those software systems. We also had not much experience in the model driven software developement. Therefore it should be necessary to learn to work with models and to generate code from it (as later used with the SMM parser and other software components). Although we had no experience with those systems, their good programming interfaces are promising to work fluently together.
 
 \section{Requirements}
-The product owner identified the following requirements:
+The product owner presented us their system with Modelbus and the Metrino service. They explained, that in the Modelbus repository, there are models which can be analyzed by the Metrino service and that it can be interesting to get to know in what extend object oriented metrics of Sonar can be applied to models. Therefore, we identified some requirements for our Sonar plugin:
 \begin{enumerate}
-\item Create a plugin for sonar (closed)
-\item Comprehend and cooperate with ModelBus repository (closed)
-\item Transfer as many as possible metrics from Metrino to Sonar (open)
-\item Select the model (closed)
-\item Traverse the directory tree (closed)
-\item Analyse sourcecodes (cancelled)
-\item Plugin must work as efficient as possible (closed)
+\item Create a plugin for sonar
+\item Comprehend and cooperate with ModelBus repository
+\item Transfer as many as possible metrics from Metrino to Sonar
+\item Select the model
+\item Traverse the directory tree
+\item Analyze source codes
+\item Plugin must work as efficient as possible
 \end{enumerate}
 
 \subsection{Create a plugin for sonar}
@@ -94,10 +99,6 @@ The product owner identified the following requirements:
 \item closed
 \item Fit Criterion: Because of the difficulty of the decision, if it works properly fast, a usability test with the customer must be done, who can tell in a better way, if the product works fast or not.
 \end{itemize}
-
-\section{Expectations}
-Our team consists of six computer science MSc students who are motivated to find a stable solution for the given task: Alexander Dümont, Arsenij Solovjev, Damla Durmaz, Ferhat Beyaz, Markus Rudolph, Sebastian Barthel.
-Our goal is to expand Sonar to cooperate with ModelBus. At the beginning of the course none of us had experience in working with neither Sonar nor Modelbus nor Metrino. So in fact our first expectation was to learn the usage of those software systems. We also had not much experience in the model driven software developement. Therefore it should be necessary to learn to work with models and to generate code from it (as later used with the SMM parser and other software components). Although we had no experience with those systems, their good programming interfaces are promising to work fluently together.
 
 \section{Model-Driven Engineering}
 With model-driven engineering we focus on domain models rather then on objects in the sense of object oriented programming. Those domain models are anbstract representations of the knowledge and activities that belong them). We can compare them with objects, but instead of describing them with sourcecode from programming languages like Java or C we simply use UML and generate the sourcecode from it.
