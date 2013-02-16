@@ -1,280 +1,404 @@
-\chapter{Installation and Usage}
-\section{Software Requirements}
-For development following software components are needed:
+\chapter{Sonar Modelbus Plugin} \label{sec:sonar_modelbus_plungin}
 
+\section{Modelbus} \label{sec:modelbus}
+\subsection{Scenario}
+
+Imagine, you are in a software developement process. You and your team partners use different developement tools and a lot of artefacts are produced by different team members. In such a case, the artefacts may be inconsitent and a developer needs to make updates and changes by hand to keep them consistent. A tool which would automate this process and do more, is ModelBus.
+
+\subsection{What is ModelBus?}
+
+It is a model-driven open source framework for the integration of development tools during a MDE process. It keeps the artefacts of the development process consistent. It offers a communication between tools with the help of adapters: the tools are connected to the bus via adapters and can offer their services to other tools connected to the bus.
+
+\subsection{Goals}
 \begin{itemize}
-	\item Java (JDK) 1.6 or 1.7
-	\item Maven
-  \item Eclipse (Juno)
-	\item Maven Plugin for Eclipse
-  \item Git or Egit for Eclipse
-  \item Modelbus Team Provider for Eclipse
-	\item Modelbus 1.9.7
-	\item Metrino for Modelbus with following plugins
-		\begin{itemize}
-			\item Metrino rule evaluator plugin
-			\item Metrino measure plugin
-		\end{itemize}
-\end{itemize}
-Sonar will be downloaded and deployed via Maven at compile time.
-
-\section{Installation Manual}
-In the following sections we explain every detail. Just skip a section if you think you still have done that what the regarding section focuses. 
-
-\subsection{Java}
-We tested the software with Java 1.6 and 1.7. You can get those from \href{http://www.oracle.com/technetwork/java/javase/downloads/index.html}{here}. Select and download the current JDK to install it on your system. If Java is ready, make sure that the following system variables exist:
-\begin{verbatim}
-JAVA_HOME = C:\Program Files\Java\jdk1.7.0_09
-(change the path to your JDK install path)
-\end{verbatim}
-
-Also you must add your JAVA\_HOME variable (add \textbackslash bin\textbackslash ) to your path variable.
-\begin{verbatim}
-PATH =...;%JAVA_HOME%\bin\;
-\end{verbatim}
-
-\subsection{Maven}
-Download the current Maven from \href{http://maven.apache.org/download.html}{here} and follow the instructions from the README: Extract it somewhere and create following path variables:
-\begin{verbatim}
-M2_HOME = C:\Program Files\apache-maven-3.0.4 
-(change the path to your maven folder)
-M2 = %M2_HOME%\bin\
-PATH =...;%M2%;
-\end{verbatim}
-
-
-
-\subsection{Eclipse}
-Download Eclipse from \href{http://www.eclipse.org/juno/}{here}.
-We recommend a current Eclipse version. We use Eclipse Juno (4.2) for Java developer.
-Remember to select the correct version for your operating system. 
-
-
-
-\subsection{Maven Plugin for Eclipse}
-Open Eclipse and open "Help | Install New Software...". Now select or add the repository of your eclipse version. In our example we will use 
-
-\url{http://download.eclipse.org/releases/juno}
- 
-Select "m2e – Maven Integration for Eclipse" and click through the progress to install the plugin. If everything works well, Eclipse will ask you for an Eclipse restart. 
-
-\begin{figure}
-	\centering
-		\includegraphics[width=\textwidth]{m2eplugin}
-	\caption{Maven Eclipse plugin installation}
-	\label{fig:m2eplugin}
-\end{figure}
-
-
-
-
-\subsection{Git or Egit for Eclipse}
-If you have installed Juno, Egit is already integrated. If not so, you can download Egit from \href{http://download.eclipse.org/egit/updates}{here}. Or you get and install Git from \href{http://git-scm.com/download/}{here}.
-	
-
-
-\subsection{Modelbus Team Provider for Eclipse}
-The update site for the Modelbus Team Provider is \href{http://www.modelbus.org/modelbus/downloads/current/site}{here}. Select only the ModelBus Team Provider for the installation.
-
-
-
-\subsection{Modelbus and Metrino}
-Request \href{http://www.modelbus.org/modelbus/}{the Modelbus developers} for a version of Modelbus with an integrated Metrino service. Make sure that the following Jars lie in the plugin folder of Modelbus:
-\begin{itemize}
-	\item de.fraunhofer.fokus.metrino.ruleEvaluator
-	\item de.fraunhofer.fokus.metrino.measure
-\end{itemize}
-Extract Modelbus to any location in your file system. Now you have to setup the configuartaion file of Modelbus. Open the "modelbus.config" in the "serverConfiguration" folder of your modelbus installation. Set the "repositoryLocation" to "http://localhost:8080/modelbusrepository" and the "svnRepositoryLocation" to "repository":
-\begingroup
-    \fontsize{10pt}{12pt}\selectfont
-    \begin{verbatim}  
-<?xml version="1.0" encoding="UTF-8"?>
-<config:ConfigModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" 
-  xmlns:config="http://www.modelbus.org/system/model/config.ecore">
-  <locations name="repositoryLocation" location="http://localhost:8080/modelbusrepository"/>
-<!-- <locations name="secureRepositoryLocation" location="https://0.0.0.0:8181/modelbusrepository">
-    <properties name="SSLTrustStore" value="SSL/cacerts.jks"/>
-    <properties name="SSLTrustStorePassword" value="password"/>
-    <properties name="SSLKeyStore" value="SSL/modelbus.keystore"/>
-    <properties name="SSLKeyStorePassword" value="password"/>
-    <properties name="SSLAlgorithm" value="RSA"/>
-    <properties name="SSLPassword" value="password"/>
-  </locations> //-->
-  <locations name="notificationLocation" location="tcp://localhost:61616"/>
-  <locations name="svnRepositoryLocation" location="repository"/>
-</config:ConfigModel>
-    \end{verbatim}  
-\endgroup
-Then you will have to set some environment variables. Set
-\begin{itemize}
-	\item MODELBUS\_ROOT to the folder of your Modelbus installation
-	\item MODELBUS\_NOTIFICATION\_LOCATION  to "tcp://localhost:61616" like in the config file
-	\item MODELBUS\_REPOSITORY\_LOCATION to \\
-	"http://localhost:8080/modelbusrepository" like in the config file
+\item Data Integration: Tools can share (data) models
+\item Control Integration: Tools connected to the bus can use the service of other \item connected tools
+\item Process Integration: Several tools are used together in the development and are highly supported
+\item Support: Support of distributed MDE development
+\item Architecture: Based on SOA
+\item Architecture
 \end{itemize}
 
-
-
-\section{Usage Manual}
-
-The typical workflow for plugin development is:
-\begin{enumerate}
-	\item start Modelbus
-	\item open the plugin project with Eclipse 
-	\item make some changes to the code
-	\item build the project with the Maven goal "install"
-	\item deploy Sonar including out plugin via Maven
-	\item analyse the project with the goal "sonar:sonar" to test the plugin on your installed Modelbus repository
-\end{enumerate}
-
-The typical workflow for an user of our plugin is:
-\begin{enumerate}
-	\item start ModelBus
-	\item start Sonar with our plugin via Maven
-	\item check in models into the Modelbus repository
-	\item analyse a Maven project with the goal "sonar:sonar" (this will also analyse your installed Modelbus repository)
-\end{enumerate}
-
-The single steps are described below in detail.
-
-
-
-\subsection{Download the source of our Sonar-Modelbus-Plugin}
-Download the following copy of our repository:
-
-\url{https://github.com/arsenij-solovjev/sonar-modelbus-plugin/archive/master.zip}
-
-Extract the archive and if you like copy the folder sonar-modelbus-plugin-master into a special folder. It is just important that you don't copy this folder in your Eclipse workspace.
-
-
-
-\subsection{Start Modelbus}
-Under Windows start the "startModelBusServer.exe" of your Modelbus installation.
-
-Under Linux run the "startup.sh" as root user. Make sure that the "startup.sh" and the "bin/service" files are executable.
-
-If Modelbus is up, you can visit the Modelbus manager under \url{http://localhost:8080/modelbus?startup=manager}: You can login with the username "Admin" and the password "ModelBus". Here you can see all the checked in files and models. When uploading a new file, press the refresh button to see the changes.
+\begin{itemize}
+\item based on SOA
+\item central bus-like communication structure
+number of core services
+\item a copule of model management tools
+\item different tools can be added to the bus via adapters
+\item if a tool is connected, it is handled as a service for other tools
+orchestration: a lot of tools (with their service) and automation are connected \item together to a complex system
+\end{itemize}
 
 \begin{figure}
 	\centering
-		\includegraphics[width=\textwidth]{modelbusmanager}
-	\caption{The Modelbus manager}
-	\label{fig:modelbusmanager}
+		\includegraphics[width=\textwidth]{modelbus_1}
+	\caption{Modelbus tools and services}
+	\label{fig:sonarrunning}
 \end{figure}
 
+\begin{figure}
+	\centering
+		\includegraphics[width=\textwidth]{modelbus_2}
+	\caption{Developement process and layers}
+	\label{fig:sonarrunning}
+\end{figure}
 
-\subsection{Uploading models}
-We created a tool for checking in and out files from/to the ModelBus repository. It can be simply called via "make". First compile the tool: Go to the "modelbusclient/sonar-modelbus-client" folder and run:
+\subsection{Features}
+
+\subsubsection{Automation of development tasks}
+
+\begin{itemize}
+\item define tasks as modeling services
+\item orchestrate defined tasks with other modelling services
+\item orchestrations can be run automatically (by user or other orchestrations)
+\end{itemize}
+
+\subsubsection{Inbuilt and transparent model management}
+
+\begin{itemize}
+\item problem: development produces artefacts and developer don't want to care about where they came from and how they have to be imported
+\item artefacts are acceessed to the rigth model by each connected tool on the ModelBus bus
+\end{itemize}
+
+\subsubsection{Support of large and complex models}
+
+\begin{itemize}
+\item models often have complex structure
+\item model A imports parts if model B and B references package C and ...
+\item thus, a lof ot developers work on the models concurrently
+\item solution: versioning of (complex) models and model fragments in the model repository
+\item core service notification: notification system, which informs about changes to a model
+\end{itemize}
+
+\subsubsection{Distributed and heterogeneous}
+
+\begin{itemize}
+\item normally, if a tool is updated, different artefacts may be non-compatible together
+\item this may happen frequently in larger development teams
+\item but this would be crucial, espepcially for model operations tools (for example tools, which transform models)
+\item solution: via the adapters, models from the tools are translated into a ModelBus known format
+\item distribution of models is therefore realized
+\item data models stay consistent, even when tools are updated
+\end{itemize}
+
+\subsubsection{Built on industry standards}
+
+\begin{itemize}
+\item Transportation: HTTP, HTTPS, XMPP, CXF, JMS, SOAP
+\item Core services: Distributed OSGi, SVN, EMF
+\item  ...
+\end{itemize}
+
+\subsection{Adapters for tools}
+
+\begin{itemize}
+\item Doors
+\item Eclipse Papyrus
+\item Enterprise Architect
+\item Eclipse TeamProvider
+\item Office
+\item Rational Software Architect
+\item Rhapsody
+\item Simulink
+\end{itemize}
+
+\section{Metrino} \label{sec:metrino}
+
+\subsection{Short facts}
+
+\begin{itemize}
+
+\item Validating models by information quantity and quality
+\item Uses OCL (Object Constraint Language) and SMM (Software Metrics Metamodel)
+\item Can be used as stand-alone tool or as ModelBus add-on with additional service features
+\item Works as a set of support tools in four conceptual phases
+\item Check of these selectable guidelines result in validation, warnings and/or errors
+\item Handles UML models, any Domain Specific Modeling Language (DSL) based on MOF
+\item Manage and compute generated or user-defined, domain specific measures
+\item Already includes a set of metrics in the current version
+\item Supports customizable report generation to different formats
+\item Supports visualization of computational results, e.g. graphs
+\item Installation by Eclipse update-site through ModelBus website: http://www.modelbus.org/metrino/downloads/current/site.xml
+\end{itemize}
+
+\subsection{Four phases}
+
+
+\begin{figure}
+	\centering
+		\includegraphics[width=\textwidth]{metrino_four_phases}
+	\caption{Developement process and layers}
+	\label{fig:sonarrunning}
+\end{figure}
+
+\subsection{More}
+\begin{itemize}
+\item Slides of the presentation given at the OCL Workshop in Denver: Generation of Formal Model Metrics for MOF based Domain Specific Models (Marcus Engelhardt, Christian Hein, Tom Ritter, Michael Wagner)
+\item Christian Hein, Marcus Engelhardt, Tom Ritter and Michael Wagner: Generation of Formal Model Metrics for MOF based Domain Specific Languages, OCL 2009 Workshop at ACM/IEEE Models 09 Conference, USA, September 5th 2009
+\end{itemize}
+
+\subsection{Screencasts}
+Worth seeing, brief presentations about usability and features of Metrino:
+
+\begin{itemize}
+\item Short screencast showing the usage of Metrino for UML Models - The screen cast shows the evaluation of "hand coded" measures on a UML Model representing the results as tables and KIVIAT graphs
+\item Screencast of a Metrino Validation - The screen cast shows the generation and evaluation measures on for a DSL based model and the integration into validation framework.
+\end{itemize}
+
+\subsection{Problems}
+The installation of the current version of Metrino is not possible due to malformed dependencies. Unfortunately a recursively installing of the required dependencies does not help, since they need other dependencies by themselves, resulting in an infeasible search-and-install marathon. Screenshot
+
+
+\subsection{Screenshots}
+These are only a subset of interesting screenshots taken from the screencasts above:
+
+\begin{figure}
+	\centering
+		\includegraphics[width=\textwidth]{metrino_screen_1}
+	\caption{Developement process and layers}
+	\label{fig:sonarrunning}
+\end{figure}
+
+(generic validation by selected measures)
+
+\begin{figure}
+	\centering
+		\includegraphics[width=\textwidth]{metrino_screen_2}
+	\caption{Developement process and layers}
+	\label{fig:sonarrunning}
+\end{figure}
+
+(graphical representation of a selected measurement)
+
+\begin{figure}
+	\centering
+		\includegraphics[width=\textwidth]{metrino_screen_3}
+	\caption{Developement process and layers}
+	\label{fig:sonarrunning}
+\end{figure}
+
+(rules, measures, problems and validation)
+
+\subsection{Declaration of OCL rules}
+With the models, we got from the Modelbus service we can start an analysis. Therefore we want to use Metrino, which expects OCL (Object Constraint Language) as a description of the requests. OCL generally spoken is a declarative language for describing rules which apply on UML-Models.
+
+In OCL there are 7 constraints to distinguish: 1. Invariants have to apply on either an instance or an association. 2. Pre- and postconditions have to apply every time, when the according operation begins or ends. 3. Initial and derived values are the constraints for other derived values. 4. You can define new attributes and operations, that are not defined in the model. 5. If there is a state transition, guards have to apply.
+
+With this set of rules, we can define metrics on the models.
+
+\subsection{OCL}
+
+\section{Sonar} \label{sec:sonar}
+
+Sonar is an open platform to manage code quality. It offers reports on duplicated code, coding standards, unit tests, code coverage, complex code, potential bugs, comments and design and architecture.
+
+Sonar consists of 3 components:
+
+\begin{itemize}
+\item A database that stores the configuration and results of quality analysis
+\item A web server that is used to navigate the results of the analyzes and make configuration
+\item A client that will run source code analyzers to compute data on projects
+Covering new languages, adding rules engines, computing advanced metrics can be done through a powerful extension mechanism. More than 50 plugins are already available.
+\end{itemize}
+
+Primary supported language is Java. Other languages are supported with extensions. Several open source and commercial extensions can cover the following languages: C, C\#, PHP, Flex, Groovy, JavaScript, Python, PL/SQL, COBOL and Visual Basic 6.
+
+It integrates with Maven, Ant and continuous integration tools (Atlassian Bamboo, Jenkins, Hudson).
+
+\section{Developing Sonar Plugins}
+
+\subsection{Building and Packaging}
+To create a plugin for Sonar, at least Java 5 is needed. Maven is also required to compile and package the plugin. The documentation of Sonar says, that a recommanded way is to duplicate one of the example plugins, which can be found in the /plugins directory of the github repository: https://github.com/SonarSource/sonar-examples
+
+It is recommanded to use /plugins/sonar-reference-plugin. The example plugin can be copied by cloning the repository. Github provides the possibility to download the repository directly.
+
+The plugin can be built and deployed by executing in the plugin root directory, so for example /path/to/sonar-reference-plugin:
+
 \begin{verbatim}
-make install
+mvn clean install
 \end{verbatim}
-This will compile and package the tool. Next, checkin some models to the Modelbus repository using:
+
+Thereafter a JAR file is generated in the /target directory. After copying this JAR to the /extensions/plugin directory of Sonar, the server has to be restarded. There you go, you packaged your own Sonar plugin.
+
+\subsection{Creating an own plugin}
+A Sonar plugin is a set of Java objects, which implement extension points, which are interfaces or abstract classes to model an aspect of the system and define contracts of what needs to be implemented. Such extensions could be pages in the web application or sensors generating measures.
+
+This plugin extensions must be declared in a Java class, that extends org.sonar.api.Plugin. This class must then be declared in the pom with the property :
+
 \begin{verbatim}
-make checkin 
-  URI=http://uri.de/location/in/repository/file.txt 
-  FILENAME=location/to/local/file.txt
+<artifactId>sonar-foo-plugin</artifactId>
+<packaging>sonar-plugin</packaging>
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.codehaus.sonar</groupId>
+            <artifactId>sonar-packaging-maven-plugin</artifactId>
+            <version>1.1</version>
+            <extensions>true</extensions>
+            <configuration>
+                <pluginClass>com.mycompany.sonar.MyPlugin</pluginClass>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
 \end{verbatim}
-You can find some example models in the "/src/main/resources/metrinostuff" folder of our plugin.
 
+There are also more advanced parameters like Maven descriptors, etc. possible. The full list of advanced parameters can be found here.
 
-\subsection{Create a new Eclipse project}
-Now create a new Eclipse project:
+There is a list of all known sub-interfaces and implementing classes of org.sonar.api.Extension. The most important and well known extension points are listed here.
 
+\subsection{Sensors and Decorators}
+Two extension enable methods to save measures: sensors and decorators. In plugin development it is often a problem to decide which one to use.
+
+\subsubsection{Sensor}
+
+A sensor is invoked once during the analysis of the project. The sensor then can invoke a maven plugin, parse flat files or connect to web servers. The generated XML file is parsed and used to save the first-level of measures on resources (project, package or class). The sensor can access and save measures on the whole tree of resources. They generally are used to add measures at the lowest level of the resource tree.
+
+\subsubsection{Decorator}
+
+Decorators are used when all sensors have completed their work. The decorate method is called on every resource of a certain level bottom up. Decorators load (SELECT) and save (INSERT) measures. Because of contextual calls it is only possible to access the resource and its children. So decorators are generally used to consolidate measured at higher levels that have been added by sensors at lower levels.
+
+\subsection{Modify the front-end of Sonar and working with sensors and decorators}
+Our plugin front-end consists of the following structure:
+
+Package edu.swp.modelbus.reference
+
+ModelbusMetrics.java
+
+Our class ModelsbusMetrics implements the Metrics Interface of Sonar. In this file we define all Metrics that we'll create in other files. The obligatory metric definitions consist of the name, key and the return type. Optionally you can add more parameters with the description, direction, setQualitativ, and setDomain methods. At least we have to define the method getMetrics() because of the interface Metrics. In this method we add all metrics to an array list and set this as return value of the getMetrics() method.
+
+ModelbusPlugin.java
+
+This file is the main entry point for Sonar. With annotations we can define some Plugin meta data like the description and the name. The class ModelbusPlugin extends the class SonarPlugin and has the method getExtensions(). We add in this method all Sonar extensions that we want to use like definition classes. batch classes or ui classes.
+
+Package edu.swp.modelbus.batch
+
+ExampleSensor.java
+
+We created an exampleSensor to demonstrate how it must be defined. In this file it's possible to do all things you like to do. An example would be to connect to a server. In our case we don't need a sensor.
+
+RandomDecorator.java
+
+Our first decorator is a real random decorator. It will give a random value to all files.
+
+Package edu.swp.modelbus.ui
+
+ExampleFooter.java
+
+It's possible to change the layout with plugins. This file implements the interface Footer. We just add the method getHtml() and return an example text to change the front-end layout of sonar.
+
+ExampleRubyWidget.java
+
+We can also add Widgets. The administrator can add widgets to the users layout. If our sensors get some values, the can be written from our widget and presented with plain text or with visual objects.
+
+\section{Software Architecture}
+The main architecture is described as the following. Our main software product is called the Sonar ModelBus Plugin which of course is a Sonar Plugin. This plugin, the project is dedicated to, implements a Metrino Adapter as well as a ModelBus Adapter. These sub programs are intended to communicate with the WebServices from Metrino and ModelBus.
+
+(These diagrams are currently in work and not considered final.)
+
+\subsection{Simple Architecture / Package Diagram}
 \begin{figure}
 	\centering
-		\includegraphics[width=\textwidth]{neweclipseproject}
-	\caption{Creating a new Eclispe project}
-	\label{fig:neweclipseproject}
+		\includegraphics[width=\textwidth]{plugin_package_dia}
+	\caption{Sonar plugin package diagram}
+	\label{fig:sonarrunning}
 \end{figure}
 
-Unselect the "Use default location" box and select the sonar-modelbus-plugin-master folder. Don't forget to set a project name.
- 
+\subsection{Ecore-Diagramm}
 \begin{figure}
 	\centering
-		\includegraphics[width=\textwidth]{selectlocation}
-	\caption{Selecting a location}
-	\label{fig:selectlocation}
-\end{figure}
-
-Notice: If you finish the project creation process you may get
-"Git could not detect where GIT is installed" or "check HOME directory" warning but it doesn't matter in this case.
-
-
-
-\subsection{Convert your project to a Maven project}
-Right click on your project folder and choose "Configure | Convert to Maven Project".
- 
-\begin{figure}
-	\centering
-		\includegraphics[width=\textwidth]{converttomavenproject}
-	\caption{Converting to a Maven project}
-	\label{fig:converttomavenproject}
-\end{figure}
-
-Notice: If you get any errors (this is not unusual) just ignore them. If you can't do the next step just repeat the previous one.
-
-
-
-\subsection{Compilation}
-Next: right click on your project again and select "Run as | Maven install".
-\begin{figure}
-	\centering
-		\includegraphics[width=\textwidth]{maveninstall}
-	\caption{Maven install}
-	\label{fig:maveninstall}
-\end{figure} 
-If everything works well you see a "BUILD SUCCESS" reports like this:
-\begin{figure}
-	\centering
-		\includegraphics[width=\textwidth]{buildsuccess}
-	\caption{BUILD SUCCESS}
-	\label{fig:buildsuccess}
-\end{figure}
-
-
-
-\subsection{Deploy the Sonar server}
-To run Sonar with our example plugin we need to run maven with an other goal. Right click on your Project and select "Run as | Maven Build". In "Goals" you must copy-paste 
-\begin{verbatim}
-org.codehaus.sonar:sonar-dev-maven-plugin::start-war
--Dsonar.runtimeVersion=3.3
-\end{verbatim}
-Then press "Run" to start the build process that will deploy a Sonar server for you. 
-
-\begin{figure}
-	\centering
-		\includegraphics[width=\textwidth]{sonardeploy}
-	\caption{Deploying Sonar with Maven}
-	\label{fig:sonardeploy}
-\end{figure}
- 
-Notice: this can take some minutes and if it seems to be frozen just restart the build process. If some errors occur just restart.
-If everything went fine you will see following status messages:
- 
-\begin{figure}
-	\centering
-		\includegraphics[width=\textwidth]{sonarready}
-	\caption{Sonar is ready}
-	\label{fig:sonarready}
-\end{figure}
-
-Now you can see Sonar running at "localhost:9000"  in your browser.
-
-\begin{figure}
-	\centering
-		\includegraphics[width=\textwidth]{sonarrunning}
-	\caption{Sonar in the browser}
+		\includegraphics[width=\textwidth]{plugin_ecore_dia}
+	\caption{Sonar plugin ecore diagram}
 	\label{fig:sonarrunning}
 \end{figure}
 
 
+\section{Metrics Input File SMM}
+SMM distinguishes between measures as the evaluation process of particular quality aspects of software artifacts and measurements which can be interpreted as the results of those processes. SMM specifies several types of measures and measurements for different outcome values:
+\begin{itemize}
+\item DimensionalMeasure
+\item DirectMeasure
+\item BinaryMeasure
+\item CollectiveMeasure
+\end{itemize}
 
-\subsection{Analysing with Sonar}
-If you like to analyse your project with Sonar (or any other Maven project) you can start the build process with the goal "sonar:sonar". After processing you can refresh your browser at "localhost:9000" and can see the results of the analysis.
+The measures are calculated in a given scope, which has to be specified with \textit{scope="x"}, where \textit{x} is the id of a scope element, specified with \textit{xsi:type="SoftwareMetricsMetamodel2:Scope"}. Every measure also is part of a category, therefore it has to define its category with \textit{category="x"}, where \textit{x} is the id of a category element, specified with \textit{xsi:type="SoftwareMetricsMetamodel2:SMMCategory"}. This way measures can be categorized, so that one can measure different metrics in the same SMM file. Every category has an attribute measureElement, which simply holds the ids of the measures in the category. The results of the measures are saved in a measurement with \textit{xsi:type="SoftwareMetricsMetamodel2:DirectMeasurement"}. The id of this element has to be saved in the measurement attribut in the measure.
 
-\begin{figure}
-	\centering
-		\includegraphics[width=\textwidth]{sonarinaction}
-	\caption{Sonar in action}
-	\label{fig:sonarinaction}
-\end{figure}
+For more information, see Software Metrics Metamodel (SMM) on Wikipedia.
+
+The following code is an examplary SMM file:
+
+\begin{verbatim}
+<?xml version="1.0" encoding="UTF-8"?>
+<SoftwareMetricsMetamodel2:SMMModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SoftwareMetricsMetamodel2="http://www.omg.org/ADM/SMM2" xmi:id="_yApJAUg1EeKruqZzbpGpkA" metaModelPackageURI="http://www.eclipse.org/uml2/3.0.0/UML">
+    <sMMElement xsi:type="SoftwareMetricsMetamodel2:SMMCategory" xmi:id="_yBNwwEg1EeKruqZzbpGpkA" name="root" measureElement="_YrZQoUg4EeKu7IXnh6K9VQ _w9WYoEg4EeKu7IXnh6K9VQ"/>
+    <sMMElement xsi:type="SoftwareMetricsMetamodel2:DirectMeasure" xmi:id="_YrZQoUg4EeKu7IXnh6K9VQ" description="This metric counts the number of all classes contained in the model." name="NumberOfClasses" category="_yBNwwEg1EeKruqZzbpGpkA" scope="_m25GAEg4EeKu7IXnh6K9VQ" directInvoke="true" measurement="_Ckmb0Eg8EeKe9JB-jPya7w _NDgqsEg8EeKe9JB-jPya7w" operation="self.allOwnedElements()->select(cl|cl.oclIsTypeOf(Class))->size()"/>
+    <sMMElement xsi:type="SoftwareMetricsMetamodel2:Scope" xmi:id="_m25GAEg4EeKu7IXnh6K9VQ" name="ModelScope" class="Model"/>
+    <sMMElement xsi:type="SoftwareMetricsMetamodel2:DirectMeasure" xmi:id="_w9WYoEg4EeKu7IXnh6K9VQ" description="This metric counts the number of packages contained in the model." name="NumberOfPackages" category="_yBNwwEg1EeKruqZzbpGpkA" scope="_m25GAEg4EeKu7IXnh6K9VQ" directInvoke="true" measurement="_CksicEg8EeKe9JB-jPya7w _NDmxUEg8EeKe9JB-jPya7w" operation="self.allOwnedElements()->select(pack|pack.oclIsTypeOf(Package))->size()"/>
+    <sMMElement xsi:type="SoftwareMetricsMetamodel2:DirectMeasurement" xmi:id="_Ckmb0Eg8EeKe9JB-jPya7w" observation="_Ckmb0Ug8EeKe9JB-jPya7w" measure="_YrZQoUg4EeKu7IXnh6K9VQ" value="5.0">
+        <measurand href="model/MetrinoSampleModel.uml#_QYmMoEg7EeKe9JB-jPya7w"/>
+    </sMMElement>
+    <sMMElement xsi:type="SoftwareMetricsMetamodel2:Observation" xmi:id="_Ckmb0Ug8EeKe9JB-jPya7w">
+        <whenObserved xmi:id="_Ckmb0kg8EeKe9JB-jPya7w" value="1355743348117"/>
+    </sMMElement>
+    <sMMElement xsi:type="SoftwareMetricsMetamodel2:DirectMeasurement" xmi:id="_CksicEg8EeKe9JB-jPya7w" observation="_CksicUg8EeKe9JB-jPya7w" measure="_w9WYoEg4EeKu7IXnh6K9VQ" value="0.0">
+        <measurand href="model/MetrinoSampleModel.uml#_QYmMoEg7EeKe9JB-jPya7w"/>
+    </sMMElement>
+    <sMMElement xsi:type="SoftwareMetricsMetamodel2:Observation" xmi:id="_CksicUg8EeKe9JB-jPya7w">
+        <whenObserved xmi:id="_Cksickg8EeKe9JB-jPya7w" value="1355743348117"/>
+    </sMMElement>
+    <sMMElement xsi:type="SoftwareMetricsMetamodel2:DirectMeasurement" xmi:id="_NDgqsEg8EeKe9JB-jPya7w" observation="_NDgqsUg8EeKe9JB-jPya7w" measure="_YrZQoUg4EeKu7IXnh6K9VQ" value="5.0">
+        <measurand href="model/MetrinoSampleModel.uml#_QYmMoEg7EeKe9JB-jPya7w"/>
+    </sMMElement>
+    <sMMElement xsi:type="SoftwareMetricsMetamodel2:Observation" xmi:id="_NDgqsUg8EeKe9JB-jPya7w">
+        <whenObserved xmi:id="_NDgqskg8EeKe9JB-jPya7w" value="1355743418577"/>
+    </sMMElement>
+    <sMMElement xsi:type="SoftwareMetricsMetamodel2:DirectMeasurement" xmi:id="_NDmxUEg8EeKe9JB-jPya7w" observation="_NDmxUUg8EeKe9JB-jPya7w" measure="_w9WYoEg4EeKu7IXnh6K9VQ" value="4.0">
+        <measurand href="model/MetrinoSampleModel.uml#_QYmMoEg7EeKe9JB-jPya7w"/>
+    </sMMElement>
+    <sMMElement xsi:type="SoftwareMetricsMetamodel2:Observation" xmi:id="_NDmxUUg8EeKe9JB-jPya7w">
+        <whenObserved xmi:id="_NDmxUkg8EeKe9JB-jPya7w" value="1355743418577"/>
+    </sMMElement>
+</SoftwareMetricsMetamodel2:SMMModel>
+\end{verbatim}
+
+\section{ModelBus Client Tool}
+
+We created a tool for checking in and out files from/to the ModelBus repository. It can be simply called via "make":
+
+\begin{verbatim}
+Use
+  make checkin URI=http://uri.de/location/in/repository/file.txt FILENAME=location/to/local/file.txt
+to checkin a file located at FILENAME into the repository at a position defined by the URI.
+
+Use
+  make checkout URI=http://uri.de/location/in/repository/file.txt FILENAME=location/to/local/file.txt
+\end{verbatim}
+to checkout a file from the repository located at URI to a local position defined by the FILENAME.
+Changes can be made at the Client.java file. You can compile it by calling "make install". This will compile and assemble the client with its ModelBus dependencies.
+
+\section{ClassLoader Problem}
+The problem was that we could not connect to the ModelBus repository through the sonar plugin. Using the same code in a standalone Java application instead worked fine: The ModelBus repository was successfully checked out.
+
+The reason was that the ModelBus part could not resolve some bindings in its configuration. That was caused by the missing of a resource. This resource lied in the META-INF folder of the "org.modelbus.cxf.dosgi" jar bundle. The loading of this resource was done over the current context class loader in a ModelBus class:
+
+\begin{verbatim}
+ClassLoader cl = Thread.currentThread().getContextClassLoader();
+Enumeration<URL> urls = cl.getResources("META-INF/cxf/bus/bus-extensions.txt");
+//loading each url...
+\end{verbatim}
+
+The problem is that the context classloader of the current thread is not the plugin classloader.
+
+Each Sonar plugin runs in an isolated classloader to avoid conflicts with other plugins. Third-party libraries can be loaded by using a mechanism specific to Sonar. It only requires to build the plugin with the sonar-packaging-maven-plugin, which copies the libs into META-INF/lib. This mechanism relies on its own classloader implementation.
+
+By temporarly replacing the context class loader with the plugin class loader (the class loader of the extension), this issue can be solved:
+\begin{verbatim}
+ClassLoader initialClassLoader = Thread.currentThread().getContextClassLoader();
+try {
+  Thread.currentThread().setContextClassLoader(getClass().getClassLoader());
+  //access ModelBus...
+} finally {
+  Thread.currentThread().setContextClassLoader(initialClassLoader);
+}
+\end{verbatim}
