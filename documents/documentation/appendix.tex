@@ -72,6 +72,44 @@ Our organizer told us, that he will send us a front-end for the Metrino service,
 
 The last point of discussion was, that one of our team members had the idea, that models can be translated into Java code, which can then be analyzed statically by Sonar. But this would break a requirement, which says that a model must be analyzable, too.
 
+\section{Meeting 10 - 17.12.2012}
+During the last week, we discovered the problem that the checkout of the models from the Modelbus repository did not work. We always got an exception \texttt{ServiceConstructionException}. In the standalone version of our plugin, the checkout worked. We explained this error to our supervisor and he explained that we must send this problem to their mailing list. Then, we asked them a few questions about some functions of the Metrino service, which occurred during the work with it.
 
+\section{Meeting 11 - 07.01.2013}
+We reported the current state of our plugin project. Now, the Metrino service runs on our own server on \emph{openstoryboard.org}. The problem is, that we want to reach the service from the outside of the network. Therefore we need a proxy.
 
+We checked in some models into the Modelbus repository. We explained that we still get some exceptions during the checkout of some models from the repository. Because of that, we asked for the source code of Modelbus so that we can debug the code. The supervisor suggested, that one member of our team could visit him the next day at Frauenhofer so that they can debug our code together.
 
+Additionally, we explained that Sonar is not designed to analyze code in different languages within one process. To be able to analyze different kind of languages, a separate module must be run for each language and therefore, cannot be done within one plugin. To analyze different languages, we must write a plugin for each language which is not the object of our plugin project.
+
+\section{Meeting 12 - 14.01.2013}
+To summarize our work, we explained how our plugin works and for what it is designed for. We explained, that we checkout models from the Modelbus repository, that we send them with metric descriptions to the Metrino service and get the result file and finally, that we already have a module, which can visualize results in Sonar.
+
+The next task is to build a SMM Parser which can read the result SMM file, which we get from the Metrino service, and to store the results in data structures, which are read by Sonar.
+
+The example SMM files, which we got from our supervisor, computed two metrics: the number of classes and the number of packaged of a metric. We have seen that there are more than just one result value for a metric computation. Therefore, we must know which one of them is the newest one. Our supervisor explained, that the XSD of the SMM file explains that each result can have a time stamp so that we can see easily, which one is the newest metric result.
+
+\section{Meeting 13 - 21.01.2013}
+This week, the meeting did not take place. Our group organized a Skype meeting where we discussed the results of our tasks and what are the tasks for the following week. The visualization of results in Sonar still not works properly and we must go on with these tasks. Additionally, we updated our requirements list. We discussed about the SMM parser, which was built until this day and realized, that there are some errors which must be fixed this week, because next week, we want to put all modules of the Sonar plugin together.
+
+\section{Meeting 14 - 26.01.2013}
+Today, we have a hackathon. We have a lot of results for each little module of our plugin project and we want to put them all together.
+
+At first, we integrated our SMM parser into our plugin. We changed the parser a little bit. We added an input stream to the Resource object, because by doing this we can send the checked out models directly from the main application to our parser instead of saving the checked out models in a file.
+
+Afterwards, we work on metrics for Metrino. We have got two example metrics, but we want to define some more metrics. We have written them in OCL. For a few weeks, our supervisor sent us a Modelbus eclipse project where they can create metrics within a GUI perspective. In some cases, we got an exception so that we started to write metrics in OCL by hand.
+
+Finally, we discussed about the next tasks and steps.
+
+\section{Meeting 15 - 28.01.2013}
+We reported the current state of our project. There are still two requirements, which are not satisfied. One metric is, that we analyze more than just one language within our plugin, but in discussion with the developers of Sonar, we got to know, that this is not possible within a single Sonar plugin. The second requirement is the question, how many other metrics we shall create to analyze models.
+
+We thought about two ways: One way is to write a lot of metrics by hand and statically integrate them in our plugin. Thus, if a user wants to have additional metrics, he or she must insert them manually. Another way is to write an extension for our plugin so that the user can write some metrics and our plugin can load them dynamically. In general, Sonar plugin uses metrics which are added manually. This means that if we want our plugin to be statically load the metrics, we must write them all by hand into our classes, thus we must know all metrics a user possibly want to analyze in Sonar or the user have in the SMM files. We decided to write a mechanism to load dynamically metrics.
+
+Our supervisor recommended us to take all metrics, which Sonar uses to analyze source code in Java. Therefore, we must examine which of the metrics in Sonar we can adapt to analyze models.
+
+\section{Meeting 16 - 4.02.2013}
+The last week, we tried to find out how we can dynamically load metrics into our plugin, so that a user do not have to write them by hand. We explained how much we could find out and additionally, we presented the first version of our documentation and got some constructive criticism. 
+
+\section{Meeting 17 - 11.02.2013}
+In the last meeting, we presented the current state and which sub-tasks are left to finish the plugin development. We explained that we still have problems to visualize the results of Metrino in Sonar and which exceptions we got. Our supervisor told us to meet him after the lecture so that we can take a look at the problem. Finally, we presented him the current version of our documentation. There are some good points, for example that the software architecture should be the main part in our documentation (but we placed it after the installation manual).
