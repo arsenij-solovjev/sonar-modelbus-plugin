@@ -14,7 +14,7 @@ Our goal is to expand Sonar to cooperate with ModelBus. At the beginning of the 
 \section{Requirements}
 The product owner presented us their system with Modelbus and the Metrino service. They explained, that in the Modelbus repository, there are models which can be analyzed by the Metrino service and that it can be interesting to get to know in what extend object oriented metrics of Sonar can be applied to models. Therefore, we identified some requirements for our Sonar plugin:
 \begin{enumerate}
-\item Create a plugin for sonar
+\item Create a plugin for sonar 
 \item Comprehend and cooperate with ModelBus repository
 \item Transfer as many as possible metrics from Metrino to Sonar
 \item Select the model
@@ -22,83 +22,112 @@ The product owner presented us their system with Modelbus and the Metrino servic
 \item Analyze source codes
 \item Plugin must work as efficient as possible
 \end{enumerate}
+In the following sections, the requirements will be described in detail and are divided into functional and non-functional requirements.
 
-\subsection{Create a plugin for sonar}
-\begin{itemize}
-\item Requirement Number: 1
-\item Description: Each sonar plugin has a specific architecture. The created sonar plugin must hold the specifications for a sonar plugin. Additionally, it must be run on a server and offers a WSDL interface.
-\item Type: functional
-\item Dependencies: -:- (should be done first)
-\item Priority: high
-\item State: closed
-\item Fit Criterion: The plugin can be build and runs on a chosen server. A client connects to the Modelbus server and understands the WSDL interface. The client receives a message from the WSDL interface of the Modelbus server.
-\end{itemize}
+\subsection{Functional requirements}
 
-\subsection{Comprehend and cooperate with ModelBus repository}
-\begin{itemize}
-\item Requirement Number: 2
-\item Description: ModelBus has an own repository, where it stores artefacts of the tools, which are connected to the ModelBus via adapters. It must be understood, how ModelBus connects to the repository and how an external tool (like a sonar plugin) can do this.
-\item Type: functional
-\item Dependencies: \# 1
-\item Priority: high
-\item State: closed
-\item Fit Criterion: The sonar plugin is able to connect to the ModelBus repository via a command. It can fetch the sourcecode for a random project to test, if the connection is established. The sonar plugin can terminate the connection to the respository for a given command.
-\end{itemize}
+\begin{table}[H]
+\begin{tabular}{|c|p{10cm}|}
+\hline 
+\multicolumn{2}{|l|}{\textbf{Create a plugin for Sonar}} \\ 
+\hline 
+Requirement Number & 1 \\ \hline 
+Description & Each sonar plugin has a specific architecture. The created sonar plugin must hold the specifications for a sonar plugin. Additionally, it must be run on a server and offers a WSDL interface. \\ \hline 
+Dependencies & \textbf{none} (should be done first) \\ \hline 
+Priority & high \\ \hline 
+State & closed \\ \hline 
+Fit Criterion & The plugin can be build and runs on a chosen server. A client connects to the Modelbus server and understands the WSDL interface. The client receives a message from the WSDL interface of the Modelbus server. \\ \hline 
+\end{tabular}
+\end{table}
 
-\subsection{Transfer as many as possible metrics from Metrino to Sonar}
-\begin{itemize}
-\item Requirement Number: 3
-\item Description: The sonar plugin can already fetch model code from the repository. The models are read by Metrino and analyzed by Metrino with OO metrics. The results of the analysis are fetched from metrino by the sonar plugin and visualized on the web interface. Metrino offers a lot of metrics and it should be possible to offer as many metrics from metrino as possible.
-\item Type: functional, partly non-functional
-\item Dependencies: \# 4
-\item Priority: high
-\item State: open
-\item Fit Criterion: The sonar plugin sends a model to Metrino with the information which OO metric shall be applied. Metrino returns the results. The results are vizualized. The plugin offers to select at least 10 OO metrics of Metrino to apply to the sent model code.
-\end{itemize}
+\begin{table}[H]
+\begin{tabular}{|c|p{10cm}|}
+\hline 
+\multicolumn{2}{|l|}{\textbf{Comprehend and cooperate with ModelBus repository}} \\ 
+\hline 
+Requirement Number & 2 \\ \hline 
+Description & ModelBus has an own repository, where it stores artifacts of the tools, which are connected to the ModelBus via adapters. It must be understood, how ModelBus connects to the repository and how an external tool (like a sonar plugin) can do this. \\ \hline 
+Dependencies & \# 1 \\ \hline 
+Priority & high \\ \hline 
+State & closed \\ \hline 
+Fit Criterion & The sonar plugin is able to connect to the ModelBus repository via a command. It can fetch the source code for a random project to test, if the connection is established. The sonar plugin can terminate the connection to the repository for a given command. \\ \hline 
+\end{tabular}
+\end{table}
 
-\subsection{Select the model}
-\begin{itemize}
-\item Requirement Number: 4
-\item Description: The sonar plugin can fetch model code from the repository and transform the model into a format which can be read by model metric analyzing tools, like Metrino.
-\item Type: functional
-\item Dependencies: \# 3
-\item Priority: high
-\item State: closed
-\item Fit Criterion: The plugin fetched a model. It transforms the model into the format of Metrino. For a test case, the transformed model shall be saved in a file and read successfully by Metrino.
-\end{itemize}
+\begin{table}[H]
+\begin{tabular}{|c|p{10cm}|}
+\hline 
+\multicolumn{2}{|l|}{\textbf{Select the model}} \\ 
+\hline 
+Requirement Number & 4 \\ \hline 
+Description & The sonar plugin can fetch model code from the repository and transform the model into a format which can be read by model metric analyzing tools, like Metrino. \\ \hline 
+Dependencies & \# 3 \\ \hline 
+Priority & high \\ \hline 
+State & closed \\ \hline 
+Fit Criterion & The plugin fetched a model. It transforms the model into the format of Metrino. For a test case, the transformed model shall be saved in a file and read successfully by Metrino. \\ \hline 
+\end{tabular}
+\end{table}
+\vspace{-30mm}
+\begin{table}[H]
+\begin{tabular}{|c|p{10cm}|}
+\hline 
+\multicolumn{2}{|l|}{\textbf{Traverse the directory tree}} \\ 
+\hline 
+Requirement Number & 5 \\ \hline 
+Description & In the directory tree of sonar plugin, a lot of source code and model code projects are placed. The plugin should be able to analyze all codes from the repository. \\ \hline 
+Dependencies & \textbf{none} \\ \hline 
+Priority & high \\ \hline 
+State & closed \\ \hline 
+Fit Criterion & The plugin fetched the whole project tree of the repository. It loads each project into its own directory tree. It traverses the whole directory tree. For each project in its directory tree, it analyzes the code and visualizes it on the web interface. \\ \hline 
+\end{tabular}
+\end{table}
 
-\subsection{Traverse the directory tree}
-\begin{itemize}
-\item Requirement Number: 5
-\item Description: In the directory tree of sonar plugin, a lot of sourcecode and model code projects are placed. The plugin should be able to analyze all codes from the repository.
-\item Type: functional
-\item Dependencies: -:-
-\item Priority: high
-\item State: closed
-\item Fit Criterion: The plugin fetched the whole project tree of the repository. It loads each project into its own directory tree. It traverses the whole directory tree. For each project in its directory tree, it analyzes the code and visualizes it on the web interface.
-\end{itemize}
+\noindent\begin{minipage}{\linewidth}
+\centering
+\begin{tabular}{|c|p{10cm}|}
+\hline 
+\multicolumn{2}{|l|}{\textbf{Analyze source codes}} \\ 
+\hline 
+Requirement Number & 6 \\ \hline 
+Description & The sonar plugin can apply a set of metrics to the fetched source code. The results are visualized with graphs or statistics and can be get via the web interface. \\ \hline 
+Dependencies & \# 2 \\ \hline 
+Priority & high \\ \hline 
+State & Canceled, because requirement is unfeasible with current Sonar version (could be with future versions) \\ \hline 
+Fit Criterion & The plugin fetches source code from the repository. It applies a couple of metrics, which can be chosen from the application interface. \\ \hline 
+\end{tabular}
+\end{minipage}
 
-\subsection{Analyse sourcecodes}
-\begin{itemize}
-\item Requirement Number: 6
-\item Description: The sonar plugin can apply a set of metrics to the fetched sourcecode. The results are visualized with graphs or statistics and can be get via the web interface.
-\item Type: functional
-\item Dependencies: \# 2
-\item Priority: high
-\item cancelled, because requirement is infeasible with current Sonar version (could be with future versions)
-\item Fit Criterion: The plugin fetches normale program source code from the repository. It applies a couple of metrics, which can be chosen from the application interface.
-\end{itemize}
+\subsection{Non-functional requirements}
 
-\subsection{Plugin must work as efficient as possible}
-\begin{itemize}
-\item Requirement Number: 7
-\item Description: Plugin must traverse the directory tree fastly. The connection to the ModelBus must provide security standards, but it should not be slow. The results of the analysis should be offerred via the web interface as fast as possible.
-\item Type: non-functional
-\item Dependencies: \# 6
-\item Priority: middle
-\item closed
-\item Fit Criterion: Because of the difficulty of the decision, if it works properly fast, a usability test with the customer must be done, who can tell in a better way, if the product works fast or not.
-\end{itemize}
+\noindent\begin{minipage}{\linewidth}
+\centering
+\begin{tabular}{|c|p{10cm}|}
+\hline 
+\multicolumn{2}{|l|}{\textbf{Transfer as many as possible metrics from Metrino to Sonar}} \\ 
+\hline 
+Requirement Number & 3 \\ \hline 
+Description & The sonar plugin can already fetch model code from the repository. The models are read by Metrino and analyzed by Metrino with object oriented metrics. The results of the analysis are fetched from Metrino by the sonar plugin and visualized on the web interface. Metrino offers a lot of metrics and it should be possible to offer as many metrics from Metrino as possible. \\ \hline 
+Dependencies & \# 4 \\ \hline 
+Priority & high \\ \hline 
+State & open \\ \hline 
+Fit Criterion & The sonar plugin sends a model to Metrino with the information which object oriented metric shall be applied. Metrino returns the results. The results are visualized. The plugin offers to select at least $10$ object oriented metrics of Metrino to apply to the sent model code. \\ \hline 
+\end{tabular}
+\end{minipage}
+
+\noindent\begin{minipage}{\linewidth}
+\centering
+\begin{tabular}{|c|p{10cm}|}
+\hline 
+\multicolumn{2}{|l|}{\textbf{Plugin must work as efficient as possible}} \\ 
+\hline 
+Requirement Number & 7 \\ \hline 
+Description & Plugin must traverse the directory tree fastly. The connection to the ModelBus must provide security standards, but it should not be slow. The results of the analysis should be offerred via the web interface as fast as possible. \\ \hline 
+Dependencies & \# 6 \\ \hline 
+Priority & middle \\ \hline 
+State & closed \\ \hline 
+Fit Criterion & Because of the difficulty of the decision, if it works properly fast, a usability test with the customer must be done, who can tell in a better way, if the product works fast or not. \\ \hline 
+\end{tabular}
+\end{minipage}
 
 \section{Model-Driven Engineering}
 With model-driven engineering we focus on domain models rather then on objects in the sense of object oriented programming. Those domain models are anbstract representations of the knowledge and activities that belong them). We can compare them with objects, but instead of describing them with sourcecode from programming languages like Java or C we simply use UML and generate the sourcecode from it.
