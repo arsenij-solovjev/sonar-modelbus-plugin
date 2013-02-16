@@ -28,6 +28,50 @@ The task for the following meeting was to specify the requirements more and to p
 The weekly meeting at university was not taking place this week, so we decided to meet and work together in the team. We therefore organized a hackathon, where we installed the software (some had build problems during the installation of the components). We also worked out an architecture concept and created a few diagrams to show our progress.
 
 \section{Meeting 07 - 26.11.2012}
-We presented our new requirements and the architecture. Our architecture concept was regarded to be good enough, so we are good to start the development of the plugin.
+We presented our new requirements and the architecture. Our architecture concept (\autoref{fig:architecture}) and the workflow (\autoref{fig:sequence}) was regarded to be good enough, so we are good to start the development of the plugin. From now on, we focus on more technical tasks.
 
-\includegraphics{architecture}
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\textwidth]{architecture}
+\caption{Architecture of the Sonar plugin}
+\label{fig:architecture}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\textwidth]{sequencediagramm}
+\caption{Sequence diagram, showing the activity of our plugin}
+\label{fig:sequence}
+\end{figure}
+
+\section{Meeting 08 - 03.12.2012}
+At this meeting, we presented the current results. The result is, that our WSDL client can connect to the Modelbus repository. The Modelbus service is now successfully driven on our test system and it is planned to connect successfully to the Metrino service.
+
+In the discussion with the project head members, they suggested to use a customer instead of a WSDL client to connect to the Modelbus repository. The customer is a type of client service, which do not communicate with the service with WSDL but instead connects directly to the Java interface of Modelbus.
+
+After discussing this point, other questions raised concerning object-oriented metrics for models:
+
+\begin{itemize}
+\item What kind of properties can be analysed on object-oriented code?
+\item Into what extend can analyse of object-oriented code applied to object-oriented models?
+\item Requirement: Sonar shall be capable to analyse object-oriented code, too. These analysis shall be applied to models, too.
+\end{itemize}
+
+\section{Meeting 09 - 10.12.2012}
+At the beginning of this meeting, we presented our current results and reported some problems. Our biggest problem was, that during the installation process of Metrino, a lot of Eclipse libraries must be installed by hand. As we reported this problem to the organizer of this course, he answered that in theory, a manually installation of Eclipse libraries is not required but in practice, some Eclipse libraries must be integrated.
+
+Another discussion point was, that we wrote a message to the developers of Modelbus and Metrino and asked them about a consumer, which can connect to the Modelbus repository without an own WSDL client. We tried it with the consumer but unfortunately, it did not work. Therefore, we connected manually to the Modelbus repository. Additionally, we wanted to connect to the Metrino service but we discovered, that Metrino can just be reached locally. Even in the same network, the connection did not work.
+
+We explained our organizer, that we still not know how to send our metrics to Metrino, thus we need an API documentation.
+
+We told our organizer about the complex installation process of Modelbus: To configure Modelbus, the Modelbus-Root for the local service must be pointed to a config file, which points to a remote server.
+
+An additional discussion point was, that there is no list of dependent libraries for the configuration of Modelbus.
+
+Our organizer told us, that he will send us a front-end for the Metrino service, so that we can understand which metrics Metrino can use.
+
+The last point of discussion was, that one of our team members had the idea, that models can be translated into Java code, which can then be analyzed statically by Sonar. But this would break a requirement, which says that a model must be analyzable, too.
+
+
+
+
