@@ -21,18 +21,29 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class CheckModels {
-	Logger log = LoggerFactory.getLogger(getClass());
+	private static CheckModels instance;
+
+	private Logger log = LoggerFactory.getLogger(getClass());
 
 	private Session session;
 	private IRepositoryHelper repository;
-	MetrinoSoapClient metrino;
+	private MetrinoSoapClient metrino;
 
+	public static CheckModels getInstance() {
+		if(true || instance==null) {
+			instance = new CheckModels();
+		}
+		return instance;
+	}
+	
+	
 	private void initSession() {
 		session = new Session();
 		session.setId(EcoreUtil.generateUUID());
 		metrino = new MetrinoSoapClient();
 		Property propertyUserName = new Property();
 		propertyUserName.setKey("username");
+		// TODO load login data from properties 
 		propertyUserName.setValue("Admin");
 		Property propertyPassword = new Property();
 		propertyPassword.setKey("password");
@@ -47,18 +58,8 @@ public class CheckModels {
 		System.out.println("- modelbus repository initialized");
 	}
 
-	private void traverseRepository(Project project) {
-		try { // retrieve the root entry from the repository
-			RepositoryDirEntry root = repository.getRoot(session);
-			System.out.println("- reading root directory...");
 
-			checkAllModels(root, project);
-		} catch (Exception e) {
-			reportError("An error occured while checking the models", e);
-		}
-	}
-
-	public void checkAllModels(RepositoryDirEntry directory, Project project)
+	private void checkAllModels(RepositoryDirEntry directory, Project project)
 			throws RepositoryRuntimeException, RepositoryAuthentificationException, IOException,
 			InvalidRevisionException, NonExistingResourceException {
 		// retrieve the child entries from an repository
@@ -88,23 +89,38 @@ public class CheckModels {
 	}
 
 	public InputStream checkoutSmm() {
+		session=null; repository=null;
 		try {
+			if(session==null) {
+				initSession();
+			}
+			if(repository==null) {
+				initRepository();
+			}
 			return repository.checkOutFile(session, URI.createURI(Resources.SMM), -1L);
 		} catch (Exception e) {
-			reportError("An error occured while checking out the SMM", e);
+			log.error("An error occured while checking out the SMM. [session="+session+", repository="+repository+"]", e);
 		}
 		return null;
 	}
 
-	private void reportError(String message, Exception e) {
-		log.error(message);
-		log.error(e.getStackTrace().toString());
-		e.printStackTrace();
-	}
+	public void startTraverseRepository(Project project) {
+		session=null; repository=null;
+		try {
+			if(session==null) {
+				initSession();
+			}
+			if(repository==null) {
+				initRepository();
+			}
+			
+			// retrieve the root entry from the repository
+			RepositoryDirEntry root = repository.getRoot(session);
+			System.out.println("- reading root directory...");
 
-	public void run(Project project) {
-		initSession();
-		initRepository();
-		traverseRepository(project);
+			checkAllModels(root, project);
+		} catch (Exception e) {
+			log.error("An error occured while checking the models. [session="+session+", repository="+repository+"]", e);
+		}
 	}
 }

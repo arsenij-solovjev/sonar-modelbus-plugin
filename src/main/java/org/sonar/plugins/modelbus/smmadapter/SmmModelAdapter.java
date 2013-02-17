@@ -10,12 +10,16 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.sonar.api.measures.Metric;
+import org.sonar.api.measures.Metric.Builder;
+import org.sonar.api.measures.Metric.ValueType;
+import org.sonar.api.measures.SumChildValuesFormula;
 import org.sonar.api.resources.ProjectFileSystem;
 import org.sonar.api.resources.Resource;
 import org.sonar.plugins.modelbus.ModelBusMetrics;
 import org.sonar.plugins.modelbus.language.uml.Uml;
 import org.sonar.plugins.modelbus.smmparser.DirectMeasure;
 import org.sonar.plugins.modelbus.smmparser.DirectMeasurement;
+import org.sonar.plugins.modelbus.smmparser.Measure;
 import org.sonar.plugins.modelbus.smmparser.SMMElement;
 import org.sonar.plugins.modelbus.smmparser.SMMModel;
 import org.sonar.plugins.modelbus.smmparser.SoftwareMetricsMetamodel2Package;
@@ -25,48 +29,87 @@ public class SmmModelAdapter {
 	private SMMModel model;
 	private Map<Resource<?>, Map<Metric, Double>> resourceToMetrics = new HashMap<Resource<?>, Map<Metric, Double>>();
 
+	
+
 	public SmmModelAdapter(SMMModel model, ProjectFileSystem projectFileSystem) {
 		this.model = model;
 		init(projectFileSystem);
 	}
 
-	@SuppressWarnings("rawtypes")
+	public SmmModelAdapter(SMMModel model) {
+		this.model = model;
+	}
+
 	private void init(ProjectFileSystem p) {
 
 		List<SMMElement> elements = model.getSMMElement();
-		DirectMeasurement measurement;
-		Resource resource;
-		Metric metric = ModelBusMetrics.COUNTCLASSES;
-		Double value;
-		Collection<Object> es = EcoreUtil.getObjectsByType(elements,
-				SoftwareMetricsMetamodel2Package.eINSTANCE.getDirectMeasurement());
+		Collection<Object> es = EcoreUtil.getObjectsByType(elements, SoftwareMetricsMetamodel2Package.eINSTANCE.getDirectMeasurement());
+		Map<String, Metric> cachedMetrics = new HashMap<String, Metric>();
 
+		// look for static metrics defined in class "ModelBusMetrics"
+		Map<String, Metric> staticPredefinedMetrics = new HashMap<String, Metric>();
+		for (Metric predefinedMetric : ModelBusMetrics.getAllMetrics()) {
+			staticPredefinedMetrics.put(predefinedMetric.getName(), predefinedMetric);
+		}
+		
+		// add predefined metrics to cached metrics
+		cachedMetrics.putAll(staticPredefinedMetrics);
+		
+		// iterate over resulting measures
 		for (Object e : es) {
+			Metric metric = null;
+			DirectMeasurement measurement = (DirectMeasurement) e;
 
-			measurement = (DirectMeasurement) e;
+			File file = new File(EcoreUtil.getURI(measurement.getMeasurand()).toFileString());
+			Resource<?> resource = new org.sonar.api.resources.File(Uml.INSTANCE, file.getParent(), file.getName());
 
-			String resourceUri = EcoreUtil.getURI(measurement.getMeasurand()).toFileString();
+			Measure measure = measurement.getMeasure();
+			String metricName = measure.getName();
+			
+			if(metric==null) {
+				metric = cachedMetrics.get(metricName);
 
-			File file = new File(resourceUri);
-			resource = new org.sonar.api.resources.File(Uml.INSTANCE, file.getParent(), file.getName());
-			String metricName = measurement.getMeasure().getName();
-
-			if (metricName.equals("NumberOfClasses"))
-				metric = ModelBusMetrics.COUNTCLASSES;
-
-			value = measurement.getValue();
-			if (metricName.equals("NumberOfClasses")){				
-				if (resourceToMetrics.get(resource) != null) {
-					
-					resourceToMetrics.get(resource).put(metric, value);
-				} else {
-					resourceToMetrics.put(resource, new HashMap<Metric, Double>());
-					resourceToMetrics.get(resource).put(metric, value);
+				// generate custom metrics if needed
+				if(metric==null) {
+					metric = createMetricByMeasure(measure);
+					cachedMetrics.put(metricName, metric);
+					System.out.println("created custom metric "+metric.getName());
 				}
 			}
+
+			// set value
+			Double value = measurement.getValue();
+
+			Map<Metric, Double> resourceMetricsMap = resourceToMetrics.get(resource);
+			if(resourceMetricsMap==null) {
+				resourceMetricsMap = new HashMap<Metric, Double>();
+				resourceToMetrics.put(resource, resourceMetricsMap);
+			}
+			resourceMetricsMap.put(metric, value);
 		}
 	}
 
+	
+	
+	
+	private Metric createMetricByMeasure(Measure measure) {
+		ValueType floatType = Metric.ValueType.FLOAT;
+		Builder metricBuilder = new Metric.Builder(
+			measure.getName(),
+			measure.getName(),
+			floatType
+		);
+		metricBuilder.setDescription(measure.getDescription());
+		
+		if(measure.getName().toLowerCase().startsWith("numberof")) {
+			metricBuilder.setFormula(new SumChildValuesFormula(true));
+		}
+
+		return metricBuilder.create();
+	}
+
+	
+	
 	public Map<Metric, Double> getMeasurements(Resource<?> resource) {
 
 		for (Resource<?> r : resourceToMetrics.keySet()) {
@@ -81,17 +124,16 @@ public class SmmModelAdapter {
 	 * 
 	 * @return Set of all metrics in the SMM
 	 */
-	public Set<String> getMetrics() {
+	public Set<Metric> getMetrics() {
 		List<SMMElement> elements = model.getSMMElement();
-		Collection<Object> es = EcoreUtil.getObjectsByType(elements,
-				SoftwareMetricsMetamodel2Package.eINSTANCE.getDirectMeasure());
+		Collection<Object> es = EcoreUtil.getObjectsByType(elements, SoftwareMetricsMetamodel2Package.eINSTANCE.getDirectMeasure());
 
-		HashSet<String> metrics = new HashSet<String>();
+		HashSet<Metric> metrics = new HashSet<Metric>();
 
 		for (Object e : es) {
-
-			DirectMeasure measurement = (DirectMeasure) e;
-			metrics.add(measurement.getName());
+			DirectMeasure measure = (DirectMeasure) e;
+			Metric metric = createMetricByMeasure(measure);
+			metrics.add(metric);
 
 		}
 		return metrics;

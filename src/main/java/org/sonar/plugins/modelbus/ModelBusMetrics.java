@@ -1,13 +1,21 @@
 package org.sonar.plugins.modelbus;
 
-import java.util.Arrays; 
+import java.lang.reflect.Field;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import org.sonar.api.measures.CoreMetrics;
 import org.sonar.api.measures.Metric;
 import org.sonar.api.measures.Metrics;
+import org.sonar.plugins.modelbus.metrinoclient.CheckModels;
+import org.sonar.plugins.modelbus.smmadapter.SmmModelAdapter;
+import org.sonar.plugins.modelbus.smmparser.SMMModel;
+import org.sonar.plugins.modelbus.smmparser.SMMParser;
 
 public final class ModelBusMetrics implements Metrics {
+	private static List<Metric> cachedMetrics;
 
 	// define all metrics
 	public static final Metric MESSAGE = new Metric.Builder("message_key", "Message",
@@ -21,14 +29,65 @@ public final class ModelBusMetrics implements Metrics {
 			.setDirection(Metric.DIRECTION_BETTER).setQualitative(false)
 			.setDomain(CoreMetrics.DOMAIN_GENERAL).create();
 
-	public static final Metric COUNTCLASSES = new Metric.Builder("countClasses", "Count Classes",
+	public static final Metric COUNTCLASSES = new Metric.Builder("NumberOfClasses", "Count Classes",
 			Metric.ValueType.INT).setDescription("Count number of classes")
 			.setDirection(Metric.DIRECTION_BETTER).setQualitative(false)
 			.setDomain(CoreMetrics.DOMAIN_GENERAL).create();
 
+
+	
+	
 	// getMetrics() method is defined in the Metrics interface and is used by
 	// Sonar to retrieve the list of new metrics
 	public List<Metric> getMetrics() {
-		return Arrays.asList(MESSAGE, RANDOM, COUNTCLASSES);
+		return getAllMetrics();
+	}
+	
+	
+	public static List<Metric> getAllMetrics() {
+		System.err.println("GETTING METRICS");
+		if(cachedMetrics==null) {
+			List<Metric> out = new LinkedList<Metric>();
+			out.addAll(getPredefinedMetrics());
+			// TODO sth bad happens here
+			//out.addAll(receiveMetrics());
+			cachedMetrics = out;
+		}
+		return cachedMetrics;
+	}
+	
+	private static Set<Metric> getPredefinedMetrics() {
+		Set<Metric> out = new HashSet<Metric>();
+		for (Field field : ModelBusMetrics.class.getDeclaredFields()) {
+		    if (java.lang.reflect.Modifier.isStatic(field.getModifiers())) {
+				try {
+					field.setAccessible(true);
+					Object fieldStaticValue = field.get(null);
+					
+			    	if(fieldStaticValue instanceof Metric) {
+			    		Metric m = ((Metric) fieldStaticValue);
+				        out.add(m);
+			    	}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+		    }
+		}
+		return out;
+	}
+	
+	
+	private static Set<Metric> receiveMetrics() {
+		// Create parse resulting model, and make it accessible via Resources
+		Set<Metric> out = null;
+		try {
+			SMMModel smmModel = SMMParser.load(CheckModels.getInstance().checkoutSmm());
+			SmmModelAdapter smm = new SmmModelAdapter(smmModel);
+			out = smm.getMetrics();
+		}
+		catch(Exception e) {
+			System.err.println("Problems receiving the Metrics.");
+		}
+		return out != null ? out : new HashSet<Metric>();
 	}
 }

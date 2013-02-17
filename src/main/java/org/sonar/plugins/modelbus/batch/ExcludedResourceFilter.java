@@ -21,7 +21,6 @@ package org.sonar.plugins.modelbus.batch;
 
 import org.sonar.api.batch.ResourceFilter;
 import org.sonar.api.resources.Directory;
-import org.sonar.api.resources.File;
 import org.sonar.api.resources.Project;
 import org.sonar.api.resources.Resource;
 import org.sonar.plugins.modelbus.language.uml.Uml;
@@ -38,17 +37,12 @@ public class ExcludedResourceFilter implements ResourceFilter {
 	}
 
 	public boolean isIgnored(@SuppressWarnings("rawtypes") Resource resource) {
-		System.out.println("1");
+		
+		if(resource !=null && (resource instanceof Directory || resource.getLanguage() instanceof Uml)) {
+			return false;
+		}
+
+		System.out.println("Ignoring resource "+resource);
 		return true;
-	}
-	
-	public boolean isIgnored(Directory resource) {
-		System.out.println("2");
-		return false;
-	}
-	
-	public boolean isIgnored(File resource) {
-		System.out.println("3");
-		return !(resource.getLanguage() instanceof Uml);
 	}
 }

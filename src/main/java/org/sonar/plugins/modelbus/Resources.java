@@ -9,7 +9,8 @@ public class Resources {
 	private SmmModelAdapter modelAdapter; 
 	
 	public static final String UML_EXT = ".uml";
-	public static final String SMM = "http://sonar-modelbus-plugin/src/main/resources/metrinostuff/SampleMetrics.smm";
+	// TODO load SMM const from properties file
+	public static final String SMM = "http://sonar-modelbus-plugin/model/MetricsUml2.3.smm";
 
 	
 	public static Resources getInstance(){
