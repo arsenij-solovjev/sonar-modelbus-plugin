@@ -397,6 +397,8 @@ our decorator: for each Resource it receives, it asks the \texttt{SmmAdapter}
 to for the measurements on this resource, and then it saves these
 into Sonar.
 
+\subsection{Declaring our plugin to Sonar}
+
 \subsubsection{ModelbusMetrics.java}
 
 Our class ModelsbusMetrics implements the \texttt{Metrics} interface of
@@ -414,16 +416,32 @@ This file is the main entry point for Sonar. With annotations we can
 define some Plugin meta data like the description and the name. The
 class ModelbusPlugin extends the class SonarPlugin and has the method
 getExtensions(). In this method we add all Sonar extensions that 
-constitute the plugin such as the batch classes and the ui classes.
+constitute the plugin such as the batch classes, the ui classes and
+other classes which .
 
+\subsubsection{Defining a custom Language}
 
+By default Sonar runs analysis on Java source files. If one
+wants to analyse other filetype a custom definiton must be made.
+For this the following classes must be extended
 
-
-
-
-
-
-
+\begin{description}
+  \item[Language] represents a language in which source code is
+    found. An extension should define the name and the extensions of
+    such a language. Our extension is called \texttt{UmlLanguage}
+  \item[File/Directory] these two classes represent physical resources
+    to sonar, their extension is not necessary, yet provides a unified
+    interface which knows in which language the files are. Our
+    extensions are called \texttt{UmlFile/UmlPackage}.
+  \item[SourceImporter] this class is responsible for getting the
+    files from the file system read into runtime objects. This creates
+    the \texttt{UmlFile}s which are later passed to the
+    \texttt{Decorators}. Our extension is called \texttt{UmlSourceImporter}
+  \item[ResourceFilter] similar to \texttt{SourceImporter}, this class
+    is the one who determins which resources should be passed into the
+    analysis.  Our \texttt{ExcludedResourceFilter} makes sure that
+    only directories and uml files are passed into analysis
+\end{description}
 
 \section{Problems during development}
 
