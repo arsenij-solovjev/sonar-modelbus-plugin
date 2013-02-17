@@ -123,8 +123,7 @@ It is a model-driven open source framework for the integration of development to
 
 \subsection{Four phases}
 
-
-\begin{figure}
+\begin{figure}[h]
 	\centering
 		\includegraphics[width=\textwidth]{metrino_four_phases}
 	\caption{Developement process and layers}
@@ -146,13 +145,13 @@ Worth seeing, brief presentations about usability and features of Metrino:
 \end{itemize}
 
 \subsection{Problems}
-The installation of the current version of Metrino is not possible due to malformed dependencies. Unfortunately a recursively installing of the required dependencies does not help, since they need other dependencies by themselves, resulting in an infeasible search-and-install marathon. Screenshot
+The installation of the current version of Metrino is not possible due to malformed dependencies. Unfortunately a recursively installing of the required dependencies does not help, since they need other dependencies by themselves, resulting in an infeasible search-and-install marathon.
 
 
 \subsection{Screenshots}
 These are only a subset of interesting screenshots taken from the screencasts above:
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 		\includegraphics[width=\textwidth]{metrino_screen_1}
 	\caption{Developement process and layers}
@@ -161,7 +160,7 @@ These are only a subset of interesting screenshots taken from the screencasts ab
 
 (generic validation by selected measures)
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 		\includegraphics[width=\textwidth]{metrino_screen_2}
 	\caption{Developement process and layers}
@@ -170,7 +169,7 @@ These are only a subset of interesting screenshots taken from the screencasts ab
 
 (graphical representation of a selected measurement)
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 		\includegraphics[width=\textwidth]{metrino_screen_3}
 	\caption{Developement process and layers}
@@ -261,51 +260,41 @@ Decorators are used when all sensors have completed their work. The decorate met
 \subsection{Modify the front-end of Sonar and working with sensors and decorators}
 Our plugin front-end consists of the following structure:
 
-Package edu.swp.modelbus.reference
-
-ModelbusMetrics.java
+\subsubsection{ModelbusMetrics.java}
 
 Our class ModelsbusMetrics implements the Metrics Interface of Sonar. In this file we define all Metrics that we'll create in other files. The obligatory metric definitions consist of the name, key and the return type. Optionally you can add more parameters with the description, direction, setQualitativ, and setDomain methods. At least we have to define the method getMetrics() because of the interface Metrics. In this method we add all metrics to an array list and set this as return value of the getMetrics() method.
 
-ModelbusPlugin.java
+\subsubsection{ModelbusPlugin.java}
 
 This file is the main entry point for Sonar. With annotations we can define some Plugin meta data like the description and the name. The class ModelbusPlugin extends the class SonarPlugin and has the method getExtensions(). We add in this method all Sonar extensions that we want to use like definition classes. batch classes or ui classes.
 
-Package edu.swp.modelbus.batch
-
-ExampleSensor.java
+\subsubsection{ExampleSensor.java}
 
 We created an exampleSensor to demonstrate how it must be defined. In this file it's possible to do all things you like to do. An example would be to connect to a server. In our case we don't need a sensor.
 
-RandomDecorator.java
+\subsubsection{RandomDecorator.java}
 
 Our first decorator is a real random decorator. It will give a random value to all files.
 
-Package edu.swp.modelbus.ui
-
-ExampleFooter.java
+\subsubsection{ExampleFooter.java}
 
 It's possible to change the layout with plugins. This file implements the interface Footer. We just add the method getHtml() and return an example text to change the front-end layout of sonar.
 
-ExampleRubyWidget.java
+\subsubsection{ExampleRubyWidget.java}
 
 We can also add Widgets. The administrator can add widgets to the users layout. If our sensors get some values, the can be written from our widget and presented with plain text or with visual objects.
 
 \section{Software Architecture}
 The main architecture is described as the following. Our main software product is called the Sonar ModelBus Plugin which of course is a Sonar Plugin. This plugin, the project is dedicated to, implements a Metrino Adapter as well as a ModelBus Adapter. These sub programs are intended to communicate with the WebServices from Metrino and ModelBus.
 
-(These diagrams are currently in work and not considered final.)
-
-\subsection{Simple Architecture / Package Diagram}
-\begin{figure}
+\begin{figure}[h]
 	\centering
 		\includegraphics[width=\textwidth]{plugin_package_dia}
 	\caption{Sonar plugin package diagram}
 	\label{fig:sonarrunning}
 \end{figure}
 
-\subsection{Ecore-Diagramm}
-\begin{figure}
+\begin{figure}[h]
 	\centering
 		\includegraphics[width=\textwidth]{plugin_ecore_dia}
 	\caption{Sonar plugin ecore diagram}
@@ -326,41 +315,6 @@ The measures are calculated in a given scope, which has to be specified with \te
 
 For more information, see Software Metrics Metamodel (SMM) on Wikipedia.
 
-The following code is an examplary SMM file:
-
-\begin{verbatim}
-<?xml version="1.0" encoding="UTF-8"?>
-<SoftwareMetricsMetamodel2:SMMModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SoftwareMetricsMetamodel2="http://www.omg.org/ADM/SMM2" xmi:id="_yApJAUg1EeKruqZzbpGpkA" metaModelPackageURI="http://www.eclipse.org/uml2/3.0.0/UML">
-    <sMMElement xsi:type="SoftwareMetricsMetamodel2:SMMCategory" xmi:id="_yBNwwEg1EeKruqZzbpGpkA" name="root" measureElement="_YrZQoUg4EeKu7IXnh6K9VQ _w9WYoEg4EeKu7IXnh6K9VQ"/>
-    <sMMElement xsi:type="SoftwareMetricsMetamodel2:DirectMeasure" xmi:id="_YrZQoUg4EeKu7IXnh6K9VQ" description="This metric counts the number of all classes contained in the model." name="NumberOfClasses" category="_yBNwwEg1EeKruqZzbpGpkA" scope="_m25GAEg4EeKu7IXnh6K9VQ" directInvoke="true" measurement="_Ckmb0Eg8EeKe9JB-jPya7w _NDgqsEg8EeKe9JB-jPya7w" operation="self.allOwnedElements()->select(cl|cl.oclIsTypeOf(Class))->size()"/>
-    <sMMElement xsi:type="SoftwareMetricsMetamodel2:Scope" xmi:id="_m25GAEg4EeKu7IXnh6K9VQ" name="ModelScope" class="Model"/>
-    <sMMElement xsi:type="SoftwareMetricsMetamodel2:DirectMeasure" xmi:id="_w9WYoEg4EeKu7IXnh6K9VQ" description="This metric counts the number of packages contained in the model." name="NumberOfPackages" category="_yBNwwEg1EeKruqZzbpGpkA" scope="_m25GAEg4EeKu7IXnh6K9VQ" directInvoke="true" measurement="_CksicEg8EeKe9JB-jPya7w _NDmxUEg8EeKe9JB-jPya7w" operation="self.allOwnedElements()->select(pack|pack.oclIsTypeOf(Package))->size()"/>
-    <sMMElement xsi:type="SoftwareMetricsMetamodel2:DirectMeasurement" xmi:id="_Ckmb0Eg8EeKe9JB-jPya7w" observation="_Ckmb0Ug8EeKe9JB-jPya7w" measure="_YrZQoUg4EeKu7IXnh6K9VQ" value="5.0">
-        <measurand href="model/MetrinoSampleModel.uml#_QYmMoEg7EeKe9JB-jPya7w"/>
-    </sMMElement>
-    <sMMElement xsi:type="SoftwareMetricsMetamodel2:Observation" xmi:id="_Ckmb0Ug8EeKe9JB-jPya7w">
-        <whenObserved xmi:id="_Ckmb0kg8EeKe9JB-jPya7w" value="1355743348117"/>
-    </sMMElement>
-    <sMMElement xsi:type="SoftwareMetricsMetamodel2:DirectMeasurement" xmi:id="_CksicEg8EeKe9JB-jPya7w" observation="_CksicUg8EeKe9JB-jPya7w" measure="_w9WYoEg4EeKu7IXnh6K9VQ" value="0.0">
-        <measurand href="model/MetrinoSampleModel.uml#_QYmMoEg7EeKe9JB-jPya7w"/>
-    </sMMElement>
-    <sMMElement xsi:type="SoftwareMetricsMetamodel2:Observation" xmi:id="_CksicUg8EeKe9JB-jPya7w">
-        <whenObserved xmi:id="_Cksickg8EeKe9JB-jPya7w" value="1355743348117"/>
-    </sMMElement>
-    <sMMElement xsi:type="SoftwareMetricsMetamodel2:DirectMeasurement" xmi:id="_NDgqsEg8EeKe9JB-jPya7w" observation="_NDgqsUg8EeKe9JB-jPya7w" measure="_YrZQoUg4EeKu7IXnh6K9VQ" value="5.0">
-        <measurand href="model/MetrinoSampleModel.uml#_QYmMoEg7EeKe9JB-jPya7w"/>
-    </sMMElement>
-    <sMMElement xsi:type="SoftwareMetricsMetamodel2:Observation" xmi:id="_NDgqsUg8EeKe9JB-jPya7w">
-        <whenObserved xmi:id="_NDgqskg8EeKe9JB-jPya7w" value="1355743418577"/>
-    </sMMElement>
-    <sMMElement xsi:type="SoftwareMetricsMetamodel2:DirectMeasurement" xmi:id="_NDmxUEg8EeKe9JB-jPya7w" observation="_NDmxUUg8EeKe9JB-jPya7w" measure="_w9WYoEg4EeKu7IXnh6K9VQ" value="4.0">
-        <measurand href="model/MetrinoSampleModel.uml#_QYmMoEg7EeKe9JB-jPya7w"/>
-    </sMMElement>
-    <sMMElement xsi:type="SoftwareMetricsMetamodel2:Observation" xmi:id="_NDmxUUg8EeKe9JB-jPya7w">
-        <whenObserved xmi:id="_NDmxUkg8EeKe9JB-jPya7w" value="1355743418577"/>
-    </sMMElement>
-</SoftwareMetricsMetamodel2:SMMModel>
-\end{verbatim}
 
 
 \section{Implementation}
@@ -397,7 +351,7 @@ This process can be automated with a special Maven goal. But the point is that t
 	%%	aber sobald man was fortgeschrittenes machen will, muss man auf die Mailingliste
 
 \subsection{Central repository}
-In the beginning of the software project we tried to setup a central ModelBus server with Metrino service included for all team members. But it was not possible to run Metrino because it was only locally accessible and not over its remote URL. After compiling Metrino with remote settings the service did not work anymore. So we have chosen the other development way and installed ModelBus with Metrino on our local machines.
+In the beginning of the software project we tried to setup a central ModelBus server with Metrino service included for all team members. But it was not possible to run Metrino because it was only locally accessible and not over its remote URL. After compiling Metrino with remote settings the service did also not work. So we have chosen the other development way and installed ModelBus with Metrino on our local machines.
 		
 \subsection{Wrong class loader}
 The problem was that we could not connect to the ModelBus repository through the sonar plugin. Using the same code in a standalone Java application instead worked fine: The ModelBus repository was successfully checked out.

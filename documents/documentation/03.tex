@@ -58,7 +58,7 @@ Open Eclipse and open "Help | Install New Software...". Now select or add the re
  
 Select "m2e – Maven Integration for Eclipse" and click through the progress to install the plugin. If everything works well, Eclipse will ask you for an Eclipse restart. 
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 		\includegraphics[width=\textwidth]{m2eplugin}
 	\caption{Maven Eclipse plugin installation}
@@ -155,7 +155,7 @@ Under Linux run the "startup.sh" as root user. Make sure that the "startup.sh" a
 
 If Modelbus is up, you can visit the Modelbus manager under \url{http://localhost:8080/modelbus?startup=manager}: You can login with the username "Admin" and the password "ModelBus". Here you can see all the checked in files and models. When uploading a new file, press the refresh button to see the changes.
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 		\includegraphics[width=\textwidth]{modelbusmanager}
 	\caption{The Modelbus manager}
@@ -180,7 +180,7 @@ You can find some example models in the "/src/main/resources/metrinostuff" folde
 \subsection{Create a new Eclipse project}
 Now create a new Eclipse project:
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 		\includegraphics[width=\textwidth]{neweclipseproject}
 	\caption{Creating a new Eclispe project}
@@ -189,7 +189,7 @@ Now create a new Eclipse project:
 
 Unselect the "Use default location" box and select the sonar-modelbus-plugin-master folder. Don't forget to set a project name.
  
-\begin{figure}
+\begin{figure}[h]
 	\centering
 		\includegraphics[width=\textwidth]{selectlocation}
 	\caption{Selecting a location}
@@ -204,7 +204,7 @@ Notice: If you finish the project creation process you may get
 \subsection{Convert your project to a Maven project}
 Right click on your project folder and choose "Configure | Convert to Maven Project".
  
-\begin{figure}
+\begin{figure}[h]
 	\centering
 		\includegraphics[width=\textwidth]{converttomavenproject}
 	\caption{Converting to a Maven project}
@@ -217,14 +217,14 @@ Notice: If you get any errors (this is not unusual) just ignore them. If you can
 
 \subsection{Compilation}
 Next: right click on your project again and select "Run as | Maven install".
-\begin{figure}
+\begin{figure}[h]
 	\centering
 		\includegraphics[width=\textwidth]{maveninstall}
 	\caption{Maven install}
 	\label{fig:maveninstall}
 \end{figure} 
 If everything works well you see a "BUILD SUCCESS" reports like this:
-\begin{figure}
+\begin{figure}[h]
 	\centering
 		\includegraphics[width=\textwidth]{buildsuccess}
 	\caption{BUILD SUCCESS}
@@ -241,7 +241,7 @@ org.codehaus.sonar:sonar-dev-maven-plugin::start-war
 \end{verbatim}
 Then press "Run" to start the build process that will deploy a Sonar server for you. 
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 		\includegraphics[width=\textwidth]{sonardeploy}
 	\caption{Deploying Sonar with Maven}
@@ -251,7 +251,7 @@ Then press "Run" to start the build process that will deploy a Sonar server for 
 Notice: this can take some minutes and if it seems to be frozen just restart the build process. If some errors occur just restart.
 If everything went fine you will see following status messages:
  
-\begin{figure}
+\begin{figure}[h]
 	\centering
 		\includegraphics[width=\textwidth]{sonarready}
 	\caption{Sonar is ready}
@@ -260,7 +260,7 @@ If everything went fine you will see following status messages:
 
 Now you can see Sonar running at "localhost:9000"  in your browser.
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 		\includegraphics[width=\textwidth]{sonarrunning}
 	\caption{Sonar in the browser}
@@ -272,7 +272,7 @@ Now you can see Sonar running at "localhost:9000"  in your browser.
 \subsection{Analysing with Sonar}
 If you like to analyse your project with Sonar (or any other Maven project) you can start the build process with the goal "sonar:sonar". After processing you can refresh your browser at "localhost:9000" and can see the results of the analysis.
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 		\includegraphics[width=\textwidth]{sonarinaction}
 	\caption{Sonar in action}
