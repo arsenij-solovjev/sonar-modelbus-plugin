@@ -3,30 +3,30 @@
 \section{Modelbus} \label{sec:modelbus}
 \subsection{Scenario}
 
-Imagine, you are in a software developement process. You and your team partners use different developement tools and a lot of artefacts are produced by different team members. In such a case, the artefacts may be inconsitent and a developer needs to make updates and changes by hand to keep them consistent. A tool which would automate this process and do more, is ModelBus.
+Imagine, you are in a software developement process. You and your team partners use different developement tools and a lot of artifacts are produced by different team members. In such a case, the artifacts may be inconsitent and a developer needs to make updates and changes by hand to keep them consistent. A tool which would automate this process and do more, is ModelBus.
 
 \subsection{What is ModelBus?}
 
-It is a model-driven open source framework for the integration of development tools during a MDE process. It keeps the artefacts of the development process consistent. It offers a communication between tools with the help of adapters: the tools are connected to the bus via adapters and can offer their services to other tools connected to the bus.
+It is a model-driven open source framework for the integration of development tools during a MDE process. It keeps the artifacts of the development process consistent. It offers a communication between tools with the help of adapters: the tools are connected to the bus via adapters and can offer their services to other tools connected to the bus.
 
 \subsection{Goals}
 \begin{itemize}
 \item Data Integration: Tools can share (data) models
-\item Control Integration: Tools connected to the bus can use the service of other \item connected tools
+\item Control Integration: Tools connected to the bus can use the service of other connected tools
 \item Process Integration: Several tools are used together in the development and are highly supported
 \item Support: Support of distributed MDE development
 \item Architecture: Based on SOA
-\item Architecture
 \end{itemize}
 
+\subsection{Architecture}
 \begin{itemize}
 \item based on SOA
 \item central bus-like communication structure
-number of core services
-\item a copule of model management tools
+\item number of core services
+\item a couple of model management tools
 \item different tools can be added to the bus via adapters
 \item if a tool is connected, it is handled as a service for other tools
-orchestration: a lot of tools (with their service) and automation are connected \item together to a complex system
+\item orchestration: a lot of tools (with their service) and automation are connected together to a complex system
 \end{itemize}
 
 \begin{figure}
@@ -56,8 +56,8 @@ orchestration: a lot of tools (with their service) and automation are connected 
 \subsubsection{Inbuilt and transparent model management}
 
 \begin{itemize}
-\item problem: development produces artefacts and developer don't want to care about where they came from and how they have to be imported
-\item artefacts are acceessed to the rigth model by each connected tool on the ModelBus bus
+\item problem: development produces artifacts and developer don't want to care about where they came from and how they have to be imported
+\item artifacts are acceessed to the rigth model by each connected tool on the ModelBus bus
 \end{itemize}
 
 \subsubsection{Support of large and complex models}
@@ -73,7 +73,7 @@ orchestration: a lot of tools (with their service) and automation are connected 
 \subsubsection{Distributed and heterogeneous}
 
 \begin{itemize}
-\item normally, if a tool is updated, different artefacts may be non-compatible together
+\item normally, if a tool is updated, different artifacts may be non-compatible together
 \item this may happen frequently in larger development teams
 \item but this would be crucial, espepcially for model operations tools (for example tools, which transform models)
 \item solution: via the adapters, models from the tools are translated into a ModelBus known format
@@ -362,22 +362,44 @@ The following code is an examplary SMM file:
 </SoftwareMetricsMetamodel2:SMMModel>
 \end{verbatim}
 
-\section{ModelBus Client Tool}
 
-We created a tool for checking in and out files from/to the ModelBus repository. It can be simply called via "make":
+\section{Implementation}
+\subsection{abc}
 
-\begin{verbatim}
-Use
-  make checkin URI=http://uri.de/location/in/repository/file.txt FILENAME=location/to/local/file.txt
-to checkin a file located at FILENAME into the repository at a position defined by the URI.
 
-Use
-  make checkout URI=http://uri.de/location/in/repository/file.txt FILENAME=location/to/local/file.txt
-\end{verbatim}
-to checkout a file from the repository located at URI to a local position defined by the FILENAME.
-Changes can be made at the Client.java file. You can compile it by calling "make install". This will compile and assemble the client with its ModelBus dependencies.
 
-\section{ClassLoader Problem}
+
+
+
+
+
+
+
+\section{Problems}
+
+The following sections describe the problems we were confronted with during the development.
+
+\subsection{Developing with Sonar}
+The typical developement cycle with Sonar plugins is:
+\begin{itemize}
+	\item change the code of the plugin
+	\item compile the plugin
+	\item copy the compiled binary into the plugins folder of your Sonar server
+	\item restart the Sonar server
+	\item visit localhost:9000 and test your changes
+\end{itemize}
+This process can be automated with a special Maven goal. But the point is that the restarting of the server costs about 3-5 minutes!
+
+%6. Entwicklung mit Sonar
+	%	Dann insgesamt kann man die Dokumentation anmekern
+		%zB Sonar
+		%damit zu starten ist sehr einfach
+	%%	aber sobald man was fortgeschrittenes machen will, muss man auf die Mailingliste
+
+\subsection{Central repository}
+In the beginning of the software project we tried to setup a central ModelBus server with Metrino service included for all team members. But it was not possible to run Metrino because it was only locally accessible and not over its remote URL. After compiling Metrino with remote settings the service did not work anymore. So we have chosen the other development way and installed ModelBus with Metrino on our local machines.
+		
+\subsection{Wrong class loader}
 The problem was that we could not connect to the ModelBus repository through the sonar plugin. Using the same code in a standalone Java application instead worked fine: The ModelBus repository was successfully checked out.
 
 The reason was that the ModelBus part could not resolve some bindings in its configuration. That was caused by the missing of a resource. This resource lied in the META-INF folder of the "org.modelbus.cxf.dosgi" jar bundle. The loading of this resource was done over the current context class loader in a ModelBus class:
@@ -402,3 +424,40 @@ try {
   Thread.currentThread().setContextClassLoader(initialClassLoader);
 }
 \end{verbatim}
+
+\subsection{Missing Metrino files}
+Another problem was that the provided ModelBus copy was not complete concerning the Metrino service. Metrino was unable to compute the metric values for a given model. After copying the missing jar bundles (de.fraunhofer.fokus.metrino.ruleEvaluator and de.fraunhofer.fokus.metrino.measure) into ModelBus' plugins folder Metrino was ready for operation.
+
+\subsection{No SMM standard}
+To analyze a model for some metrics Metrino needs a SMM file, which defines the metrics with the help of OCL. The results of the model analysis will be saved in the SMM file again. So we needed to parse that SMM to retrieve the measurement results. The structure of the SMM file is defined by a XML schema. Unfortunatly, Metrino does not hew to the SMM standard. After browsing through the Metrino binaries we found the corresponding XML schema. Finally, we were able to parse the file and to retrieve the desired results.
+
+\subsection{Displaying metrics per resource}
+%2. Nichtanzeigen der Metriken pro Datei
+
+
+
+
+
+
+
+
+
+\section{ModelBus Client Tool}
+We created a tool for checking in and out files from/to the ModelBus repository. It can be simply called via "make":
+
+Use
+\begin{verbatim}
+make checkin 
+  URI=http://uri.de/location/in/repository/file.txt 
+	FILENAME=location/to/local/file.txt
+\end{verbatim}
+to checkin a file located at FILENAME into the repository at a position defined by the URI.
+
+Use
+\begin{verbatim}
+make checkout 
+  URI=http://uri.de/location/in/repository/file.txt 
+	FILENAME=location/to/local/file.txt
+\end{verbatim}
+to checkout a file from the repository located at URI to a local position defined by the FILENAME.
+Changes can be made at the Client.java file. You can compile it by calling "make install". This will compile and assemble the client with its ModelBus dependencies.
