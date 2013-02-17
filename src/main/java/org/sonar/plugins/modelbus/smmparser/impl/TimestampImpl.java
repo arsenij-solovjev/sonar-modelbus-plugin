@@ -6,7 +6,6 @@ package org.sonar.plugins.modelbus.smmparser.impl;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.sonar.plugins.modelbus.smmparser.SoftwareMetricsMetamodel2Package;
 import org.sonar.plugins.modelbus.smmparser.Timestamp;
 
 /**

@@ -25,20 +25,15 @@ import org.sonar.api.profiles.XMLProfileParser;
 import org.sonar.api.utils.ValidationMessages;
 
 public class ModelBusDefaultProfile extends ProfileDefinition {
-  private XMLProfileParser xmlProfileParser;
+	@SuppressWarnings("unused")
+	private XMLProfileParser xmlProfileParser;
 
-  public ModelBusDefaultProfile(XMLProfileParser xmlProfileParser) {
-    this.xmlProfileParser = xmlProfileParser;
-  }
+	public ModelBusDefaultProfile(XMLProfileParser xmlProfileParser) {
+		this.xmlProfileParser = xmlProfileParser;
+	}
 
-  @Override
-  public RulesProfile createProfile(ValidationMessages messages) {
-	RulesProfile profile = new RulesProfile();
-	profile.setName("ModelBus Quality Profile");
-	profile.setLanguage("uml");
-	 
-    return profile;
-//    xmlProfileParser.parseResource(getClass().getClassLoader(),
-//                                          "org/sonar/plugins/erlang/profile-default.xml", messages);
-  }
+	@Override
+	public RulesProfile createProfile(ValidationMessages messages) {
+		return RulesProfile.create("ModelBus Quality Profile", "uml");
+	}
 }

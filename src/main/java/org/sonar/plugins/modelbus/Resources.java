@@ -1,6 +1,6 @@
 package org.sonar.plugins.modelbus;
 
-import org.sonar.plugins.modelbus.smmparser.SmmModelAdapter;
+import org.sonar.plugins.modelbus.smmadapter.SmmModelAdapter;
 
 public class Resources {
 	private static Resources instance;

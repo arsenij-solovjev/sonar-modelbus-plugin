@@ -1,4 +1,4 @@
-package org.sonar.plugins.modelbus.smmparser;
+package org.sonar.plugins.modelbus.smmadapter;
 
 import java.io.File;
 import java.util.Collection;
@@ -8,22 +8,22 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.cxf.binding.corba.utils.EprMetaData;
-import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.sonar.api.measures.Metric;
 import org.sonar.api.resources.ProjectFileSystem;
 import org.sonar.api.resources.Resource;
 import org.sonar.plugins.modelbus.ModelBusMetrics;
 import org.sonar.plugins.modelbus.language.uml.Uml;
-import org.sonar.plugins.modelbus.language.uml.UmlFile;
+import org.sonar.plugins.modelbus.smmparser.DirectMeasure;
+import org.sonar.plugins.modelbus.smmparser.DirectMeasurement;
+import org.sonar.plugins.modelbus.smmparser.SMMElement;
+import org.sonar.plugins.modelbus.smmparser.SMMModel;
+import org.sonar.plugins.modelbus.smmparser.SoftwareMetricsMetamodel2Package;
 
 public class SmmModelAdapter {
 
 	private SMMModel model;
-	private Map<Resource, Map<Metric, Double>> resourceToMetrics = new HashMap<Resource, Map<Metric, Double>>();
+	private Map<Resource<?>, Map<Metric, Double>> resourceToMetrics = new HashMap<Resource<?>, Map<Metric, Double>>();
 
 	public SmmModelAdapter(SMMModel model, ProjectFileSystem projectFileSystem) {
 		this.model = model;
@@ -67,10 +67,9 @@ public class SmmModelAdapter {
 		}
 	}
 
-	@SuppressWarnings("rawtypes")
-	public Map<Metric, Double> getMeasurements(Resource resource) {
+	public Map<Metric, Double> getMeasurements(Resource<?> resource) {
 
-		for (Resource r : resourceToMetrics.keySet()) {
+		for (Resource<?> r : resourceToMetrics.keySet()) {
 			boolean equals = r.getKey().equals(resource.getKey());
 			if (equals)
 				return resourceToMetrics.get(r);
@@ -98,7 +97,7 @@ public class SmmModelAdapter {
 		return metrics;
 	}
 
-	public Map<Resource, Map<Metric, Double>> getResourceToMetrics() {
+	public Map<Resource<?>, Map<Metric, Double>> getResourceToMetrics() {
 		return resourceToMetrics;
 	}
 

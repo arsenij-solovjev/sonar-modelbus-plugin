@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory;
 
 import org.sonar.api.batch.Decorator;
 import org.sonar.api.batch.DecoratorContext;
-import org.sonar.api.measures.CoreMetrics;
 import org.sonar.api.measures.Metric;
 import org.sonar.api.resources.Project;
 import org.sonar.api.resources.Resource;
@@ -22,9 +21,7 @@ import org.sonar.api.resources.Language;
 import org.sonar.api.resources.ResourceUtils;
 import org.sonar.plugins.modelbus.Resources;
 import org.sonar.plugins.modelbus.language.uml.Uml;
-import org.sonar.plugins.modelbus.smmparser.SmmModelAdapter;
-
-;
+import org.sonar.plugins.modelbus.smmadapter.SmmModelAdapter;
 
 public class CountClassesDecorator implements Decorator {
 	public static final Logger LOG = LoggerFactory.getLogger(CountClassesDecorator.class);

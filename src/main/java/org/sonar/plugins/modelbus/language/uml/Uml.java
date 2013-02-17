@@ -19,6 +19,8 @@
  */
 package org.sonar.plugins.modelbus.language.uml;
 
+import java.util.Arrays;
+
 import org.apache.commons.configuration.Configuration; 
 import org.apache.commons.lang.StringUtils;
 import org.sonar.api.resources.AbstractLanguage;
@@ -47,6 +49,7 @@ public class Uml extends AbstractLanguage {
 		if (suffixes == null || suffixes.length == 0) {
 			suffixes = StringUtils.split(ModelBusPlugin.UML_KEY, ",");
 		}
+		System.err.println("suffices: "+Arrays.toString(suffixes));
 		return suffixes;
 	}
 

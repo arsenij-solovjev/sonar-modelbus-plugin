@@ -5,7 +5,6 @@ package org.sonar.plugins.modelbus.smmparser.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.sonar.plugins.modelbus.smmparser.Counting;
-import org.sonar.plugins.modelbus.smmparser.SoftwareMetricsMetamodel2Package;
 
 /**
  * <!-- begin-user-doc -->

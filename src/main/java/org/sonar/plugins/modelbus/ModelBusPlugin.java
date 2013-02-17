@@ -35,8 +35,7 @@ public static final String FILE_SUFFIXES_KEY = "sonar.modelbus.file.suffixes";
 	public static final String[] UML_SUFFIXES= {"uml"};
 
 	// This is where you're going to declare all your Sonar extensions
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public List getExtensions() {
+	public List<?> getExtensions() {
 		return Arrays.asList(
 		// Definitions
 				ModelBusMetrics.class, Uml.class,

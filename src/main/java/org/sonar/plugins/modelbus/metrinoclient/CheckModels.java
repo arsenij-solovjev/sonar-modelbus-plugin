@@ -1,6 +1,5 @@
 package org.sonar.plugins.modelbus.metrinoclient;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -66,11 +65,10 @@ public class CheckModels {
 		// entry from the repository
 		// (note that revision -1 corresponds to the latest revision)
 		RepositoryDirEntry[] entries;
-		if (project == null)
-			entries = repository.getDirEntries(session, URI.createURI(directory.getUri()), -1L);
-		else
-			entries = repository.getDirEntries(session,
-					URI.createURI(directory.getUri() + project.getArtifactId()), -1L);
+		String uri = project == null ? directory.getUri() : directory.getUri() + project.getArtifactId();
+		
+
+		entries = repository.getDirEntries(session, URI.createURI(uri), -1L);
 		System.out.println("- visting directory '" + directory.getUri() + "'...");
 
 		for (int i = 0; i < entries.length; i++) {

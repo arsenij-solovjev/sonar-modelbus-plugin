@@ -1,26 +1,16 @@
 package org.sonar.plugins.modelbus.smmparser;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.sonar.plugins.modelbus.smmparser.impl.DirectMeasureImpl;
 
 public class SMMParser {
-	private static final String SMM = "/home/arsenij/workspace/sonar-modelbus-plugin/src/main/resources/metrinostuff/SampleMetrics.smm";
 
 	public static SMMModel load(InputStream file) {
 		// Initialize the model

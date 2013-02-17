@@ -1,39 +1,21 @@
 package org.sonar.plugins.modelbus.batch;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-
-import org.eclipse.emf.common.util.EList;
-import org.modelbus.dosgi.repository.descriptor.NonExistingResourceException;
-import org.modelbus.dosgi.repository.descriptor.RepositoryAuthentificationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sonar.api.batch.Sensor;
 import org.sonar.api.batch.SensorContext;
-import org.sonar.api.measures.Measure;
 import org.sonar.api.measures.Metric;
 import org.sonar.api.resources.Project;
-import org.sonar.api.resources.ProjectFileSystem;
 import org.sonar.api.resources.Resource;
-import org.sonar.plugins.modelbus.ModelBusMetrics;
 import org.sonar.plugins.modelbus.Resources;
 
-import org.sonar.plugins.modelbus.language.uml.Uml;
 import org.sonar.plugins.modelbus.metrinoclient.CheckModels;
-import org.sonar.plugins.modelbus.smmparser.DirectMeasure;
-import org.sonar.plugins.modelbus.smmparser.SMMElement;
+import org.sonar.plugins.modelbus.smmadapter.SmmModelAdapter;
 import org.sonar.plugins.modelbus.smmparser.SMMModel;
 import org.sonar.plugins.modelbus.smmparser.SMMParser;
-import org.sonar.plugins.modelbus.smmparser.SmmModelAdapter;
 
 public class ModelBusSensor implements Sensor {
 
@@ -66,8 +48,8 @@ public class ModelBusSensor implements Sensor {
 			resources.setModel(smm);	
 			
 			Map<Metric, Double> sums = new HashMap<Metric, Double>();
-			Map<Resource, Map<Metric, Double>> mapping = smm.getResourceToMetrics();
-			for(Resource resource : mapping.keySet()) {
+			Map<Resource<?>, Map<Metric, Double>> mapping = smm.getResourceToMetrics();
+			for(Resource<?> resource : mapping.keySet()) {
 				Map<Metric, Double> metrics = mapping.get(resource);
 				for(Metric metric : metrics.keySet()) {
 					//save resource's metric value

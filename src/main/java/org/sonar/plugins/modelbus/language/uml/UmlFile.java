@@ -19,9 +19,6 @@
  */
 package org.sonar.plugins.modelbus.language.uml;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.commons.lang.StringUtils;
 import org.sonar.api.resources.InputFile;
 import org.sonar.api.resources.Language;
@@ -32,110 +29,112 @@ import org.sonar.api.utils.WildcardPattern;
 
 /**
  * This class implements a Erlang source file for Sonar.
- *
+ * 
  * @since 0.1
  */
 public class UmlFile extends Resource<UmlDirectory> {
 
-  private final String filename;
-  private final String longName;
-  private final UmlDirectory parent;
-  //private List<ErlangFunction> functions = new ArrayList<ErlangFunction>(); 
+	private final String filename;
+	private final String longName;
+	private final UmlDirectory parent;
 
-  public UmlFile(String packageKey, String className) {
-    super();
-    filename = className.trim();
+	// private List<ErlangFunction> functions = new ArrayList<ErlangFunction>();
 
-    String key;
-    String pKey;
-    if (StringUtils.isBlank(packageKey)) {
-      pKey = UmlDirectory.DEFAULT_PACKAGE_NAME;
-      key = new StringBuilder().append(pKey).append(".").append(this.filename).toString();
-      longName = filename;
-    } else {
-      pKey = packageKey.trim();
-      key = new StringBuilder().append(pKey).append(".").append(this.filename).toString();
-      longName = key;
-    }
-    parent = new UmlDirectory(pKey);
-    setKey(key);
-  }
+	public UmlFile(String packageKey, String className) {
+		super();
+		filename = className.trim();
 
-  @Override
-  public String getName() {
-    return filename;
-  }
+		String key;
+		String pKey;
+		if (StringUtils.isBlank(packageKey)) {
+			pKey = UmlDirectory.DEFAULT_PACKAGE_NAME;
+			key = new StringBuilder().append(pKey).append(".").append(this.filename).toString();
+			longName = filename;
+		} else {
+			pKey = packageKey.trim();
+			key = new StringBuilder().append(pKey).append(".").append(this.filename).toString();
+			longName = key;
+		}
+		parent = new UmlDirectory(pKey);
+		setKey(key);
+	}
 
-  @Override
-  public String getLongName() {
-    return longName;
-  }
+	@Override
+	public String getName() {
+		return filename;
+	}
 
-  @Override
-  public String getDescription() {
-    return "";
-  }
+	@Override
+	public String getLongName() {
+		return longName;
+	}
 
-  @Override
-  public Language getLanguage() {
-    return Uml.INSTANCE;
-  }
+	@Override
+	public String getDescription() {
+		return "";
+	}
 
-  @Override
-  public String getScope() {
-    return Scopes.FILE;
-  }
+	@Override
+	public Language getLanguage() {
+		return Uml.INSTANCE;
+	}
 
-  @Override
-  public String getQualifier() {
-    return Qualifiers.FILE;
-  }
+	@Override
+	public String getScope() {
+		return Scopes.FILE;
+	}
 
-  @Override
-  public UmlDirectory getParent() {
-    return parent;
-  }
+	@Override
+	public String getQualifier() {
+		return Qualifiers.FILE;
+	}
 
-  public String getFilename() {
-	return filename;
-}
+	@Override
+	public UmlDirectory getParent() {
+		return parent;
+	}
 
-@Override
-  public boolean matchFilePattern(String antPattern) {
-    final String patternWithoutFileSuffix = StringUtils.substringBeforeLast(antPattern, ".");
-    final WildcardPattern matcher = WildcardPattern.create(patternWithoutFileSuffix, ".");
-    return matcher.match(getKey());
-  }
+	public String getFilename() {
+		return filename;
+	}
 
+	@Override
+	public boolean matchFilePattern(String antPattern) {
+		final String patternWithoutFileSuffix = StringUtils.substringBeforeLast(antPattern, ".");
+		final WildcardPattern matcher = WildcardPattern.create(patternWithoutFileSuffix, ".");
+		return matcher.match(getKey());
+	}
 
-  /**
-   * Shortcut for {@link #fromInputFile(InputFile, boolean)} for source files.
-   */
-  public static UmlFile fromInputFile(InputFile inputFile) {
-    return UmlFile.fromInputFile(inputFile, false);
-  }
+	/**
+	 * Shortcut for {@link #fromInputFile(InputFile, boolean)} for source files.
+	 */
+	public static UmlFile fromInputFile(InputFile inputFile) {
+		return UmlFile.fromInputFile(inputFile, false);
+	}
 
-  /**
-   * Creates a {@link UmlFile} from a file in the source directories.
-   *
-   * @param inputFile the file object with relative path
-   * @param isUnitTest whether it is a unit test file or a source file
-   * @return the {@link UmlFile} created if exists, null otherwise
-   */
-  public static UmlFile fromInputFile(InputFile inputFile, boolean isUnitTest) {
-    if (inputFile == null || inputFile.getFile() == null || inputFile.getRelativePath() == null) {
-      return null;
-    }
-    final String packageName = "package";
-    final String className = resolveClassName(inputFile);
-    return new UmlFile(packageName, className);
-  }
+	/**
+	 * Creates a {@link UmlFile} from a file in the source directories.
+	 * 
+	 * @param inputFile
+	 *            the file object with relative path
+	 * @param isUnitTest
+	 *            whether it is a unit test file or a source file
+	 * @return the {@link UmlFile} created if exists, null otherwise
+	 */
+	public static UmlFile fromInputFile(InputFile inputFile, boolean isUnitTest) {
+		if (inputFile == null || inputFile.getFile() == null || inputFile.getRelativePath() == null) {
+			return null;
+		}
+		final String packageName = "package";
+		final String className = resolveClassName(inputFile);
+		return new UmlFile(packageName, className);
+	}
 
-  private static String resolveClassName(InputFile inputFile) {
-    String classname = inputFile.getRelativePath();
-    if (inputFile.getRelativePath().indexOf('/') >= 0) {
-      classname = StringUtils.substringAfterLast(inputFile.getRelativePath(), "/");
-    }
-    return StringUtils.substringBeforeLast(classname, ".");
-  }
+	private static String resolveClassName(InputFile inputFile) {
+		String classname = inputFile.getRelativePath();
+		if (inputFile.getRelativePath().indexOf('/') >= 0) {
+			classname = StringUtils.substringAfterLast(inputFile.getRelativePath(), "/");
+		}
+		return StringUtils.substringBeforeLast(classname, ".");
+	}
 }
