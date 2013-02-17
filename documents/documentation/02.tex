@@ -217,12 +217,21 @@ The plugin can be built and deployed by executing in the plugin root directory, 
 mvn clean install
 \end{verbatim}
 
-Thereafter a JAR file is generated in the /target directory. After copying this JAR to the /extensions/plugin directory of Sonar, the server has to be restarded. There you go, you packaged your own Sonar plugin.
+Thereafter a JAR file is generated in the /target directory. After
+copying this JAR to the /extensions/plugin directory of Sonar, the
+server has to be restarded. There you go, you packaged your own Sonar
+plugin.
 
-\subsection{Creating an own plugin}
-A Sonar plugin is a set of Java objects, which implement extension points, which are interfaces or abstract classes to model an aspect of the system and define contracts of what needs to be implemented. Such extensions could be pages in the web application or sensors generating measures.
+\subsection{Coding a Sonar plugin}
+A Sonar plugin is a set of Java objects, which implement extension
+points, which are interfaces or abstract classes to model an aspect of
+the system and define contracts of what needs to be implemented. Such
+extensions could be pages in the web application or sensors generating
+measures.
 
-This plugin extensions must be declared in a Java class, that extends org.sonar.api.Plugin. This class must then be declared in the pom with the property :
+This plugin extensions must be declared in a Java class, that extends
+org.sonar.api.Plugin. This class must then be declared in the pom with
+the property :
 
 \begin{verbatim}
 <artifactId>sonar-foo-plugin</artifactId>
@@ -242,50 +251,43 @@ This plugin extensions must be declared in a Java class, that extends org.sonar.
 </build>
 \end{verbatim}
 
-There are also more advanced parameters like Maven descriptors, etc. possible. The full list of advanced parameters can be found here.
+There are also more advanced parameters like Maven descriptors,
+etc. possible. The full list of advanced parameters can be found here.
 
-There is a list of all known sub-interfaces and implementing classes of org.sonar.api.Extension. The most important and well known extension points are listed here.
+There is a list of all known sub-interfaces and implementing classes
+of org.sonar.api.Extension. The most important and well known
+extension points are listed here.
 
 \subsection{Sensors and Decorators}
-Two extension enable methods to save measures: sensors and decorators. In plugin development it is often a problem to decide which one to use.
+Two extension enable methods to save measures: sensors and
+decorators. In plugin development it is often a problem to decide
+which one to use.
 
 \subsubsection{Sensor}
 
-A sensor is invoked once during the analysis of the project. The sensor then can invoke a maven plugin, parse flat files or connect to web servers. The generated XML file is parsed and used to save the first-level of measures on resources (project, package or class). The sensor can access and save measures on the whole tree of resources. They generally are used to add measures at the lowest level of the resource tree.
+A sensor is invoked once during the analysis of the project. The
+sensor then can invoke a maven plugin, parse flat files or connect to
+web servers. The generated XML file is parsed and used to save the
+first-level of measures on resources (project, package or class). The
+sensor can access and save measures on the whole tree of
+resources. They generally are used to add measures at the lowest level
+of the resource tree.
 
 \subsubsection{Decorator}
 
-Decorators are used when all sensors have completed their work. The decorate method is called on every resource of a certain level bottom up. Decorators load (SELECT) and save (INSERT) measures. Because of contextual calls it is only possible to access the resource and its children. So decorators are generally used to consolidate measured at higher levels that have been added by sensors at lower levels.
-
-\subsection{Modify the front-end of Sonar and working with sensors and decorators}
-Our plugin front-end consists of the following structure:
-
-\subsubsection{ModelbusMetrics.java}
-
-Our class ModelsbusMetrics implements the Metrics Interface of Sonar. In this file we define all Metrics that we'll create in other files. The obligatory metric definitions consist of the name, key and the return type. Optionally you can add more parameters with the description, direction, setQualitativ, and setDomain methods. At least we have to define the method getMetrics() because of the interface Metrics. In this method we add all metrics to an array list and set this as return value of the getMetrics() method.
-
-\subsubsection{ModelbusPlugin.java}
-
-This file is the main entry point for Sonar. With annotations we can define some Plugin meta data like the description and the name. The class ModelbusPlugin extends the class SonarPlugin and has the method getExtensions(). We add in this method all Sonar extensions that we want to use like definition classes. batch classes or ui classes.
-
-\subsubsection{ExampleSensor.java}
-
-We created an exampleSensor to demonstrate how it must be defined. In this file it's possible to do all things you like to do. An example would be to connect to a server. In our case we don't need a sensor.
-
-\subsubsection{RandomDecorator.java}
-
-Our first decorator is a real random decorator. It will give a random value to all files.
-
-\subsubsection{ExampleFooter.java}
-
-It's possible to change the layout with plugins. This file implements the interface Footer. We just add the method getHtml() and return an example text to change the front-end layout of sonar.
-
-\subsubsection{ExampleRubyWidget.java}
-
-We can also add Widgets. The administrator can add widgets to the users layout. If our sensors get some values, the can be written from our widget and presented with plain text or with visual objects.
+Decorators are used when all sensors have completed their work. The
+decorate method is called on every resource of a certain level bottom
+up. Decorators load (SELECT) and save (INSERT) measures. Because of
+contextual calls it is only possible to access the resource and its
+children. So decorators are generally used to consolidate measured at
+higher levels that have been added by sensors at lower levels.
 
 \section{Software Architecture}
-The main architecture is described as the following. Our main software product is called the Sonar ModelBus Plugin which of course is a Sonar Plugin. This plugin, the project is dedicated to, implements a Metrino Adapter as well as a ModelBus Adapter. These sub programs are intended to communicate with the WebServices from Metrino and ModelBus.
+The main architecture is described as the following. Our main software
+product is called the Sonar ModelBus Plugin which of course is a Sonar
+Plugin. This plugin, the project is dedicated to, implements a Metrino
+Adapter as well as a ModelBus Adapter. These sub programs are intended
+to communicate with the WebServices from Metrino and ModelBus.
 
 \begin{figure}[h]
 	\centering
@@ -303,7 +305,11 @@ The main architecture is described as the following. Our main software product i
 
 
 \section{Metrics Input File SMM}
-SMM distinguishes between measures as the evaluation process of particular quality aspects of software artifacts and measurements which can be interpreted as the results of those processes. SMM specifies several types of measures and measurements for different outcome values:
+SMM distinguishes between measures as the evaluation process of
+particular quality aspects of software artifacts and measurements
+which can be interpreted as the results of those processes. SMM
+specifies several types of measures and measurements for different
+outcome values:
 \begin{itemize}
 \item DimensionalMeasure
 \item DirectMeasure
@@ -311,14 +317,104 @@ SMM distinguishes between measures as the evaluation process of particular quali
 \item CollectiveMeasure
 \end{itemize}
 
-The measures are calculated in a given scope, which has to be specified with \textit{scope="x"}, where \textit{x} is the id of a scope element, specified with \textit{xsi:type="SoftwareMetricsMetamodel2:Scope"}. Every measure also is part of a category, therefore it has to define its category with \textit{category="x"}, where \textit{x} is the id of a category element, specified with \textit{xsi:type="SoftwareMetricsMetamodel2:SMMCategory"}. This way measures can be categorized, so that one can measure different metrics in the same SMM file. Every category has an attribute measureElement, which simply holds the ids of the measures in the category. The results of the measures are saved in a measurement with \textit{xsi:type="SoftwareMetricsMetamodel2:DirectMeasurement"}. The id of this element has to be saved in the measurement attribut in the measure.
+The measures are calculated in a given scope, which has to be
+specified with \textit{scope="x"}, where \textit{x} is the id of a
+scope element, specified with
+\textit{xsi:type="SoftwareMetricsMetamodel2:Scope"}. Every measure
+also is part of a category, therefore it has to define its category
+with \textit{category="x"}, where \textit{x} is the id of a category
+element, specified with
+\textit{xsi:type="SoftwareMetricsMetamodel2:SMMCategory"}. This way
+measures can be categorized, so that one can measure different metrics
+in the same SMM file. Every category has an attribute measureElement,
+which simply holds the ids of the measures in the category. The
+results of the measures are saved in a measurement with
+\textit{xsi:type="SoftwareMetricsMetamodel2:DirectMeasurement"}. The
+id of this element has to be saved in the measurement attribute in the
+measure.
 
 For more information, see Software Metrics Metamodel (SMM) on Wikipedia.
 
 
+\subsection{Batch execution}
 
-\section{Implementation}
-\subsection{abc}
+The key to understanding the mechanics of our plugin are the classes
+\texttt{CheckModels}, \texttt{SmmAdapter},\texttt{ModelBusSensor} and
+\texttt{CountClassesDecorator}, which will be described in the
+following subsections.\\
+A rough depiction of the whole cycle can be found in \autoref{fig:batch}
+
+\begin{figure}
+	\centering
+		\includegraphics[width=\textwidth]{sequencediagramm.PNG}
+	\caption{Batch execution}
+	\label{fig:batch}
+  
+\end{figure}
+
+
+
+\subsubsection{CheckModels}
+
+This class respresents a task responsible for the traversion of the
+ModelBus repository and for calling Metrino to execute analysis on the
+models found.  In short, it traverses the repository, and if it finds
+a file with an \texttt{.uml} extension, it passes the URL of this file
+as well as that of the SMM to Metrino. Metrino then analyses the model
+and enters the result of the analysis into the SMM in the repository.
+After CheckModels is executed, the SMM contains measurements for
+all models in the repository.
+
+\subsubsection{ModelBusSensor}
+
+This is an extension of the \texttt{Sensor} interface, which
+starts the CheckModels task, and after it finishes execution
+it calls the \texttt{SmmParser} on the SMM, and then passes
+it's ouput onto the \texttt{SmmAdapter}.
+
+\subsubsection{SmmAdapter}
+
+The \texttt{SmmParser} parses the SMM into an ecore \texttt{EObject}.
+This is a very general interface which should be extended in order
+to be conveniently usable by other components in the plugin.
+Thus the \texttt{SmmAdapter}, it's input is an \texttt{EObject}
+of the SMM, and it analyzes it to output a \texttt{Map} of \texttt{Resources},
+each of which has a \texttt{Map} of metrics and their measurements
+associated with it. In other words, the \texttt{SmmAdapter} makes
+the ecore representation of the SMM undestandable to the rest
+of the plugin.
+
+\subsubsection{CountClassesDecorator}
+
+Once the measurements have been obtained, we need to attach these
+measurements to the resources of the project. A \texttt{Decorator}
+works in the following fashion: it is called for each Resource
+found in the project (how it is determined what a Resource is, will
+be covered shortly), and it attaches a Measurement to a Resource
+and saves this in Sonar. These are the measurement which are later
+to be found in the Sonar GUI. Which is basically what happens in
+our decorator: for each Resource it receives, it asks the \texttt{SmmAdapter}
+to for the measurements on this resource, and then it saves these
+into Sonar.
+
+\subsubsection{ModelbusMetrics.java}
+
+Our class ModelsbusMetrics implements the \texttt{Metrics} interface of
+Sonar. In this file we define all Metrics that we'll create in other
+files. The obligatory metric definitions consist of the name, key and
+the return type. Optionally you can add more parameters with a
+description, direction, setQualitativ, and setDomain methods. At least
+we have to override the \texttt{getMetrics()} method because of the interface
+\texttt{Metrics}. This method returns all metrics that we've defined
+as a \texttt{List}.
+
+\subsubsection{ModelbusPlugin.java}
+
+This file is the main entry point for Sonar. With annotations we can
+define some Plugin meta data like the description and the name. The
+class ModelbusPlugin extends the class SonarPlugin and has the method
+getExtensions(). In this method we add all Sonar extensions that 
+constitute the plugin such as the batch classes and the ui classes.
 
 
 
@@ -329,11 +425,12 @@ For more information, see Software Metrics Metamodel (SMM) on Wikipedia.
 
 
 
-\section{Problems}
+\section{Problems during development}
 
-The following sections describe the problems we were confronted with during the development.
+The following sections describe the problems we were confronted with
+during the development.
 
-\subsection{Developing with Sonar}
+\subsection{Developing a Sonar Plugin}
 The typical developement cycle with Sonar plugins is:
 \begin{itemize}
 	\item change the code of the plugin
@@ -342,21 +439,47 @@ The typical developement cycle with Sonar plugins is:
 	\item restart the Sonar server
 	\item visit localhost:9000 and test your changes
 \end{itemize}
-This process can be automated with a special Maven goal. But the point is that the restarting of the server costs about 3-5 minutes!
+This process can be automated with a special Maven goal. But the point is that the restarting of the server costs about 3-5 minutes!\\
 
-%6. Entwicklung mit Sonar
-	%	Dann insgesamt kann man die Dokumentation anmekern
-		%zB Sonar
-		%damit zu starten ist sehr einfach
-	%%	aber sobald man was fortgeschrittenes machen will, muss man auf die Mailingliste
+One must say that the code in Sonar is very well written OO-Code, with
+a mature design and good readability. The documentation for plugin
+development\footnote{\href{http://docs.codehaus.org/display/SONAR/Coding+a+Plugin}{http://docs.codehaus.org/display/SONAR/Coding+a+Plugin}}
+provides basic information on how a Sonar plugin is to be built, what
+must extended etc. However we've encountered problems as soon as we
+had to do something more advanced, such as defining an own
+\texttt{Language}.  This is only partly documented in Sonar's
+Javadoc. So our default way of finding out how to code certain
+functionality in Sonar came from analyzing other plugins' source code
+(most notably
+\texttt{sonar-erlang-plugin}\footnote{\href{https://github.com/kalidasya/sonar-erlang-plugin}{https://github.com/kalidasya/sonar-erlang-plugin}}),
+as well as the Sonar source code.  Needless to say, this was a very
+time-consuming process and error-prone process, which included many
+trial-and-error episodes. This was made even worse by the slow
+development process mentioned earlier.  Our last resort to gain
+knowledge was the sonar-dev mailing list, which has proven to be
+responsive.
+
 
 \subsection{Central repository}
-In the beginning of the software project we tried to setup a central ModelBus server with Metrino service included for all team members. But it was not possible to run Metrino because it was only locally accessible and not over its remote URL. After compiling Metrino with remote settings the service did also not work. So we have chosen the other development way and installed ModelBus with Metrino on our local machines.
+In the beginning of the software project we tried to setup a central
+ModelBus server with Metrino service included for all team
+members. But it was not possible to run Metrino because it was only
+locally accessible and not over its remote URL. After compiling
+Metrino with remote settings the service did also not work. So we have
+chosen the other development way and installed ModelBus with Metrino
+on our local machines.
 		
 \subsection{Wrong class loader}
-The problem was that we could not connect to the ModelBus repository through the sonar plugin. Using the same code in a standalone Java application instead worked fine: The ModelBus repository was successfully checked out.
+The problem was that we could not connect to the ModelBus repository
+through the sonar plugin. Using the same code in a standalone Java
+application instead worked fine: The ModelBus repository was
+successfully checked out.
 
-The reason was that the ModelBus part could not resolve some bindings in its configuration. That was caused by the missing of a resource. This resource lied in the META-INF folder of the "org.modelbus.cxf.dosgi" jar bundle. The loading of this resource was done over the current context class loader in a ModelBus class:
+The reason was that the ModelBus part could not resolve some bindings
+in its configuration. That was caused by the missing of a
+resource. This resource lied in the META-INF folder of the
+"org.modelbus.cxf.dosgi" jar bundle. The loading of this resource was
+done over the current context class loader in a ModelBus class:
 
 \begin{verbatim}
 ClassLoader cl = Thread.currentThread().getContextClassLoader();
@@ -364,9 +487,15 @@ Enumeration<URL> urls = cl.getResources("META-INF/cxf/bus/bus-extensions.txt");
 //loading each url...
 \end{verbatim}
 
-The problem is that the context classloader of the current thread is not the plugin classloader.
+The problem is that the context classloader of the current thread is
+not the plugin classloader.
 
-Each Sonar plugin runs in an isolated classloader to avoid conflicts with other plugins. Third-party libraries can be loaded by using a mechanism specific to Sonar. It only requires to build the plugin with the sonar-packaging-maven-plugin, which copies the libs into META-INF/lib. This mechanism relies on its own classloader implementation.
+Each Sonar plugin runs in an isolated classloader to avoid conflicts
+with other plugins. Third-party libraries can be loaded by using a
+mechanism specific to Sonar. It only requires to build the plugin with
+the sonar-packaging-maven-plugin, which copies the libs into
+META-INF/lib. This mechanism relies on its own classloader
+implementation.
 
 By temporarly replacing the context class loader with the plugin class loader (the class loader of the extension), this issue can be solved:
 \begin{verbatim}
@@ -380,10 +509,22 @@ try {
 \end{verbatim}
 
 \subsection{Missing Metrino files}
-Another problem was that the provided ModelBus copy was not complete concerning the Metrino service. Metrino was unable to compute the metric values for a given model. After copying the missing jar bundles (de.fraunhofer.fokus.metrino.ruleEvaluator and de.fraunhofer.fokus.metrino.measure) into ModelBus' plugins folder Metrino was ready for operation.
+Another problem was that the provided ModelBus copy was not complete
+concerning the Metrino service. Metrino was unable to compute the
+metric values for a given model. After copying the missing jar bundles
+(de.fraunhofer.fokus.metrino.ruleEvaluator and
+de.fraunhofer.fokus.metrino.measure) into ModelBus' plugins folder
+Metrino was ready for operation.
 
 \subsection{No SMM standard}
-To analyze a model for some metrics Metrino needs a SMM file, which defines the metrics with the help of OCL. The results of the model analysis will be saved in the SMM file again. So we needed to parse that SMM to retrieve the measurement results. The structure of the SMM file is defined by a XML schema. Unfortunatly, Metrino does not hew to the SMM standard. After browsing through the Metrino binaries we found the corresponding XML schema. Finally, we were able to parse the file and to retrieve the desired results.
+To analyze a model for some metrics Metrino needs a SMM file, which
+defines the metrics with the help of OCL. The results of the model
+analysis will be saved in the SMM file again. So we needed to parse
+that SMM to retrieve the measurement results. The structure of the SMM
+file is defined by a XML schema. Unfortunatly, Metrino does not hew to
+the SMM standard. After browsing through the Metrino binaries we found
+the corresponding XML schema. Finally, we were able to parse the file
+and to retrieve the desired results.
 
 \subsection{Displaying metrics per resource}
 %2. Nichtanzeigen der Metriken pro Datei
