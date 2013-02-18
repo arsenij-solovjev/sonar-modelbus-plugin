@@ -20,17 +20,19 @@ import org.sonar.api.resources.Language;
 
 import org.sonar.api.resources.ResourceUtils;
 import org.sonar.plugins.modelbus.Resources;
+import org.sonar.plugins.modelbus.adapter.ConfigurableProjectAdapter;
 import org.sonar.plugins.modelbus.adapter.SmmModelAdapter;
 import org.sonar.plugins.modelbus.language.uml.Uml;
 
-public class CountClassesDecorator implements Decorator {
+public class CountClassesDecorator extends ConfigurableProjectAdapter implements Decorator {
 	public static final Logger LOG = LoggerFactory.getLogger(CountClassesDecorator.class);
 
 	String baseDirPath;
 	String modelPath;
 
 	public boolean shouldExecuteOnProject(Project project) {
-		LOG.info("Testlog in CountClassesDecorator");
+		LOG.info("Checking project \""+project+"\" for execution.");
+		
 
 		baseDirPath = project.getFileSystem().getBasedir().getAbsolutePath();
 		modelPath = baseDirPath + ModelBusPluginConst.MODEL_PATH;
@@ -43,6 +45,8 @@ public class CountClassesDecorator implements Decorator {
 	}
 
 	public void decorate(@SuppressWarnings("rawtypes") Resource resource, DecoratorContext context) {
+		super.configure(context.getProject(), getClass());
+		
 		LOG.debug("decorating resource "+resource+" (" +resource.getLongName()+")");
 		
 		if (ResourceUtils.isFile(resource)) {
@@ -50,11 +54,6 @@ public class CountClassesDecorator implements Decorator {
 			Language language = resource.getLanguage();
 			if (language instanceof Uml) {
 				Resources resources = Resources.getInstance();
-
-				// String key = resource.getKey();
-				
-				//if (key.endsWith(Resources.UML_EXT)) {
-
 					SmmModelAdapter smm = resources.getModel();
 					if(smm!=null) {
 						Map<Metric, Double> measurements = smm.getMeasurements(resource);
@@ -70,13 +69,12 @@ public class CountClassesDecorator implements Decorator {
 							}
 						}
 						else {
-							LOG.error("Could not get SMM measurements.");
+							LOG.warn("Could not get any SMM measurements for resource \""+resource.getName()+"\".");
 						}
 					}
 					else {
 						LOG.error("Could not get SMM file.");
 					}
-				//}
 			}
 		}
 

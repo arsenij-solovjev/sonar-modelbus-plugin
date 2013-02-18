@@ -11,7 +11,7 @@ import java.util.Set;
 import org.sonar.api.measures.CoreMetrics;
 import org.sonar.api.measures.Metric;
 import org.sonar.api.measures.Metrics;
-import org.sonar.plugins.modelbus.adapter.ClassLoaderAdapter;
+import org.sonar.plugins.modelbus.adapter.ModelBusMetricsAdapter;
 import org.sonar.plugins.modelbus.adapter.SmmModelAdapter;
 import org.sonar.plugins.modelbus.metrinoclient.CheckModels;
 import org.sonar.plugins.modelbus.smmparser.SMMModel;
@@ -21,6 +21,8 @@ public final class ModelBusMetrics implements Metrics {
 	private static List<Metric> cachedMetrics;
 
 	public static Map<String, Metric> CONF_MEASURE_NAME_TO_CORE_METRICS = new HashMap<String, Metric>();
+	
+	public static final String METRIC_DOMAIN = "Model";
 
 	// define all metrics
 	public static final Metric MESSAGE = new Metric.Builder("message_key", "Message",
@@ -37,7 +39,7 @@ public final class ModelBusMetrics implements Metrics {
 	public static final Metric COUNTCLASSES = new Metric.Builder("NumberOfClasses", "Count Classes",
 			Metric.ValueType.INT).setDescription("Count number of classes")
 			.setDirection(Metric.DIRECTION_BETTER).setQualitative(false)
-			.setDomain(CoreMetrics.DOMAIN_GENERAL).create();
+			.setDomain(ModelBusMetrics.METRIC_DOMAIN).create();
 
 
 	
@@ -86,7 +88,7 @@ public final class ModelBusMetrics implements Metrics {
 	
 	
 	private static Set<Metric> receiveMetrics() {
-		Set<Metric> out = new ClassLoaderAdapter<Set<Metric>>(ModelBusMetrics.class) {
+		Set<Metric> out = new ModelBusMetricsAdapter<Set<Metric>>(ModelBusMetrics.class) {
 			@Override
 			public Set<Metric> execute() {
 				CheckModels checkModels = CheckModels.getInstance();

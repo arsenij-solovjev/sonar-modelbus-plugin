@@ -115,7 +115,7 @@ public class SmmModelAdapter {
 		)
 		.setDirection(Metric.DIRECTION_BETTER)
 		.setQualitative(false)
-		.setDomain(CoreMetrics.DOMAIN_GENERAL)
+		.setDomain(ModelBusMetrics.METRIC_DOMAIN)
 		.setDescription(measure.getDescription());
 		
 		if(measure.getName().toLowerCase().startsWith("numberof")) {

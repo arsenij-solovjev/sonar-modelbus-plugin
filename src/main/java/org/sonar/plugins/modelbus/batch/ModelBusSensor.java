@@ -12,26 +12,31 @@ import org.sonar.api.resources.Project;
 import org.sonar.api.resources.Resource;
 import org.sonar.plugins.modelbus.Resources;
 
-import org.sonar.plugins.modelbus.adapter.ClassLoaderAdapter;
+import org.sonar.plugins.modelbus.adapter.ModelBusMetricsAdapter;
+import org.sonar.plugins.modelbus.adapter.ConfigurableProjectAdapter;
 import org.sonar.plugins.modelbus.adapter.SmmModelAdapter;
 import org.sonar.plugins.modelbus.metrinoclient.CheckModels;
 import org.sonar.plugins.modelbus.smmparser.SMMModel;
 import org.sonar.plugins.modelbus.smmparser.SMMParser;
 
-public class ModelBusSensor implements Sensor {
+public class ModelBusSensor extends ConfigurableProjectAdapter implements Sensor {
 
 	public static final Logger LOG = LoggerFactory.getLogger(ModelBusSensor.class);
 
 	public boolean shouldExecuteOnProject(Project project) {
+		LOG.info("Checking project \""+project+"\" for execution.");
+		
 		// This sensor is executed on any type of projects
 		//	project.setLanguage(Uml.INSTANCE);
 		return true;
 	}
 
 	public void analyse(final Project project, final SensorContext sensorContext) {
+		super.configure(project, getClass());
+		
 		// HACK: context classloader must be overwritten with the plugin
 		// classloader (otherwise modelbus fails on initialization)
-		new ClassLoaderAdapter<Boolean>(getClass()) {
+		new ModelBusMetricsAdapter<Boolean>(getClass()) {
 			@Override
 			public Boolean execute() {
 				Resources resources = Resources.getInstance();
@@ -49,6 +54,8 @@ public class ModelBusSensor implements Sensor {
 				Map<Resource<?>, Map<Metric, Double>> mapping = smm.getResourceToMetrics();
 				for(Resource<?> resource : mapping.keySet()) {
 					Map<Metric, Double> metrics = mapping.get(resource);
+					LOG.debug("sensor: set data for resource "+resource.getName()+": "+metrics.size());
+					
 					for(Metric metric : metrics.keySet()) {
 						try {
 							//save resource's metric value

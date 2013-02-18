@@ -2,12 +2,12 @@ package org.sonar.plugins.modelbus.adapter;
 
 import org.apache.log4j.Logger;
 
-public abstract class ClassLoaderAdapter<T> {
+public abstract class ModelBusMetricsAdapter<T> {
 
 
 	private Class<?> cl;
 
-	public ClassLoaderAdapter(Class<?> cl) {
+	public ModelBusMetricsAdapter(Class<?> cl) {
 		this.cl = cl;
 	}
 
