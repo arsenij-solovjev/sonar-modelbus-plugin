@@ -1,21 +1,26 @@
 package org.sonar.plugins.modelbus;
 
 import java.lang.reflect.Field;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.sonar.api.measures.CoreMetrics;
 import org.sonar.api.measures.Metric;
 import org.sonar.api.measures.Metrics;
+import org.sonar.plugins.modelbus.adapter.ClassLoaderAdapter;
+import org.sonar.plugins.modelbus.adapter.SmmModelAdapter;
 import org.sonar.plugins.modelbus.metrinoclient.CheckModels;
-import org.sonar.plugins.modelbus.smmadapter.SmmModelAdapter;
 import org.sonar.plugins.modelbus.smmparser.SMMModel;
 import org.sonar.plugins.modelbus.smmparser.SMMParser;
 
 public final class ModelBusMetrics implements Metrics {
 	private static List<Metric> cachedMetrics;
+
+	public static Map<String, Metric> CONF_MEASURE_NAME_TO_CORE_METRICS = new HashMap<String, Metric>();
 
 	// define all metrics
 	public static final Metric MESSAGE = new Metric.Builder("message_key", "Message",
@@ -45,13 +50,16 @@ public final class ModelBusMetrics implements Metrics {
 	
 	
 	public static List<Metric> getAllMetrics() {
-		System.err.println("GETTING METRICS");
-		if(cachedMetrics==null) {
-			List<Metric> out = new LinkedList<Metric>();
-			out.addAll(getPredefinedMetrics());
-			// TODO sth bad happens here
-			//out.addAll(receiveMetrics());
-			cachedMetrics = out;
+		if(cachedMetrics==null) {			
+			HashMap<String, Metric> metricNameMap = new HashMap<String, Metric>();
+			for(Metric m : getPredefinedMetrics()) {
+				metricNameMap.put(m.getKey(), m);
+			}
+			for(Metric m : receiveMetrics()) {
+				metricNameMap.put(m.getKey(), m);
+			}
+			
+			cachedMetrics = new LinkedList<Metric>(metricNameMap.values());
 		}
 		return cachedMetrics;
 	}
@@ -78,16 +86,15 @@ public final class ModelBusMetrics implements Metrics {
 	
 	
 	private static Set<Metric> receiveMetrics() {
-		// Create parse resulting model, and make it accessible via Resources
-		Set<Metric> out = null;
-		try {
-			SMMModel smmModel = SMMParser.load(CheckModels.getInstance().checkoutSmm());
-			SmmModelAdapter smm = new SmmModelAdapter(smmModel);
-			out = smm.getMetrics();
-		}
-		catch(Exception e) {
-			System.err.println("Problems receiving the Metrics.");
-		}
+		Set<Metric> out = new ClassLoaderAdapter<Set<Metric>>(ModelBusMetrics.class) {
+			@Override
+			public Set<Metric> execute() {
+				CheckModels checkModels = CheckModels.getInstance();
+				SMMModel smmModel = SMMParser.load(checkModels.checkoutSmm());
+				SmmModelAdapter smm = new SmmModelAdapter(smmModel);
+				return smm.getMetrics();
+			}
+		}.start();
 		return out != null ? out : new HashSet<Metric>();
 	}
 }

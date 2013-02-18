@@ -17,6 +17,7 @@ import org.modelbus.dosgi.repository.descriptor.RepositoryRuntimeException;
 import org.modelbus.dosgi.repository.descriptor.Session;
 import org.sonar.api.resources.Project;
 import org.sonar.plugins.modelbus.Resources;
+import org.sonar.plugins.modelbus.metrinoclient.metrino.MetrinoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,10 +28,10 @@ public class CheckModels {
 
 	private Session session;
 	private IRepositoryHelper repository;
-	private MetrinoSoapClient metrino;
+	private MetrinoService metrino;
 
 	public static CheckModels getInstance() {
-		if(true || instance==null) {
+		if(instance==null) {
 			instance = new CheckModels();
 		}
 		return instance;
@@ -40,7 +41,7 @@ public class CheckModels {
 	private void initSession() {
 		session = new Session();
 		session.setId(EcoreUtil.generateUUID());
-		metrino = new MetrinoSoapClient();
+		metrino = MetrinoSoapClient.getInstance();
 		Property propertyUserName = new Property();
 		propertyUserName.setKey("username");
 		// TODO load login data from properties 
@@ -80,7 +81,7 @@ public class CheckModels {
 				String filename = entry.getName();
 				if (filename.endsWith(Resources.UML_EXT)) {
 					System.out.println("checking model '" + filename + "'...");
-					metrino.ccheckModel(entry.getUri(), Resources.SMM);
+					metrino.checkModel(entry.getUri(), Resources.SMM);
 					System.out.println("Entry URI: " + entry.getUri());
 					System.out.println("Directory URI: " + directory.getUri());
 				}
@@ -89,7 +90,6 @@ public class CheckModels {
 	}
 
 	public InputStream checkoutSmm() {
-		session=null; repository=null;
 		try {
 			if(session==null) {
 				initSession();
@@ -105,7 +105,6 @@ public class CheckModels {
 	}
 
 	public void startTraverseRepository(Project project) {
-		session=null; repository=null;
 		try {
 			if(session==null) {
 				initSession();

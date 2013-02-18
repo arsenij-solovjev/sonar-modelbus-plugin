@@ -47,8 +47,7 @@ public class UmlSourceImporter extends AbstractSourceImporter {
 //				fileSystem.getSourceDirs(), false, fileSystem.getSourceCharset());
 	}
 
-	 private void addFileToSonar(SensorContext sensorContext, InputFile inputFile,
-		     String charset) {
+	 private void addFileToSonar(SensorContext sensorContext, InputFile inputFile, String charset) {
 		    try {
 		      String source = FileUtils.readFileToString(inputFile.getFile(), charset);
 		      UmlFile resource = UmlFile.fromInputFile(inputFile);

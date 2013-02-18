@@ -13,18 +13,16 @@ import org.sonar.plugins.modelbus.metrinoclient.metrino.*;
  * @author arsenij
  * 
  */
-public class MetrinoSoapClient {
+public abstract class MetrinoSoapClient {
 	
-	static MetrinoService client;
+	private static MetrinoService client;
 	
-	
-	MetrinoSoapClient() {
-		client = createClient();
-	}
-	
-
-	void ccheckModel(String modelUri, String smmUri){
-		client.checkModel(modelUri, smmUri);
+		
+	public static MetrinoService getInstance() {
+		if(client==null) {
+			client = createClient();
+		}
+		return client;
 	}
 	
 
@@ -37,10 +35,9 @@ public class MetrinoSoapClient {
 			MetrinoService client = service.getPort(MetrinoService.class);
 			return client;
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	return null;
+		return null;
 	}
 
 }

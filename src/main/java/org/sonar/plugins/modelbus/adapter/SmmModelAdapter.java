@@ -1,4 +1,4 @@
-package org.sonar.plugins.modelbus.smmadapter;
+package org.sonar.plugins.modelbus.adapter;
 
 import java.io.File;
 import java.util.Collection;
@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.sonar.api.measures.CoreMetrics;
 import org.sonar.api.measures.Metric;
 import org.sonar.api.measures.Metric.Builder;
 import org.sonar.api.measures.Metric.ValueType;
@@ -93,13 +94,29 @@ public class SmmModelAdapter {
 	
 	
 	private Metric createMetricByMeasure(Measure measure) {
+		String measureName = measure.getName();
+		
+		// conf core metric map build
+		Map<String, Metric> coreMetricsMap = ModelBusMetrics.CONF_MEASURE_NAME_TO_CORE_METRICS;
+		if(coreMetricsMap!=null) {
+			Metric m = coreMetricsMap.get(measureName);
+			if(m!=null) {
+				System.out.println("Found core metric \""+m+"\" by measure name \""+measureName+"\".");
+				return m;
+			}
+		}
+		
+		// default metric build
 		ValueType floatType = Metric.ValueType.FLOAT;
 		Builder metricBuilder = new Metric.Builder(
-			measure.getName(),
-			measure.getName(),
+			measureName,
+			measureName,
 			floatType
-		);
-		metricBuilder.setDescription(measure.getDescription());
+		)
+		.setDirection(Metric.DIRECTION_BETTER)
+		.setQualitative(false)
+		.setDomain(CoreMetrics.DOMAIN_GENERAL)
+		.setDescription(measure.getDescription());
 		
 		if(measure.getName().toLowerCase().startsWith("numberof")) {
 			metricBuilder.setFormula(new SumChildValuesFormula(true));

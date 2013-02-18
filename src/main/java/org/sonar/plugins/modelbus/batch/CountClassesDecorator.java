@@ -20,8 +20,8 @@ import org.sonar.api.resources.Language;
 
 import org.sonar.api.resources.ResourceUtils;
 import org.sonar.plugins.modelbus.Resources;
+import org.sonar.plugins.modelbus.adapter.SmmModelAdapter;
 import org.sonar.plugins.modelbus.language.uml.Uml;
-import org.sonar.plugins.modelbus.smmadapter.SmmModelAdapter;
 
 public class CountClassesDecorator implements Decorator {
 	public static final Logger LOG = LoggerFactory.getLogger(CountClassesDecorator.class);
@@ -51,23 +51,30 @@ public class CountClassesDecorator implements Decorator {
 			if (language instanceof Uml) {
 				Resources resources = Resources.getInstance();
 
-				String key = resource.getKey();
+				// String key = resource.getKey();
 				
 				//if (key.endsWith(Resources.UML_EXT)) {
 
 					SmmModelAdapter smm = resources.getModel();
-				
-					Map<Metric, Double> measurements = smm.getMeasurements(resource);
-					// smm.getMetrics();
-					
-					if(measurements!=null)
-					for (Metric m : measurements.keySet()) {
-						try {
-							context.saveMeasure(m, measurements.get(m));
+					if(smm!=null) {
+						Map<Metric, Double> measurements = smm.getMeasurements(resource);
+						
+						if(measurements!=null) {
+							for (Metric m : measurements.keySet()) {
+								try {
+									context.saveMeasure(m, measurements.get(m));
+								}
+								catch(Exception e) {
+									LOG.warn("Could not save measure \""+m+"\" for resource \""+resource.getName()+"\": "+e.getMessage());
+								}
+							}
 						}
-						catch(Exception e) {
-							LOG.warn("Could not save measure \""+m+"\" for resource \""+resource.getName()+"\": "+e.getMessage());
+						else {
+							LOG.error("Could not get SMM measurements.");
 						}
+					}
+					else {
+						LOG.error("Could not get SMM file.");
 					}
 				//}
 			}
